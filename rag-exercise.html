@@ -1,0 +1,825 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Grounding AI with RAG · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<li><a href="generic.html">Tempus etiam</a></li>
+							<li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Grounding AI with RAG</h1>
+							<p>An interactive learning piece on Retrieval-Augmented Generation (RAG). In about three minutes, you see how a chatbot's answer changes when it is grounded in a company document, and why you still need to check the source.</p>
+							<p><b>After this exercise you can:</b></p>
+							<ul>
+								<li>tell a general LLM reply apart from a RAG-grounded reply,</li>
+								<li>switch on grounding so an LLM answers from your documents,</li>
+								<li>check a grounded reply against its source to catch hallucinations.</li>
+							</ul>
+							<p>Discover how the reply of an AI chatbot changes with RAG in the following interaction:</p>
+
+							<!-- ============ RAG EXERCISE START (self-contained: copy everything down to RAG EXERCISE END) ============ -->
+							<style>
+								@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900');
+
+								#rag-exercise {
+									/* Palette taken from the Phantom template (assets/sass/libs/_vars.scss) */
+									--rag-fg: #585858;
+									--rag-fg-bold: #3c3b3b;
+									--rag-fg-light: #8f8f8f;
+									--rag-bg: #ffffff;
+									--rag-bg-alt: #f6f6f6;
+									--rag-dark: #333333;
+									--rag-border: #c9c9c9;
+									--rag-accent1: #f2849e;
+									--rag-accent1-text: #c2416a;
+									--rag-accent2: #7ecaf6;
+									--rag-accent3: #7bd0c1;
+									--rag-accent3-text: #1f8a75;
+									--rag-radius: 4px;
+									font-family: 'Source Sans Pro', Helvetica, sans-serif;
+									font-size: clamp(15px, 0.85em, 18px);
+									font-weight: 300;
+									line-height: 1.65;
+									letter-spacing: normal;
+									color: var(--rag-fg);
+									max-width: 52em;
+									margin: 0 0 2.5em 0;
+									text-align: left;
+								}
+								/* Neutralise the template's global element styles inside the exercise */
+								#rag-exercise *, #rag-exercise *::before, #rag-exercise *::after { box-sizing: border-box; }
+								#rag-exercise p, #rag-exercise h3, #rag-exercise ol, #rag-exercise li, #rag-exercise label {
+									margin: 0; padding: 0; font: inherit; color: inherit;
+									letter-spacing: normal; text-transform: none;
+								}
+								#rag-exercise b, #rag-exercise strong { font-weight: 700; color: var(--rag-fg-bold); }
+								#rag-exercise i { font-style: normal; }
+								#rag-exercise button, #rag-exercise textarea { all: unset; box-sizing: border-box; font-family: inherit; }
+								#rag-exercise [hidden] { display: none !important; }
+								#rag-exercise :focus-visible { outline: 2px solid var(--rag-accent1); outline-offset: 3px; }
+								#rag-exercise .rag-sr {
+									position: absolute; width: 1px; height: 1px; overflow: hidden;
+									clip: rect(0 0 0 0); white-space: nowrap;
+								}
+								#rag-exercise .rag-icon { width: 1em; height: 1em; flex: none; vertical-align: -0.12em; }
+
+								/* ---------- Window ---------- */
+								#rag-exercise .rag-window {
+									background: var(--rag-bg); border: 1px solid var(--rag-border); border-radius: var(--rag-radius);
+								}
+								#rag-exercise .rag-header {
+									display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1.5em;
+									padding: 0.85em 1.25em; background: var(--rag-bg-alt);
+									border-bottom: 1px solid var(--rag-border); border-radius: var(--rag-radius) var(--rag-radius) 0 0;
+								}
+
+								/* Grounding switch */
+								#rag-exercise .rag-toggle {
+									position: relative; display: inline-flex; align-items: center; gap: 0.8em;
+									padding: 0.3em 0.4em; border-radius: var(--rag-radius); cursor: pointer;
+									font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em;
+									color: var(--rag-fg-bold) !important; transition: color 0.2s, opacity 0.2s;
+								}
+								#rag-exercise .rag-toggle[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+								#rag-exercise.is-grounded .rag-toggle[aria-disabled="true"] { opacity: 1; cursor: default; }
+								#rag-exercise .rag-track {
+									position: relative; flex: none; width: 3.4em; height: 1.8em; border-radius: 1em;
+									background: var(--rag-border); transition: background 0.25s;
+								}
+								#rag-exercise .rag-knob {
+									position: absolute; top: 0.25em; left: 0.25em; width: 1.3em; height: 1.3em; border-radius: 50%;
+									background: var(--rag-bg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+									transition: transform 0.25s cubic-bezier(0.3, 1.4, 0.6, 1);
+								}
+								#rag-exercise.is-grounded .rag-toggle { color: var(--rag-accent3-text) !important; }
+								#rag-exercise.is-grounded .rag-track { background: var(--rag-accent3); }
+								#rag-exercise.is-grounded .rag-knob { transform: translateX(1.6em); }
+								#rag-exercise .rag-doc {
+									display: inline-flex; align-items: center; gap: 0.45em;
+									font-size: 0.9em; color: var(--rag-fg-light); transition: color 0.2s;
+								}
+								#rag-exercise.is-grounded .rag-doc { color: var(--rag-fg-bold); }
+								#rag-exercise.is-grounded .rag-doc .rag-icon { color: var(--rag-accent3-text); }
+
+								/* ---------- Chat log ---------- */
+								#rag-exercise .rag-log {
+									display: flex; flex-direction: column; gap: 1em;
+									padding: 1.4em 1.25em; min-height: 20em; max-height: min(34em, 62vh); overflow-y: auto;
+								}
+								#rag-exercise .rag-msg {
+									max-width: 85%; padding: 0.8em 1.15em; border-radius: var(--rag-radius);
+									animation: rag-in 0.35s ease-out both;
+								}
+								#rag-exercise .rag-msg--bot { align-self: flex-start; background: var(--rag-bg-alt); border-top-left-radius: 0; }
+								#rag-exercise .rag-msg--user {
+									align-self: flex-end; background: var(--rag-fg); color: #ffffff; border-top-right-radius: 0;
+								}
+								#rag-exercise .rag-msg--system {
+									align-self: stretch; max-width: 100%; padding: 0; display: flex; align-items: center; gap: 1em;
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--rag-fg-light);
+								}
+								#rag-exercise .rag-msg--system::before, #rag-exercise .rag-msg--system::after {
+									content: ""; flex: 1; height: 1px; background: var(--rag-border);
+								}
+								#rag-exercise .rag-msg--system span { display: inline-flex; align-items: center; gap: 0.5em; text-align: center; }
+								#rag-exercise .rag-label {
+									display: block; margin-bottom: 0.3em;
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--rag-fg-bold);
+								}
+								#rag-exercise .rag-label--warn { color: var(--rag-accent1-text); }
+								#rag-exercise .rag-label--ok { color: var(--rag-accent3-text); }
+
+								/* Thinking + streaming */
+								#rag-exercise .rag-thinking { display: inline-flex; align-items: center; gap: 0.75em; color: var(--rag-fg-light); }
+								#rag-exercise .rag-dots { display: inline-flex; gap: 0.3em; }
+								#rag-exercise .rag-dots i {
+									width: 0.45em; height: 0.45em; border-radius: 50%; background: var(--rag-fg);
+									animation: rag-dot 1s infinite ease-in-out;
+								}
+								#rag-exercise .rag-dots i:nth-child(2) { animation-delay: 0.15s; }
+								#rag-exercise .rag-dots i:nth-child(3) { animation-delay: 0.3s; }
+								#rag-exercise .rag-swap { animation: rag-swap 0.3s ease-out both; }
+								#rag-exercise .rag-caret {
+									display: inline-block; width: 0.45em; height: 1.05em; margin-left: 0.1em;
+									vertical-align: -0.18em; background: var(--rag-fg); animation: rag-blink 0.9s steps(1) infinite;
+								}
+								#rag-exercise .rag-fade { animation: rag-in 0.4s ease-out both; }
+
+								/* No-source tag + source button */
+								#rag-exercise .rag-tag {
+									display: inline-block; margin-top: 0.8em; padding: 0.3em 0.8em;
+									font-size: 0.65em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
+									color: var(--rag-accent1-text); border: 1px dashed var(--rag-accent1-text); border-radius: var(--rag-radius);
+								}
+								#rag-exercise .rag-source {
+									position: relative; display: inline-flex; align-items: center; gap: 0.6em;
+									margin-top: 0.8em; padding: 0.6em 1em; border-radius: var(--rag-radius); cursor: pointer;
+									font-size: 0.65em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
+									color: var(--rag-fg) !important; background: var(--rag-bg); box-shadow: inset 0 0 0 2px var(--rag-fg);
+									transition: color 0.2s, box-shadow 0.2s, background 0.2s;
+								}
+								#rag-exercise .rag-source::after { content: "\25BE"; letter-spacing: 0; transition: transform 0.2s; }
+								#rag-exercise .rag-source:hover { color: var(--rag-accent1-text) !important; box-shadow: inset 0 0 0 2px var(--rag-accent1); }
+								#rag-exercise .rag-source[aria-expanded="true"] { color: #ffffff !important; background: var(--rag-fg); box-shadow: none; }
+								#rag-exercise .rag-source[aria-expanded="true"]::after { transform: rotate(180deg); }
+
+								/* Mock PDF page */
+								#rag-exercise .rag-excerpt {
+									display: grid; gap: 0.6em; margin-top: 0.9em; padding: 1em 1.1em;
+									font-size: 0.92em; background: var(--rag-bg);
+									border: 1px solid var(--rag-border); border-radius: var(--rag-radius);
+									animation: rag-in 0.3s ease-out both;
+								}
+								#rag-exercise .rag-excerpt-head {
+									display: flex; align-items: center; gap: 0.5em; padding-bottom: 0.5em; border-bottom: 1px solid var(--rag-bg-alt);
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--rag-fg-light);
+								}
+								#rag-exercise .rag-sec {
+									padding: 0.5em 0.8em; border-left: 3px solid transparent; border-radius: 0 var(--rag-radius) var(--rag-radius) 0;
+									transition: background 0.3s, border-color 0.3s;
+								}
+								#rag-exercise .rag-sec--match { background: rgba(123, 208, 193, 0.18); border-left-color: var(--rag-accent3); }
+								#rag-exercise .rag-sec--cited { background: var(--rag-bg-alt); border-left-color: var(--rag-border); }
+								#rag-exercise .rag-sec--conflict { background: rgba(242, 132, 158, 0.14); border-left-color: var(--rag-accent1); }
+								#rag-exercise .rag-sec-note {
+									display: block; margin-top: 0.3em;
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em;
+								}
+								#rag-exercise .rag-sec--match .rag-sec-note { color: var(--rag-accent3-text); }
+								#rag-exercise .rag-sec--cited .rag-sec-note { color: var(--rag-fg-light); }
+								#rag-exercise .rag-sec--conflict .rag-sec-note { color: var(--rag-accent1-text); }
+
+								/* In-chat verification question */
+								#rag-exercise .rag-quiz {
+									position: relative; align-self: stretch; max-width: 100%; display: grid; gap: 0.8em;
+									padding: 1.1em 1.25em; background: var(--rag-bg); box-shadow: inset 0 0 0 2px var(--rag-accent1);
+								}
+								#rag-exercise .rag-quiz-eyebrow {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--rag-accent1-text);
+								}
+								#rag-exercise .rag-quiz-title { font-size: 1.1em; font-weight: 700; line-height: 1.35; color: var(--rag-fg-bold); }
+								#rag-exercise .rag-options { display: grid; gap: 0.5em; }
+								#rag-exercise .rag-option {
+									display: block; padding: 0.65em 1em; border-radius: var(--rag-radius); cursor: pointer;
+									color: var(--rag-fg) !important; background: var(--rag-bg); box-shadow: inset 0 0 0 1px var(--rag-border);
+									transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+								}
+								#rag-exercise .rag-option:hover:not(:disabled) { color: var(--rag-fg-bold) !important; box-shadow: inset 0 0 0 2px var(--rag-accent1); }
+								#rag-exercise .rag-option:disabled { cursor: default; opacity: 1; pointer-events: none; }
+								#rag-exercise .rag-option.is-correct { background: rgba(123, 208, 193, 0.18); box-shadow: inset 0 0 0 2px var(--rag-accent3); }
+								#rag-exercise .rag-option.is-wrong { background: rgba(242, 132, 158, 0.12); box-shadow: inset 0 0 0 2px var(--rag-accent1); }
+								#rag-exercise .rag-feedback {
+									display: grid; gap: 0.9em; justify-items: start; padding: 0.9em 1.1em;
+									border-left: 4px solid; border-radius: 0 var(--rag-radius) var(--rag-radius) 0;
+									animation: rag-in 0.35s ease-out both;
+								}
+								#rag-exercise .rag-feedback.is-correct { border-color: var(--rag-accent3); background: rgba(123, 208, 193, 0.14); }
+								#rag-exercise .rag-feedback.is-wrong { border-color: var(--rag-accent1); background: rgba(242, 132, 158, 0.1); }
+
+								/* ---------- Task bar (current instruction + progress) ---------- */
+								#rag-exercise .rag-task {
+									display: grid; gap: 0.35em; padding: 0.9em 1.25em;
+									background: var(--rag-dark); color: #ffffff;
+								}
+								#rag-exercise .rag-task.rag-flash { animation: rag-flash 0.6s ease-out; }
+								#rag-exercise .rag-task-top { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+								#rag-exercise .rag-task-step {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--rag-accent1);
+								}
+								#rag-exercise .rag-progress { display: flex; gap: 0.3em; list-style: none; }
+								#rag-exercise .rag-progress li {
+									width: 2.2em; height: 0.3em; border-radius: 0.3em; background: rgba(255, 255, 255, 0.22);
+									transition: background 0.3s;
+								}
+								#rag-exercise .rag-progress li.is-current { background: var(--rag-accent1); }
+								#rag-exercise .rag-progress li.is-done { background: var(--rag-accent3); }
+								#rag-exercise .rag-task-text { color: #ffffff; }
+								#rag-exercise .rag-task-text b { color: #ffffff; }
+
+								/* ---------- Composer ---------- */
+								#rag-exercise .rag-composer {
+									display: grid; gap: 0.6em; padding: 1em 1.25em; background: var(--rag-bg-alt);
+									border-radius: 0 0 var(--rag-radius) var(--rag-radius);
+								}
+								#rag-exercise .rag-prompt-label {
+									display: flex; align-items: center; gap: 0.5em;
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--rag-fg-light);
+								}
+								#rag-exercise .rag-prompt {
+									display: block; width: 100%; min-height: 4.6em; padding: 0.7em 1em;
+									font-size: 1em; font-weight: 300; line-height: 1.6; white-space: pre-wrap; resize: none; cursor: default;
+									color: var(--rag-fg-bold); background: var(--rag-bg);
+									border: 1px solid var(--rag-border); border-radius: var(--rag-radius);
+								}
+								#rag-exercise .rag-prompt.rag-swap { animation: rag-prompt 0.9s ease-out both; }
+								#rag-exercise .rag-actions { display: flex; justify-content: flex-end; }
+								#rag-exercise .rag-run {
+									position: relative; display: inline-flex; align-items: center; justify-content: center;
+									height: 3.4em; padding: 0 2.2em; border-radius: var(--rag-radius); cursor: pointer;
+									font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em;
+									color: #ffffff !important; background: var(--rag-fg);
+									transition: background 0.2s, transform 0.1s, opacity 0.2s;
+								}
+								#rag-exercise .rag-run:hover, #rag-exercise .rag-run:focus-visible { background: var(--rag-accent1); }
+								#rag-exercise .rag-run:active { transform: translateY(1px); background: #e5678a; }
+								#rag-exercise .rag-run:disabled { opacity: 0.35; cursor: not-allowed; }
+
+								/* Generic outline button (Phantom style) */
+								#rag-exercise .rag-btn {
+									position: relative; display: inline-flex; align-items: center; height: 3.2em; padding: 0 1.6em;
+									border-radius: var(--rag-radius); cursor: pointer;
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em;
+									color: var(--rag-fg) !important; box-shadow: inset 0 0 0 2px var(--rag-fg);
+									transition: color 0.2s, box-shadow 0.2s;
+								}
+								#rag-exercise .rag-btn:hover { color: var(--rag-accent1-text) !important; box-shadow: inset 0 0 0 2px var(--rag-accent1); }
+
+								/* ---------- "Do this next" ring ---------- */
+								#rag-exercise .rag-attn::before {
+									content: ""; position: absolute; inset: -4px; border-radius: 6px; pointer-events: none;
+									border: 2px solid var(--rag-accent1); animation: rag-ring 1.6s ease-out infinite;
+								}
+
+								/* ---------- Debrief ---------- */
+								#rag-exercise .rag-debrief {
+									margin-top: 2em; padding: 1.6em 1.6em 1.8em; outline: none;
+									border: 1px solid var(--rag-border); border-radius: var(--rag-radius);
+									animation: rag-in 0.4s ease-out both;
+								}
+								#rag-exercise .rag-debrief-title {
+									margin-bottom: 1.3em; font-size: 0.85em; font-weight: 900; text-transform: uppercase;
+									letter-spacing: 0.35em; color: var(--rag-fg-bold);
+								}
+								#rag-exercise .rag-takeaways { display: grid; gap: 1.1em; list-style: none; counter-reset: rag; margin-bottom: 1.6em; }
+								#rag-exercise .rag-takeaways li { position: relative; padding-left: 3.2em; counter-increment: rag; }
+								#rag-exercise .rag-takeaways li::before {
+									content: counter(rag); position: absolute; left: 0; top: 0.1em;
+									width: 2.1em; height: 2.1em; display: grid; place-items: center; border-radius: var(--rag-radius);
+									font-weight: 900; color: #ffffff; background: var(--rag-accent1);
+								}
+								#rag-exercise .rag-takeaways li:nth-child(2)::before { background: var(--rag-accent2); }
+								#rag-exercise .rag-takeaways li:nth-child(3)::before { background: var(--rag-accent3); }
+
+								/* ---------- Motion ---------- */
+								@keyframes rag-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+								@keyframes rag-swap { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+								@keyframes rag-dot { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+								@keyframes rag-blink { 50% { opacity: 0; } }
+								@keyframes rag-ring { 0% { inset: -2px; opacity: 1; } 100% { inset: -10px; opacity: 0; } }
+								@keyframes rag-flash { from { background: #585858; } to { background: #333333; } }
+								@keyframes rag-prompt { from { background: rgba(242, 132, 158, 0.25); } to { background: #ffffff; } }
+
+								@media (max-width: 600px) {
+									#rag-exercise .rag-log { padding: 1em; }
+									#rag-exercise .rag-msg { max-width: 100%; }
+									#rag-exercise .rag-header, #rag-exercise .rag-task, #rag-exercise .rag-composer { padding-left: 1em; padding-right: 1em; }
+									#rag-exercise .rag-run { width: 100%; }
+									#rag-exercise .rag-debrief { padding: 1.2em; }
+								}
+								@media (prefers-reduced-motion: reduce) {
+									#rag-exercise *, #rag-exercise *::before, #rag-exercise *::after {
+										animation: none !important; transition: none !important;
+									}
+									#rag-exercise .rag-attn::before { inset: -4px; }
+								}
+							</style>
+
+							<div id="rag-exercise">
+								<div class="rag-window">
+									<div class="rag-header">
+										<button type="button" class="rag-toggle" id="rag-toggle" role="switch" aria-checked="false">
+											<span class="rag-track" aria-hidden="true"><span class="rag-knob"></span></span>
+											<span>Grounding: <span id="rag-state">Off</span></span>
+										</button>
+										<span class="rag-doc" id="rag-doc"></span>
+									</div>
+
+									<div class="rag-log" id="rag-log" role="log" aria-live="off" aria-label="Chat with the AI assistant"></div>
+
+									<div class="rag-task" id="rag-task">
+										<div class="rag-task-top">
+											<span class="rag-task-step" id="rag-task-step"></span>
+											<ol class="rag-progress" aria-hidden="true"><li></li><li></li><li></li></ol>
+										</div>
+										<p class="rag-task-text" id="rag-task-text" aria-live="polite"></p>
+									</div>
+
+									<div class="rag-composer" id="rag-composer">
+										<label class="rag-prompt-label" for="rag-prompt">
+											<svg class="rag-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+											Prompt · pre-written
+										</label>
+										<textarea class="rag-prompt" id="rag-prompt" rows="2" readonly></textarea>
+										<div class="rag-actions">
+											<button type="button" class="rag-run" id="rag-run">Run query</button>
+										</div>
+									</div>
+								</div>
+
+								<p class="rag-sr" id="rag-announce" aria-live="polite"></p>
+
+								<section class="rag-debrief" id="rag-debrief" tabindex="-1" aria-labelledby="rag-debrief-title" hidden>
+									<h3 class="rag-debrief-title" id="rag-debrief-title">What to take away</h3>
+									<ol class="rag-takeaways">
+										<li><b>Spot the difference.</b> Without grounding, an LLM answers from general training data. The reply sounds confident, but it is generic, has no source, and can be made up for your company.</li>
+										<li><b>Turn grounding on.</b> For company-specific questions, use a RAG-enabled tool or attach the relevant document (here: the Grounding switch). A grounded answer should tell you where it came from.</li>
+										<li><b>A citation is not proof.</b> RAG reduces hallucinations but does not remove them. Open the source and check the details that matter: numbers, dates, conditions and exceptions. Watch out for citations that point to a section that doesn't say what the answer claims.</li>
+									</ol>
+									<button type="button" class="rag-btn" id="rag-restart">Restart exercise</button>
+								</section>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('rag-exercise');
+									if (!root) return;
+
+									/* ---------- Content (edit here) ---------- */
+									var DOC = 'HR_Policy_2025.pdf';
+									var INTRO = "Ask me about our company's 'Work From Anywhere' policy for 2025. Then, try turning <strong>Grounding</strong> ON to see what changes.";
+									var Q1 = "What is the 'Work From Anywhere' allowance for 2025?";
+									var Q2 = "Can I carry over unused 'Work From Anywhere' days into 2026?";
+									var RAG_STAGES = [['Searching ' + DOC, 1000], ['Reading page 4, section 2.1', 1000], ['Writing answer', 600]];
+									var REPLIES = {
+										fabricated: {
+											label: 'Fabricated response', tone: 'warn', noSource: true,
+											thinking: [['Thinking', 1400]],
+											text: 'Most companies in our industry allow for 2 to 3 days of remote work per week. For 2025, I expect our policy will likely focus on a hybrid model with flexible Fridays.'
+										},
+										accurate: {
+											label: 'Accurate response', tone: 'ok', thinking: RAG_STAGES,
+											text: "According to the 2025 HR Policy, employees are allowed 90 days of 'Work From Anywhere' time per year, provided they remain within an approved time zone (GMT+2).",
+											source: 'Source: Page 4, Section 2.1', match: '2.1'
+										},
+										followup: {
+											label: 'Grounded response', thinking: RAG_STAGES,
+											text: "Yes. According to the 2025 HR Policy, you can carry over up to 10 unused 'Work From Anywhere' days into 2026.",
+											source: 'Source: Page 4, Section 2.1'
+										}
+									};
+									var SECTIONS = [
+										{ id: '2.1', html: '<b>2.1 Work From Anywhere.</b> Employees may work from any location for up to <b>90 calendar days</b> per year, provided they remain within an approved time zone (GMT+2). Requests must be approved by the line manager two weeks in advance.' },
+										{ id: '2.2', html: '<b>2.2 Unused days.</b> Work From Anywhere days are allocated per calendar year. Unused days <b>expire on 31 December 2025</b> and cannot be carried over into the following year.' }
+									];
+									var QUIZ = {
+										eyebrow: 'Your turn · Check the source',
+										title: "Does the page support the assistant's last answer?",
+										options: [
+											['yes', 'Yes, the source supports it.'],
+											['partly', 'Partly. Some of it is in the source.'],
+											['no', 'No, the source contradicts it.']
+										],
+										correct: 'no',
+										feedback: {
+											yes: { ok: false, text: 'Not quite. Section 2.1 only covers the 90-day allowance. Section 2.2 says unused days expire on 31 December 2025 and cannot be carried over. The assistant cited a real document, but the claim is not in it.' },
+											partly: { ok: false, text: 'Close, but the key claim fails. The 90 days are in Section 2.1, but the 10 carry-over days are not, and Section 2.2 rules them out: unused days expire on 31 December 2025.' },
+											no: { ok: true, text: 'Correct! Section 2.2 says unused days expire on 31 December 2025 and cannot be carried over. The assistant made up a rule and gave it a believable citation. That is a hallucination despite RAG.' }
+										}
+									};
+									var STEPS = ['Ask without grounding', 'Ask with grounding', 'Verify the source'];
+
+									/* ---------- Setup ---------- */
+									var DOC_ICON = '<svg class="rag-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 1.5h6l3 3v10h-9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9.5 1.5v3h3M5.5 8h5M5.5 10.5h5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
+									var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+									function byId(id) { return document.getElementById(id); }
+									var log = byId('rag-log'), toggle = byId('rag-toggle'), stateText = byId('rag-state'),
+										docText = byId('rag-doc'), prompt = byId('rag-prompt'), runBtn = byId('rag-run'),
+										composer = byId('rag-composer'), taskBox = byId('rag-task'), taskStep = byId('rag-task-step'),
+										taskText = byId('rag-task-text'), announcer = byId('rag-announce'),
+										debrief = byId('rag-debrief'), restartBtn = byId('rag-restart');
+									var progress = Array.prototype.slice.call(taskBox.querySelectorAll('.rag-progress li'));
+									var state, target = null, uid = 0;
+
+									/* ---------- Helpers ---------- */
+									function make(tag, cls, html) {
+										var n = document.createElement(tag);
+										if (cls) n.className = cls;
+										if (html != null) n.innerHTML = html;
+										return n;
+									}
+									function replay(node, cls) { node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls); }
+									function nearBottom() { return log.scrollHeight - log.scrollTop - log.clientHeight < 80; }
+									function scrollLog(top) { log.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' }); }
+									function topIn(el) { return el.getBoundingClientRect().top - log.getBoundingClientRect().top + log.scrollTop; }
+									function append(node) { log.appendChild(node); scrollLog(log.scrollHeight); return node; }
+									/* Scroll the log just enough to show `last`, without pushing `first` out of view. */
+									function reveal(first, last) {
+										last = last || first;
+										var top = topIn(first) - 12;
+										var want = Math.min(topIn(last) + last.offsetHeight + 12 - log.clientHeight, top);
+										if (want > log.scrollTop) scrollLog(want);
+									}
+									function announce(text) {
+										announcer.textContent = '';
+										setTimeout(function () { announcer.textContent = text; }, 60);
+									}
+									function setTarget(el) {
+										if (target) target.classList.remove('rag-attn');
+										target = el || null;
+										if (target) target.classList.add('rag-attn');
+									}
+									/* step: 0-2 = current step, 3 = finished */
+									function setTask(step, html, el) {
+										taskStep.textContent = step < 3 ? 'Step ' + (step + 1) + ' of 3 · ' + STEPS[step] : 'All steps done';
+										taskText.innerHTML = html;
+										progress.forEach(function (li, i) {
+											li.className = i < step ? 'is-done' : (i === step ? 'is-current' : '');
+										});
+										replay(taskBox, 'rag-flash');
+										setTarget(el);
+									}
+
+									/* ---------- Messages ---------- */
+									function addUser(text) {
+										var m = make('div', 'rag-msg rag-msg--user');
+										m.textContent = text;
+										append(m);
+									}
+									function addSystem(html, text) {
+										append(make('div', 'rag-msg rag-msg--system', '<span>' + html + '</span>'));
+										announce(text);
+									}
+
+									function think(stages, done) {
+										var m = make('div', 'rag-msg rag-msg--bot rag-thinking',
+											'<span class="rag-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="rag-think-text"></span>');
+										var label = m.querySelector('.rag-think-text');
+										append(m);
+										announce('The assistant is thinking.');
+										var i = 0;
+										(function next() {
+											if (i >= stages.length) { done(m); return; }
+											label.textContent = stages[i][0] + '…';
+											replay(label, 'rag-swap');
+											var ms = reduceMotion ? 250 : stages[i][1];
+											i++;
+											setTimeout(next, ms);
+										})();
+									}
+
+									/* Reveal text word by word with a cursor, like a streamed LLM reply. */
+									function stream(p, text, done) {
+										if (reduceMotion) { p.textContent = text; done(); return; }
+										var tokens = text.match(/\S+\s*/g) || [];
+										var caret = make('span', 'rag-caret');
+										caret.setAttribute('aria-hidden', 'true');
+										p.appendChild(caret);
+										var i = 0;
+										(function tick() {
+											var stick = nearBottom();
+											var burst = Math.random() < 0.35 ? 2 : 1;
+											for (var k = 0; k < burst && i < tokens.length; k++, i++) {
+												p.insertBefore(document.createTextNode(tokens[i]), caret);
+											}
+											if (stick) log.scrollTop = log.scrollHeight;
+											if (i < tokens.length) {
+												var pause = /[.,:;!?]\s*$/.test(tokens[i - 1]) ? 180 : 0;
+												setTimeout(tick, 35 + Math.random() * 65 + pause);
+											} else {
+												setTimeout(function () { caret.remove(); done(); }, 250);
+											}
+										})();
+									}
+
+									function buildExcerpt(id, match) {
+										var ex = make('div', 'rag-excerpt');
+										ex.id = id;
+										ex.hidden = true;
+										ex.appendChild(make('p', 'rag-excerpt-head', DOC_ICON + DOC + ' · Page 4 · 2. Remote work'));
+										SECTIONS.forEach(function (s) {
+											var sec = make('p', 'rag-sec', s.html);
+											sec.setAttribute('data-sec', s.id);
+											if (s.id === match) markSection(sec, 'rag-sec--match', '✓ Supports the answer');
+											ex.appendChild(sec);
+										});
+										return ex;
+									}
+									function markSection(sec, cls, note) {
+										if (!sec || sec.classList.contains(cls)) return;
+										sec.classList.add(cls);
+										sec.appendChild(make('span', 'rag-sec-note', note));
+									}
+									function setExcerpt(src, open) {
+										src.chip.setAttribute('aria-expanded', String(open));
+										src.ex.hidden = !open;
+									}
+									function addSource(m, reply) {
+										var wrap = make('div', 'rag-fade');
+										var id = 'rag-excerpt-' + (++uid);
+										var chip = make('button', 'rag-source', reply.source);
+										chip.type = 'button';
+										chip.setAttribute('aria-expanded', 'false');
+										chip.setAttribute('aria-controls', id);
+										var src = { chip: chip, ex: buildExcerpt(id, reply.match), msg: m };
+										chip.addEventListener('click', function () {
+											var open = chip.getAttribute('aria-expanded') !== 'true';
+											setExcerpt(src, open);
+											if (open) onSourceOpened(src);
+										});
+										wrap.appendChild(chip);
+										wrap.appendChild(src.ex);
+										m.appendChild(wrap);
+										return src;
+									}
+
+									function answer(reply, done) {
+										think(reply.thinking, function (m) {
+											m.className = 'rag-msg rag-msg--bot';
+											m.innerHTML = '';
+											m.appendChild(make('span', 'rag-label' + (reply.tone ? ' rag-label--' + reply.tone : ''), reply.label));
+											var p = make('p', 'rag-text');
+											m.appendChild(p);
+											stream(p, reply.text, function () {
+												var src = null;
+												if (reply.noSource) m.appendChild(make('span', 'rag-tag rag-fade', 'No source'));
+												if (reply.source) src = addSource(m, reply);
+												if (nearBottom()) scrollLog(log.scrollHeight);
+												announce(reply.label + ': ' + reply.text + ' ' + (reply.source || 'No source.'));
+												done(m, src);
+											});
+										});
+									}
+
+									/* ---------- Grounding switch ---------- */
+									function setGrounding(on, silent) {
+										state.grounded = on;
+										root.classList.toggle('is-grounded', on);
+										toggle.setAttribute('aria-checked', String(on));
+										stateText.textContent = on ? 'On' : 'Off';
+										docText.innerHTML = on ? DOC_ICON + 'Attached: ' + DOC : 'No documents provided';
+										if (!silent) {
+											if (on) addSystem(DOC_ICON + DOC + ' attached', DOC + ' attached. Answers will now be grounded in this document.');
+											else addSystem('Document removed', 'Document removed. Answers come from general training data only.');
+										}
+									}
+									function lockToggle(locked) { toggle.setAttribute('aria-disabled', String(locked)); }
+
+									toggle.addEventListener('click', function () {
+										if (state.busy || state.phase !== 'ask') return;
+										if (!state.ranUngrounded) {
+											setTask(0, 'First, see how the assistant answers <b>without</b> grounding: press <b>Run query</b>.', runBtn);
+											return;
+										}
+										setGrounding(!state.grounded);
+										if (state.grounded) setTask(1, DOC + ' is attached. Now <b>run the same query</b> again.', runBtn);
+										else setTask(1, 'Grounding is off again. Switch it back <b>ON</b> to attach the document.', toggle);
+									});
+
+									/* ---------- Run query ---------- */
+									runBtn.addEventListener('click', function () {
+										if (state.busy || (state.phase !== 'ask' && state.phase !== 'followup')) return;
+										state.busy = true;
+										runBtn.disabled = true;
+										addUser(prompt.value);
+
+										if (state.phase === 'followup') {
+											composer.hidden = true;
+											setTask(2, 'The assistant is searching the document…', null);
+											answer(REPLIES.followup, function (m, src) {
+												state.busy = false;
+												state.phase = 'verify';
+												state.lastSource = src;
+												setTask(2, 'Another confident answer with a source. Does it hold up? <b>Open its source</b> to check.', src.chip);
+											});
+										} else if (!state.grounded) {
+											setTask(state.ranUngrounded ? 1 : 0, 'The assistant is answering without any documents…', null);
+											answer(REPLIES.fabricated, function () {
+												state.busy = false;
+												state.ranUngrounded = true;
+												runBtn.disabled = false;
+												lockToggle(false);
+												setTask(1, 'This answer sounds confident, but it has <b>no source</b>. Turn <b>Grounding</b> ON at the top of the chat.', toggle);
+											});
+										} else {
+											setTask(1, 'The assistant is searching ' + DOC + '…', null);
+											answer(REPLIES.accurate, function () {
+												state.busy = false;
+												state.phase = 'followup';
+												runBtn.disabled = false;
+												lockToggle(true);
+												prompt.value = Q2;
+												replay(prompt, 'rag-swap');
+												setTask(2, 'This time the answer names its source. A follow-up question is loaded. <b>Run it</b>.', runBtn);
+											});
+										}
+									});
+
+									/* ---------- Verification question ---------- */
+									function onSourceOpened(src) {
+										if (state.phase === 'verify' && src === state.lastSource) showQuiz(src);
+										else reveal(src.ex);
+									}
+
+									function showQuiz(src) {
+										state.phase = 'quiz';
+										var q = make('div', 'rag-msg rag-quiz');
+										q.setAttribute('role', 'group');
+										q.setAttribute('aria-labelledby', 'rag-quiz-title');
+										q.innerHTML =
+											'<p class="rag-quiz-eyebrow">' + QUIZ.eyebrow + '</p>' +
+											'<p class="rag-quiz-title" id="rag-quiz-title">' + QUIZ.title + '</p>' +
+											'<div class="rag-options">' + QUIZ.options.map(function (o) {
+												return '<button type="button" class="rag-option" data-answer="' + o[0] + '">' + o[1] + '</button>';
+											}).join('') + '</div>' +
+											'<div class="rag-feedback" hidden><p></p><button type="button" class="rag-btn">See the takeaways ↓</button></div>';
+										log.appendChild(q);
+										var opts = Array.prototype.slice.call(q.querySelectorAll('.rag-option'));
+										opts.forEach(function (btn) {
+											btn.addEventListener('click', function () { answerQuiz(btn, opts, q, src); });
+										});
+										q.querySelector('.rag-btn').addEventListener('click', function () {
+											setTarget(null);
+											debrief.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+											debrief.focus({ preventScroll: true });
+										});
+										reveal(src.ex, q);
+										setTask(2, 'Compare the answer with the page, then answer the question <b>below it</b>.', q);
+										announce(QUIZ.title);
+									}
+
+									function answerQuiz(btn, opts, q, src) {
+										if (state.phase !== 'quiz') return;
+										state.phase = 'done';
+										var f = QUIZ.feedback[btn.getAttribute('data-answer')];
+										opts.forEach(function (o) {
+											o.disabled = true;
+											if (o.getAttribute('data-answer') === QUIZ.correct) o.classList.add('is-correct');
+										});
+										btn.setAttribute('aria-pressed', 'true');
+										if (!f.ok) btn.classList.add('is-wrong');
+										setExcerpt(src, true);
+										markSection(src.ex.querySelector('[data-sec="2.1"]'), 'rag-sec--cited', 'Cited, but says nothing about carry-over');
+										markSection(src.ex.querySelector('[data-sec="2.2"]'), 'rag-sec--conflict', '✗ Contradicts the answer');
+										var fb = q.querySelector('.rag-feedback');
+										fb.className = 'rag-feedback ' + (f.ok ? 'is-correct' : 'is-wrong');
+										fb.querySelector('p').textContent = f.text;
+										fb.hidden = false;
+										debrief.hidden = false;
+										reveal(fb);
+										setTask(3, 'Well done! Read the three takeaways <b>below the chat</b>.', fb.querySelector('.rag-btn'));
+										announce(f.text);
+									}
+
+									/* ---------- Reset ---------- */
+									function reset() {
+										state = { grounded: false, ranUngrounded: false, phase: 'ask', busy: false, lastSource: null };
+										log.innerHTML = '';
+										setGrounding(false, true);
+										lockToggle(true);
+										prompt.value = Q1;
+										runBtn.disabled = false;
+										composer.hidden = false;
+										debrief.hidden = true;
+										append(make('div', 'rag-msg rag-msg--bot', '<p class="rag-text">' + INTRO + '</p>'));
+										setTask(0, 'Press <b>Run query</b> to send the pre-written prompt.', runBtn);
+									}
+
+									restartBtn.addEventListener('click', function () {
+										reset();
+										root.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+										runBtn.focus({ preventScroll: true });
+									});
+
+									reset();
+								})();
+							</script>
+							<!-- ============ RAG EXERCISE END ============ -->
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
