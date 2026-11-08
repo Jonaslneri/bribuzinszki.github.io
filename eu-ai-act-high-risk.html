@@ -1,0 +1,2580 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>EU AI Act Essentials: High-Risk Module · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="#" class="icon solid fa-envelope" aria-label="E-Mail"><span class="label">E-Mail</span></a></li>
+									<li><a href="#" class="icon solid fa-phone" aria-label="Telefon"><span class="label">Telefon</span></a></li>
+									<li><a href="#" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+							<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
+							<li><a href="generic.html">Intro to LLMs</a></li>
+							<li><a href="generic.html">Technical Onboarding for Engineers</a></li>
+							<li><a href="generic.html">Master the Prompt 101</a></li>
+							<li><a href="generic.html">Veroeros</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>EU AI Act Essentials: High-Risk Module</h1>
+							<p>An interactive branching scenario from <em>EU AI Act Essentials</em>, a MOOC I built for the German non-profit learning platform KI-Campus (2024/2025). You play Lea, a product manager who checks a new HR product idea against the EU AI Act together with her compliance officer – and every decision has consequences. <b>The module is in German.</b></p>
+							<p><b>After this module you can:</b></p>
+							<ul>
+								<li>assess a product idea for its risk level under the EU AI Act,</li>
+								<li>look up the relevant articles in the AI Act,</li>
+								<li>name the steps a provider must take to become compliant.</li>
+							</ul>
+
+							<!-- ============ AI ACT MODULE START (self-contained: copy everything down to AI ACT MODULE END) ============ -->
+							<!-- All German texts live in the JSON block below (id="aia-content"). Add ?review to the page URL to highlight corrected and new texts. -->
+							<style>
+								@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900');
+
+								#aia-module {
+									/* Palette from the Phantom template (assets/sass/libs/_vars.scss) */
+									--aia-fg: #585858;
+									--aia-fg-bold: #3c3b3b;
+									--aia-fg-light: #8a8a8a;
+									--aia-bg: #ffffff;
+									--aia-bg-alt: #f6f6f6;
+									--aia-dark: #333333;
+									--aia-border: #c9c9c9;
+									--aia-pink: #f2849e;
+									--aia-pink-text: #c2416a;
+									--aia-blue: #7ecaf6;
+									--aia-blue-text: #1f6f9c;
+									--aia-teal: #7bd0c1;
+									--aia-teal-text: #187563;
+									--aia-purple: #ae85ca;
+									--aia-purple-text: #7d4fa0;
+									--aia-radius: 4px;
+									font-family: 'Source Sans Pro', Helvetica, sans-serif;
+									font-size: clamp(15px, 0.85em, 18px);
+									font-weight: 300;
+									line-height: 1.65;
+									letter-spacing: normal;
+									color: var(--aia-fg);
+									margin: 0 0 2.5em 0;
+									text-align: left;
+								}
+
+								/* ---------- Neutralise the template's global element styles ---------- */
+								#aia-module *, #aia-module *::before, #aia-module *::after { box-sizing: border-box; }
+								#aia-module p, #aia-module h3, #aia-module h4, #aia-module ol, #aia-module ul, #aia-module li,
+								#aia-module dl, #aia-module dt, #aia-module dd, #aia-module section, #aia-module header {
+									margin: 0; padding: 0; font: inherit; color: inherit;
+									letter-spacing: normal; text-transform: none; list-style: none;
+								}
+								#aia-module b, #aia-module strong { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module i, #aia-module em { font-style: normal; }
+								#aia-module button { all: unset; box-sizing: border-box; font-family: inherit; }
+								#aia-module [hidden] { display: none !important; }
+								#aia-module :focus-visible { outline: 2px solid var(--aia-pink); outline-offset: 3px; }
+								#aia-module .aia-scene-title:focus { outline: none; }
+								#aia-module .aia-sr {
+									position: absolute; width: 1px; height: 1px; overflow: hidden;
+									clip: rect(0 0 0 0); white-space: nowrap;
+								}
+								#aia-module a { color: var(--aia-fg); }
+								#aia-module a:hover { color: var(--aia-pink-text) !important; }
+
+								/* ---------- Review mode (?review) ---------- */
+								#aia-module .aia-review-legend {
+									margin-bottom: 1em; padding: 0.7em 1em; font-size: 0.85em;
+									background: #fff8e1; border: 1px solid #f0d68a; border-radius: var(--aia-radius);
+								}
+								#aia-module.is-review [data-q="korrigiert"] { background-color: rgba(245, 197, 66, 0.28) !important; box-shadow: inset 3px 0 0 #e0a800; }
+								#aia-module.is-review [data-q="neu"] { background-color: rgba(242, 132, 158, 0.18) !important; box-shadow: inset 3px 0 0 var(--aia-pink); }
+
+								/* ---------- Player frame ---------- */
+								#aia-module .aia-player { background: var(--aia-bg); border: 1px solid var(--aia-border); border-radius: var(--aia-radius); }
+								#aia-module .aia-top {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6em 1.2em;
+									padding: 0.85em 1.25em; background: var(--aia-bg-alt);
+									border-bottom: 1px solid var(--aia-border); border-radius: var(--aia-radius) var(--aia-radius) 0 0;
+								}
+								#aia-module .aia-brand {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--aia-fg-bold);
+								}
+								#aia-module .aia-stepper { display: flex; flex-wrap: wrap; gap: 0.35em; }
+								#aia-module .aia-stepper li {
+									display: inline-flex; align-items: center; gap: 0.5em; padding: 0.35em 0.75em 0.35em 0.4em;
+									border-radius: 2em; box-shadow: inset 0 0 0 1px var(--aia-border);
+									font-size: 0.62em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.14em; color: var(--aia-fg-light);
+								}
+								#aia-module .aia-step-nr {
+									display: grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%;
+									background: var(--aia-bg); box-shadow: inset 0 0 0 1px var(--aia-border); letter-spacing: 0;
+								}
+								#aia-module .aia-stepper li.is-current { background: var(--aia-dark); color: #ffffff; box-shadow: none; }
+								#aia-module .aia-stepper li.is-current .aia-step-nr { background: var(--aia-pink); color: #ffffff; box-shadow: none; }
+								#aia-module .aia-stepper li.is-done { color: var(--aia-teal-text); box-shadow: inset 0 0 0 1px var(--aia-teal); }
+								#aia-module .aia-stepper li.is-done .aia-step-nr { background: var(--aia-teal); color: #ffffff; box-shadow: none; }
+
+								#aia-module .aia-body { display: grid; grid-template-columns: minmax(0, 1fr) 16.5em; grid-template-areas: "stage side"; }
+								#aia-module .aia-stage { grid-area: stage; min-width: 0; min-height: 32em; padding: 1.6em 1.75em 1.75em; }
+								#aia-module .aia-side { grid-area: side; padding: 1.25em; border-left: 1px solid var(--aia-border); font-size: 0.9em; }
+								#aia-module .aia-side-toggle { display: none; }
+								#aia-module .aia-side-content { display: grid; gap: 1.3em; }
+
+								/* ---------- Side panel ---------- */
+								#aia-module .aia-panel { display: grid; gap: 0.6em; }
+								#aia-module .aia-panel + .aia-panel { padding-top: 1.2em; border-top: 1px solid var(--aia-bg-alt); }
+								#aia-module .aia-panel-title, #aia-module .aia-brief summary {
+									font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-fg-bold);
+								}
+
+								#aia-module .aia-pyr { display: grid; gap: 3px; }
+								#aia-module .aia-tier { display: grid; grid-template-columns: 5em minmax(0, 1fr); align-items: center; gap: 0.75em; }
+								#aia-module .aia-tier-shape { display: block; height: 1.75em; background: var(--tier); opacity: 0.3; transition: opacity 0.3s; }
+								#aia-module .aia-tier--verboten { --tier: var(--aia-pink); }
+								#aia-module .aia-tier--hoch { --tier: var(--aia-purple); }
+								#aia-module .aia-tier--begrenzt { --tier: var(--aia-blue); }
+								#aia-module .aia-tier--minimal { --tier: var(--aia-teal); }
+								#aia-module .aia-tier--verboten .aia-tier-shape { clip-path: polygon(50% 0, 50% 0, 62.5% 100%, 37.5% 100%); }
+								#aia-module .aia-tier--hoch .aia-tier-shape { clip-path: polygon(37.5% 0, 62.5% 0, 75% 100%, 25% 100%); }
+								#aia-module .aia-tier--begrenzt .aia-tier-shape { clip-path: polygon(25% 0, 75% 0, 87.5% 100%, 12.5% 100%); }
+								#aia-module .aia-tier--minimal .aia-tier-shape { clip-path: polygon(12.5% 0, 87.5% 0, 100% 100%, 0 100%); }
+								#aia-module .aia-tier-text { display: grid; line-height: 1.25; }
+								#aia-module .aia-tier-name { font-size: 0.85em; font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-tier-status { font-size: 0.66em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; }
+								#aia-module .aia-tier.is-checking .aia-tier-shape { opacity: 1; animation: aia-blink 1.4s ease-in-out infinite; }
+								#aia-module .aia-tier.is-checking .aia-tier-status { color: var(--aia-pink-text); }
+								#aia-module .aia-tier.is-excluded .aia-tier-shape { opacity: 0.15; }
+								#aia-module .aia-tier.is-excluded .aia-tier-name { text-decoration: line-through; color: var(--aia-fg-light); }
+								#aia-module .aia-tier.is-excluded .aia-tier-status { color: var(--aia-teal-text); }
+								#aia-module .aia-tier.is-candidate .aia-tier-shape { opacity: 1; animation: aia-blink 1.4s ease-in-out infinite; }
+								#aia-module .aia-tier.is-result .aia-tier-shape { opacity: 1; }
+								#aia-module .aia-tier.is-candidate .aia-tier-status, #aia-module .aia-tier.is-result .aia-tier-status { color: var(--aia-purple-text); }
+								#aia-module .aia-pyr-status { font-size: 0.82em; color: var(--aia-fg-light); }
+
+								#aia-module .aia-brief summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+								#aia-module .aia-brief summary::-webkit-details-marker { display: none; }
+								#aia-module .aia-brief summary::after { content: "\25BE"; font-size: 1.2em; transition: transform 0.2s; }
+								#aia-module .aia-brief:not([open]) summary::after { transform: rotate(-90deg); }
+								#aia-module .aia-brief dl { display: grid; gap: 0.55em; margin-top: 0.7em; }
+								#aia-module .aia-brief dt { font-size: 0.66em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; color: var(--aia-fg-light); }
+								#aia-module .aia-brief dd { font-size: 0.9em; line-height: 1.45; color: var(--aia-fg-bold); }
+
+								#aia-module .aia-log { display: grid; gap: 0.4em; }
+								#aia-module .aia-log-item { display: grid; grid-template-columns: 1.3em minmax(0, 1fr); gap: 0.35em; font-size: 0.86em; line-height: 1.4; }
+								#aia-module .aia-log-icon { font-weight: 900; }
+								#aia-module .aia-log-item.is-gut .aia-log-icon { color: var(--aia-teal-text); }
+								#aia-module .aia-log-item.is-teil .aia-log-icon { color: var(--aia-blue-text); }
+								#aia-module .aia-log-item.is-schlecht .aia-log-icon { color: var(--aia-pink-text); }
+								#aia-module .aia-log-extra {
+									display: inline-block; margin-left: 0.2em; padding: 0 0.4em; border-radius: 2em;
+									font-size: 0.78em; font-weight: 700; color: var(--aia-purple-text); background: rgba(174, 133, 202, 0.16);
+								}
+								#aia-module .aia-log-empty { font-size: 0.86em; color: var(--aia-fg-light); }
+								#aia-module .aia-delay { font-size: 0.86em; }
+								#aia-module .aia-delay.is-late { color: var(--aia-pink-text); }
+
+								/* ---------- Scene ---------- */
+								#aia-module .aia-scene { display: grid; gap: 1.15em; animation: aia-in 0.35s ease-out both; }
+								#aia-module .aia-scene-head { display: grid; gap: 0.2em; }
+								#aia-module .aia-eyebrow {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-pink-text);
+								}
+								#aia-module .aia-scene-title { font-size: 1.45em; font-weight: 700; line-height: 1.25; color: var(--aia-fg-bold); }
+								#aia-module .aia-lead { font-size: 1.05em; color: var(--aia-fg-bold); }
+								#aia-module .aia-persona { display: flex; align-items: center; gap: 1em; }
+								#aia-module .aia-persona .aia-avatar { width: 3.6em; height: 3.6em; }
+								#aia-module .aia-note { font-size: 0.92em; color: var(--aia-fg); }
+								#aia-module .aia-subtitle {
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--aia-fg-bold);
+								}
+								#aia-module .aia-list-label { font-size: 0.9em; color: var(--aia-fg-light); }
+
+								#aia-module .aia-story {
+									display: grid; gap: 0.7em; padding: 1em 1.2em; background: var(--aia-bg-alt);
+									border-left: 3px solid var(--aia-border); border-radius: 0 var(--aia-radius) var(--aia-radius) 0;
+								}
+
+								/* Speakers and bubbles */
+								#aia-module .aia-say { display: grid; gap: 0.45em; }
+								#aia-module .aia-speaker { display: flex; align-items: center; gap: 0.6em; flex-wrap: wrap; }
+								#aia-module .aia-avatar { width: 2.6em; height: 2.6em; flex: none; display: block; }
+								#aia-module .aia-speaker-name { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-speaker-role { font-size: 0.8em; color: var(--aia-fg-light); }
+								#aia-module .aia-bubble {
+									display: grid; gap: 0.6em; margin-left: 1.3em; padding: 0.95em 1.2em;
+									background: var(--aia-bg-alt); border-radius: 0 var(--aia-radius) var(--aia-radius) var(--aia-radius);
+								}
+								#aia-module .aia-say--lea .aia-bubble { background: var(--aia-bg); box-shadow: inset 0 0 0 1px var(--aia-border); }
+								#aia-module .aia-say--dev .aia-bubble { background: rgba(126, 202, 246, 0.14); }
+								#aia-module .aia-say--recap .aia-bubble { font-size: 0.92em; color: var(--aia-fg); }
+								#aia-module .aia-say--cont .aia-speaker { display: none; }
+								#aia-module .aia-bubble.is-gut { box-shadow: inset 4px 0 0 var(--aia-teal); }
+								#aia-module .aia-bubble.is-teil { box-shadow: inset 4px 0 0 var(--aia-blue); }
+								#aia-module .aia-bubble.is-schlecht { box-shadow: inset 4px 0 0 var(--aia-pink); }
+
+								#aia-module .aia-callout {
+									display: grid; gap: 0.2em; padding: 0.65em 0.95em; font-size: 0.92em;
+									border: 1px dashed var(--aia-border); border-radius: var(--aia-radius);
+								}
+								#aia-module .aia-callout-label {
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--aia-purple-text);
+								}
+								#aia-module .aia-task { display: grid; gap: 0.15em; }
+								#aia-module .aia-task-label {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-pink-text);
+								}
+								#aia-module .aia-task-text { font-weight: 700; color: var(--aia-fg-bold); }
+
+								/* Choices */
+								#aia-module .aia-choices { display: grid; gap: 0.6em; }
+								#aia-module .aia-choice {
+									position: relative; display: grid; grid-template-columns: 2em minmax(0, 1fr); align-items: start; gap: 0.85em;
+									padding: 0.85em 1em; border-radius: var(--aia-radius); cursor: pointer; text-align: left;
+									color: var(--aia-fg) !important; background: var(--aia-bg); box-shadow: inset 0 0 0 1px var(--aia-border);
+									transition: box-shadow 0.2s, background 0.2s;
+								}
+								#aia-module .aia-choice:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--aia-pink); color: var(--aia-fg-bold) !important; }
+								#aia-module .aia-choice[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--aia-fg); background: var(--aia-bg-alt); color: var(--aia-fg-bold) !important; }
+								#aia-module .aia-choice:disabled { cursor: default; }
+								#aia-module .aia-choice.is-tried { opacity: 0.6; cursor: not-allowed; }
+								#aia-module .aia-choice-key {
+									display: grid; place-items: center; width: 2em; height: 2em; border-radius: var(--aia-radius);
+									background: var(--aia-bg-alt); font-size: 0.82em; font-weight: 900; color: var(--aia-fg-bold);
+								}
+								#aia-module .aia-choice-text { line-height: 1.55; }
+								#aia-module .aia-choice-sub { display: block; font-size: 0.85em; color: var(--aia-fg-light); }
+								#aia-module .aia-choice-tag {
+									grid-column: 2; justify-self: start; padding: 0.1em 0.6em; border-radius: 2em;
+									font-size: 0.72em; font-weight: 700; color: var(--aia-pink-text); background: rgba(242, 132, 158, 0.14);
+								}
+								#aia-module .aia-choice.is-picked.is-gut, #aia-module .aia-choice.is-solution { box-shadow: inset 0 0 0 2px var(--aia-teal); background: rgba(123, 208, 193, 0.14); }
+								#aia-module .aia-choice.is-picked.is-teil { box-shadow: inset 0 0 0 2px var(--aia-blue); background: rgba(126, 202, 246, 0.14); }
+								#aia-module .aia-choice.is-picked.is-schlecht { box-shadow: inset 0 0 0 2px var(--aia-pink); background: rgba(242, 132, 158, 0.12); }
+								#aia-module .aia-choices--tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+								#aia-module .aia-choice--tier { grid-template-columns: 1.1em minmax(0, 1fr); align-items: center; }
+								#aia-module .aia-tier-dot { display: inline-block; width: 0.9em; height: 0.9em; border-radius: 50%; background: var(--tier); flex: none; }
+								#aia-module .aia-tierc--verboten { --tier: var(--aia-pink); }
+								#aia-module .aia-tierc--hoch { --tier: var(--aia-purple); }
+								#aia-module .aia-tierc--begrenzt { --tier: var(--aia-blue); }
+								#aia-module .aia-tierc--minimal { --tier: var(--aia-teal); }
+
+								/* Confidence bar */
+								#aia-module .aia-conf {
+									position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em 1em;
+									padding: 0.8em 1em; border-radius: var(--aia-radius); background: var(--aia-dark); color: #ffffff;
+									animation: aia-in 0.3s ease-out both;
+								}
+								#aia-module .aia-conf-label {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-pink);
+								}
+								#aia-module .aia-conf-chips { display: flex; flex-wrap: wrap; gap: 0.5em; }
+								#aia-module .aia-chip {
+									padding: 0.45em 1em; border-radius: 2em; cursor: pointer; font-size: 0.88em; font-weight: 700;
+									color: #ffffff !important; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.55);
+									transition: background 0.2s, box-shadow 0.2s;
+								}
+								#aia-module .aia-chip:hover:not(:disabled), #aia-module .aia-chip.is-picked { background: var(--aia-pink); box-shadow: none; }
+								#aia-module .aia-chip:disabled:not(.is-picked) { opacity: 0.4; cursor: default; }
+
+								/* Thinking indicator */
+								#aia-module .aia-thinking { display: inline-flex; align-items: center; gap: 0.7em; color: var(--aia-fg-light); font-size: 0.92em; }
+								#aia-module .aia-dots { display: inline-flex; gap: 0.3em; }
+								#aia-module .aia-dots i { width: 0.45em; height: 0.45em; border-radius: 50%; background: var(--aia-fg); animation: aia-dot 1s infinite ease-in-out; }
+								#aia-module .aia-dots i:nth-child(2) { animation-delay: 0.15s; }
+								#aia-module .aia-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+								/* Footer and buttons */
+								#aia-module .aia-footer {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.7em 1em;
+									padding-top: 1.1em; border-top: 1px solid var(--aia-bg-alt);
+								}
+								#aia-module .aia-footer-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em 1em; }
+								#aia-module .aia-footer-main { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em; margin-left: auto; }
+								#aia-module .aia-btn {
+									position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+									min-height: 3.1em; padding: 0.4em 1.5em; border-radius: var(--aia-radius); cursor: pointer; text-align: center;
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; line-height: 1.3;
+									color: var(--aia-fg) !important; box-shadow: inset 0 0 0 2px var(--aia-fg);
+									transition: color 0.2s, box-shadow 0.2s, background 0.2s;
+								}
+								#aia-module .aia-btn:hover:not(:disabled) { color: var(--aia-pink-text) !important; box-shadow: inset 0 0 0 2px var(--aia-pink); }
+								#aia-module .aia-btn--primary { color: #ffffff !important; background: var(--aia-fg); box-shadow: none; }
+								#aia-module .aia-btn--primary:hover:not(:disabled) { color: #ffffff !important; background: var(--aia-pink); box-shadow: none; }
+								#aia-module .aia-btn--primary:active:not(:disabled) { background: #e5678a; }
+								#aia-module .aia-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+								#aia-module .aia-btn--small { min-height: 2.6em; padding: 0.35em 1em; font-size: 0.62em; letter-spacing: 0.15em; }
+								#aia-module .aia-btn--ghost { box-shadow: none; padding: 0.4em 0.8em; color: var(--aia-fg-light) !important; }
+								#aia-module .aia-btn--ghost[aria-expanded="true"] { color: var(--aia-blue-text) !important; }
+								#aia-module .aia-lookup { font-size: 0.88em; }
+
+								#aia-module .aia-hintbox {
+									display: grid; gap: 0.25em; padding: 0.8em 1em; animation: aia-in 0.3s ease-out both;
+									background: rgba(126, 202, 246, 0.13); border-left: 4px solid var(--aia-blue); border-radius: 0 var(--aia-radius) var(--aia-radius) 0;
+								}
+								#aia-module .aia-hint-label {
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--aia-blue-text);
+								}
+
+								/* "Do this next" ring */
+								#aia-module .aia-attn { position: relative; }
+								#aia-module .aia-attn::after {
+									content: ""; position: absolute; inset: -4px; border-radius: 6px; pointer-events: none;
+									border: 2px solid var(--aia-pink); animation: aia-ring 1.6s ease-out infinite;
+								}
+
+								/* Glossary terms */
+								#aia-module .aia-term {
+									display: inline; padding: 0; cursor: help; font: inherit; line-height: inherit;
+									color: inherit !important; border-bottom: 1px dotted currentColor;
+								}
+								#aia-module .aia-term:hover { color: var(--aia-pink-text) !important; }
+								#aia-module .aia-term[aria-expanded="true"] { background: rgba(242, 132, 158, 0.15); }
+								#aia-module .aia-def {
+									padding: 0.6em 0.85em; font-size: 0.9em; background: var(--aia-bg);
+									border: 1px solid var(--aia-border); border-radius: var(--aia-radius); animation: aia-in 0.25s ease-out both;
+								}
+
+								/* "Kurz erklärt" card and verdicts */
+								#aia-module .aia-card { display: grid; gap: 0.7em; padding: 1.1em 1.25em; border: 1px solid var(--aia-border); border-radius: var(--aia-radius); }
+								#aia-module .aia-card-label {
+									font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-fg-light);
+								}
+								#aia-module .aia-card-title { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-points { display: grid; gap: 0.45em; }
+								#aia-module .aia-points li { position: relative; padding-left: 1.15em; }
+								#aia-module .aia-points li::before {
+									content: ""; position: absolute; left: 0.1em; top: 0.68em; width: 0.42em; height: 0.42em;
+									border-radius: 50%; background: var(--aia-border);
+								}
+								#aia-module .aia-verdict-row { display: grid; gap: 0.2em; padding: 0.7em 0.9em; border-radius: var(--aia-radius); }
+								#aia-module .aia-verdict { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em; }
+								#aia-module .is-gut > .aia-verdict { color: var(--aia-teal-text); }
+								#aia-module .is-teil > .aia-verdict { color: var(--aia-blue-text); }
+								#aia-module .is-schlecht > .aia-verdict { color: var(--aia-pink-text); }
+								#aia-module .aia-verdict-row.is-gut { background: rgba(123, 208, 193, 0.16); }
+								#aia-module .aia-verdict-row.is-teil { background: rgba(126, 202, 246, 0.16); }
+								#aia-module .aia-verdict-row.is-schlecht { background: rgba(242, 132, 158, 0.13); }
+								#aia-module .aia-verdict-why { color: var(--aia-fg-bold); }
+								#aia-module .aia-kalib { font-size: 0.9em; color: var(--aia-fg); padding-left: 0.9em; border-left: 2px solid var(--aia-border); }
+								#aia-module .aia-card-link { font-size: 0.95em; }
+								#aia-module .aia-verdict-card {
+									display: grid; gap: 0.5em; padding: 0.9em 1.1em; border-radius: 0 var(--aia-radius) var(--aia-radius) 0;
+									border-left: 4px solid; animation: aia-in 0.35s ease-out both;
+								}
+								#aia-module .aia-verdict-card.is-gut { border-color: var(--aia-teal); background: rgba(123, 208, 193, 0.13); }
+								#aia-module .aia-verdict-card.is-teil { border-color: var(--aia-blue); background: rgba(126, 202, 246, 0.13); }
+								#aia-module .aia-verdict-card.is-schlecht { border-color: var(--aia-pink); background: rgba(242, 132, 158, 0.1); }
+								#aia-module .aia-verdict-after { color: var(--aia-fg-bold); }
+								#aia-module .aia-feedback { display: grid; gap: 1em; }
+
+								/* Result box */
+								#aia-module .aia-result {
+									display: grid; gap: 0.3em; padding: 1em 1.2em; border-radius: 0 var(--aia-radius) var(--aia-radius) 0;
+									border-left: 4px solid var(--aia-teal); background: rgba(123, 208, 193, 0.13);
+								}
+								#aia-module .aia-result-label {
+									font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--aia-teal-text);
+								}
+								#aia-module .aia-result-label + * { margin-bottom: 0.4em; }
+								#aia-module .aia-result-text { font-weight: 700; color: var(--aia-fg-bold); }
+
+								/* Checklist */
+								#aia-module .aia-checks { display: grid; gap: 0.7em; }
+								#aia-module .aia-check { display: grid; gap: 0.6em; padding: 0.9em 1.05em; border: 1px solid var(--aia-border); border-radius: var(--aia-radius); }
+								#aia-module .aia-check.is-done { background: var(--aia-bg-alt); }
+								#aia-module .aia-check-q { color: var(--aia-fg-bold); }
+								#aia-module .aia-check-btns { display: flex; flex-wrap: wrap; gap: 0.5em; }
+								#aia-module .aia-toggle, #aia-module .aia-tierbtn {
+									display: inline-flex; align-items: center; gap: 0.45em; padding: 0.45em 1em; border-radius: 2em; cursor: pointer;
+									font-size: 0.85em; font-weight: 700; color: var(--aia-fg) !important; background: var(--aia-bg);
+									box-shadow: inset 0 0 0 1px var(--aia-border); transition: box-shadow 0.2s, background 0.2s;
+								}
+								#aia-module .aia-toggle:hover:not(:disabled), #aia-module .aia-tierbtn:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--aia-pink); }
+								#aia-module .aia-toggle:disabled, #aia-module .aia-tierbtn:disabled { cursor: default; }
+								#aia-module .aia-toggle.is-correct, #aia-module .aia-tierbtn.is-correct { color: var(--aia-teal-text) !important; background: rgba(123, 208, 193, 0.18); box-shadow: inset 0 0 0 2px var(--aia-teal); }
+								#aia-module .aia-toggle.is-wrong, #aia-module .aia-tierbtn.is-wrong { color: var(--aia-pink-text) !important; background: rgba(242, 132, 158, 0.12); box-shadow: inset 0 0 0 2px var(--aia-pink); }
+								#aia-module .aia-check-fb { padding: 0.55em 0.85em; font-size: 0.92em; border-left: 3px solid; border-radius: 0 var(--aia-radius) var(--aia-radius) 0; animation: aia-in 0.3s ease-out both; }
+								#aia-module .aia-check-fb.is-gut { border-color: var(--aia-teal); background: rgba(123, 208, 193, 0.12); }
+								#aia-module .aia-check-fb.is-schlecht { border-color: var(--aia-pink); background: rgba(242, 132, 158, 0.09); }
+
+								/* Annex III cards */
+								#aia-module .aia-cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6em; }
+								#aia-module .aia-cat {
+									position: relative; display: grid; grid-template-columns: 1.9em minmax(0, 1fr); align-items: start; gap: 0.7em;
+									padding: 0.8em 0.9em; border-radius: var(--aia-radius); cursor: pointer; text-align: left;
+									font-size: 0.9em; line-height: 1.45; color: var(--aia-fg) !important; background: var(--aia-bg);
+									box-shadow: inset 0 0 0 1px var(--aia-border); transition: box-shadow 0.2s, background 0.2s;
+								}
+								#aia-module .aia-cat:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--aia-pink); color: var(--aia-fg-bold) !important; }
+								#aia-module .aia-cat:disabled { cursor: default; }
+								#aia-module .aia-cat-nr {
+									display: grid; place-items: center; width: 1.9em; height: 1.9em; border-radius: var(--aia-radius);
+									background: var(--aia-bg-alt); font-weight: 900; color: var(--aia-fg-bold);
+								}
+								#aia-module .aia-cat-fb { grid-column: 1 / -1; display: grid; gap: 0.35em; padding-top: 0.6em; border-top: 1px solid rgba(0, 0, 0, 0.08); }
+								#aia-module .aia-cat-fb b { color: inherit; }
+								#aia-module .aia-cat.is-wrong { background: rgba(242, 132, 158, 0.08); box-shadow: inset 0 0 0 1px var(--aia-pink); }
+								#aia-module .aia-cat.is-wrong .aia-cat-fb { color: var(--aia-fg-bold); }
+								#aia-module .aia-cat.is-correct { background: rgba(123, 208, 193, 0.14); box-shadow: inset 0 0 0 2px var(--aia-teal); color: var(--aia-fg-bold) !important; }
+								#aia-module .aia-cat.is-off { opacity: 0.45; }
+
+								/* Endings and fixes */
+								#aia-module .aia-ending {
+									display: flex; align-items: center; gap: 0.9em; padding: 1em 1.2em;
+									border-radius: 0 var(--aia-radius) var(--aia-radius) 0; border-left: 6px solid;
+								}
+								#aia-module .aia-ending.is-erfolg { border-color: var(--aia-teal); background: rgba(123, 208, 193, 0.16); }
+								#aia-module .aia-ending.is-teil { border-color: var(--aia-blue); background: rgba(126, 202, 246, 0.16); }
+								#aia-module .aia-ending.is-schwer { border-color: var(--aia-pink); background: rgba(242, 132, 158, 0.13); }
+								#aia-module .aia-ending-icon {
+									display: grid; place-items: center; flex: none; width: 2.3em; height: 2.3em; border-radius: 50%;
+									font-weight: 900; color: #ffffff; background: var(--aia-fg);
+								}
+								#aia-module .aia-ending.is-erfolg .aia-ending-icon { background: var(--aia-teal-text); }
+								#aia-module .aia-ending.is-teil .aia-ending-icon { background: var(--aia-blue-text); }
+								#aia-module .aia-ending.is-schwer .aia-ending-icon { background: var(--aia-pink-text); }
+								#aia-module .aia-ending-text { display: grid; }
+								#aia-module .aia-ending-name { font-size: 1.15em; font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-ending-meta { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em; color: var(--aia-fg); }
+								#aia-module .aia-fix-wrap { display: grid; gap: 1em; padding-top: 0.4em; }
+								#aia-module .aia-fixlist { display: grid; gap: 0.5em; }
+								#aia-module .aia-fix {
+									display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.15em 1em;
+									padding: 0.7em 0.9em; border: 1px solid var(--aia-border); border-radius: var(--aia-radius);
+								}
+								#aia-module .aia-fix-art { grid-column: 1; font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aia-fg-light); }
+								#aia-module .aia-fix-choice { grid-column: 1; color: var(--aia-fg-bold); }
+								#aia-module .aia-fix .aia-btn { grid-column: 2; grid-row: 1 / span 2; }
+								#aia-module .aia-fix.is-gut .aia-fix-choice { color: var(--aia-teal-text); }
+								#aia-module .aia-fix.is-teil .aia-fix-choice { color: var(--aia-blue-text); }
+								#aia-module .aia-fix.is-schlecht .aia-fix-choice { color: var(--aia-pink-text); }
+
+								/* Debrief */
+								#aia-module .aia-section { display: grid; gap: 0.65em; padding-top: 1.1em; border-top: 1px solid var(--aia-bg-alt); }
+								#aia-module .aia-section-title {
+									font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-fg-bold);
+								}
+								#aia-module .aia-path { display: grid; }
+								#aia-module .aia-path-item { position: relative; display: grid; grid-template-columns: 2em minmax(0, 1fr) auto; align-items: center; gap: 0.3em 0.9em; padding: 0.55em 0; }
+								#aia-module .aia-path-item::before {
+									content: ""; position: absolute; left: calc(1em - 1px); top: 0; bottom: 0; width: 2px; background: var(--aia-bg-alt); z-index: 0;
+								}
+								#aia-module .aia-path-dot {
+									position: relative; z-index: 1; display: grid; place-items: center; width: 2em; height: 2em; border-radius: 50%;
+									font-weight: 900; color: #ffffff; background: var(--aia-fg-light);
+								}
+								#aia-module .aia-path-item.is-gut .aia-path-dot { background: var(--aia-teal-text); }
+								#aia-module .aia-path-item.is-teil .aia-path-dot { background: var(--aia-blue-text); }
+								#aia-module .aia-path-item.is-schlecht .aia-path-dot { background: var(--aia-pink-text); }
+								#aia-module .aia-path-art { font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aia-fg-light); }
+								#aia-module .aia-path-prev { color: var(--aia-fg-light); text-decoration: line-through; }
+								#aia-module .aia-path-end { padding-left: 2.9em; font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-stat { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-endings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6em; }
+								#aia-module .aia-endcard { display: grid; align-content: start; gap: 0.25em; padding: 0.75em 0.9em; border-radius: var(--aia-radius); font-size: 0.88em; line-height: 1.4; }
+								#aia-module .aia-endcard.is-locked { border: 1px dashed var(--aia-border); color: var(--aia-fg-light); }
+								#aia-module .aia-endcard.is-found { border: 1px solid transparent; }
+								#aia-module .aia-endcard.is-found.is-erfolg { background: rgba(123, 208, 193, 0.16); border-color: var(--aia-teal); }
+								#aia-module .aia-endcard.is-found.is-teil { background: rgba(126, 202, 246, 0.16); border-color: var(--aia-blue); }
+								#aia-module .aia-endcard.is-found.is-schwer { background: rgba(242, 132, 158, 0.12); border-color: var(--aia-pink); }
+								#aia-module .aia-endcard.is-current { box-shadow: 0 0 0 2px var(--aia-fg); }
+								#aia-module .aia-endcard-name { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-endcard.is-locked .aia-endcard-name { color: var(--aia-fg-light); letter-spacing: 0.2em; }
+
+								/* Transfer */
+								#aia-module .aia-cases { display: grid; gap: 0.7em; }
+								#aia-module .aia-case { display: grid; gap: 0.6em; padding: 0.95em 1.05em; border: 1px solid var(--aia-border); border-radius: var(--aia-radius); }
+								#aia-module .aia-case.is-done { background: var(--aia-bg-alt); }
+								#aia-module .aia-case-text { color: var(--aia-fg-bold); }
+								#aia-module .aia-tierbtns { display: flex; flex-wrap: wrap; gap: 0.45em; }
+
+								/* Roadmap */
+								#aia-module .aia-road { display: grid; gap: 0.7em; counter-reset: aiaroad; }
+								#aia-module .aia-road-step {
+									position: relative; display: grid; gap: 0.45em; padding: 0.9em 1em 0.9em 3.4em;
+									border: 1px solid var(--aia-border); border-radius: var(--aia-radius); counter-increment: aiaroad;
+								}
+								#aia-module .aia-road-step::before {
+									content: counter(aiaroad); position: absolute; left: 0.9em; top: 0.85em; display: grid; place-items: center;
+									width: 1.8em; height: 1.8em; border-radius: var(--aia-radius); font-weight: 900; color: #ffffff; background: var(--aia-fg);
+								}
+								#aia-module .aia-road-top { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em 0.8em; }
+								#aia-module .aia-road-title { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-road-text { font-size: 0.95em; }
+								#aia-module .aia-road-links { display: flex; flex-wrap: wrap; gap: 0.2em 1em; font-size: 0.9em; }
+								#aia-module .aia-road-parts { display: grid; gap: 0.35em; }
+								#aia-module .aia-part { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2em 0.6em; font-size: 0.95em; }
+								#aia-module .aia-part-nr { font-weight: 700; color: var(--aia-fg-bold); }
+								#aia-module .aia-badge {
+									display: inline-block; padding: 0.15em 0.7em; border-radius: 2em;
+									font-size: 0.66em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.14em;
+								}
+								#aia-module .aia-badge.is-modul { color: var(--aia-teal-text); background: rgba(123, 208, 193, 0.2); }
+								#aia-module .aia-badge.is-bonus { color: var(--aia-blue-text); background: rgba(126, 202, 246, 0.2); }
+								#aia-module .aia-badge.is-bonusOffen { color: var(--aia-purple-text); background: rgba(174, 133, 202, 0.18); }
+								#aia-module .aia-badge.is-offen { color: var(--aia-fg-light); background: var(--aia-bg-alt); }
+								#aia-module .aia-when { display: grid; gap: 0.55em; padding: 1em 1.2em; background: var(--aia-bg-alt); border-radius: var(--aia-radius); }
+								#aia-module .aia-when-title { font-size: 0.72em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-fg-bold); }
+								#aia-module .aia-when-stand { font-size: 0.85em; color: var(--aia-fg-light); }
+								#aia-module .aia-bonus-cta {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8em 1.2em;
+									padding: 1em 1.2em; border-left: 4px solid var(--aia-purple); border-radius: 0 var(--aia-radius) var(--aia-radius) 0;
+									background: rgba(174, 133, 202, 0.13);
+								}
+								#aia-module .aia-bonus-cta p { flex: 1 1 16em; color: var(--aia-fg-bold); }
+
+								/* ---------- Motion ---------- */
+								@keyframes aia-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+								@keyframes aia-dot { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+								@keyframes aia-ring { 0% { inset: -2px; opacity: 1; } 100% { inset: -10px; opacity: 0; } }
+								@keyframes aia-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+								/* ---------- Responsive ---------- */
+								@media (max-width: 980px) {
+									#aia-module .aia-body { grid-template-columns: minmax(0, 1fr); grid-template-areas: "side" "stage"; }
+									#aia-module .aia-side { border-left: 0; border-bottom: 1px solid var(--aia-border); padding: 0.4em 1.1em; }
+									#aia-module .aia-side-toggle {
+										display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.55em 0; cursor: pointer;
+										font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.22em; color: var(--aia-fg-bold) !important;
+									}
+									#aia-module .aia-side-toggle::after { content: "\25BE"; font-size: 1.3em; letter-spacing: 0; transition: transform 0.2s; }
+									#aia-module .aia-side.is-open .aia-side-toggle::after { transform: rotate(180deg); }
+									#aia-module .aia-side-content { display: none; padding: 0.6em 0 1em; }
+									#aia-module .aia-side.is-open .aia-side-content { display: grid; }
+									#aia-module .aia-stage { min-height: 0; }
+								}
+								@media (max-width: 640px) {
+									#aia-module .aia-top { padding: 0.75em 1em; }
+									#aia-module .aia-stepper li:not(.is-current) .aia-step-label { display: none; }
+									#aia-module .aia-stepper li:not(.is-current) { padding: 0.25em; }
+									#aia-module .aia-stage { padding: 1.2em 1em 1.3em; }
+									#aia-module .aia-scene-title { font-size: 1.25em; }
+									#aia-module .aia-bubble { margin-left: 0; }
+									#aia-module .aia-cats, #aia-module .aia-choices--tiers { grid-template-columns: minmax(0, 1fr); }
+									#aia-module .aia-endings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+									#aia-module .aia-footer-main { width: 100%; margin-left: 0; }
+									#aia-module .aia-footer-main .aia-btn { flex: 1 1 auto; }
+									#aia-module .aia-fix { grid-template-columns: minmax(0, 1fr); }
+									#aia-module .aia-fix .aia-btn { grid-column: 1; grid-row: auto; justify-self: start; }
+									#aia-module .aia-path-item { grid-template-columns: 2em minmax(0, 1fr); }
+									#aia-module .aia-path-item .aia-btn { grid-column: 2; justify-self: start; }
+								}
+								@media (prefers-reduced-motion: reduce) {
+									#aia-module *, #aia-module *::before, #aia-module *::after { animation: none !important; transition: none !important; }
+									#aia-module .aia-attn::after { inset: -4px; }
+								}
+							</style>
+
+							<div id="aia-module">
+								<p class="aia-review-legend" id="aia-review" hidden></p>
+								<div class="aia-player">
+									<div class="aia-top">
+										<p class="aia-brand" id="aia-brand"></p>
+										<ol class="aia-stepper" id="aia-stepper" aria-label="Fortschritt"></ol>
+									</div>
+									<div class="aia-body">
+										<aside class="aia-side" id="aia-side" aria-label="Lagebild">
+											<button type="button" class="aia-side-toggle" id="aia-side-toggle" aria-expanded="false" aria-controls="aia-side-content"><span></span></button>
+											<div class="aia-side-content" id="aia-side-content">
+												<section class="aia-panel">
+													<h4 class="aia-panel-title" id="aia-pyr-title"></h4>
+													<ol class="aia-pyr" id="aia-pyr"></ol>
+													<p class="aia-pyr-status" id="aia-pyr-status"></p>
+												</section>
+												<section class="aia-panel">
+													<details class="aia-brief" id="aia-brief" open>
+														<summary></summary>
+														<dl></dl>
+													</details>
+												</section>
+												<section class="aia-panel">
+													<h4 class="aia-panel-title" id="aia-log-title"></h4>
+													<ol class="aia-log" id="aia-log"></ol>
+													<p class="aia-delay" id="aia-delay" hidden></p>
+												</section>
+											</div>
+										</aside>
+										<div class="aia-stage" id="aia-stage"></div>
+									</div>
+								</div>
+								<p class="aia-sr" id="aia-announce" aria-live="polite"></p>
+								<noscript><p>Dieses interaktive Modul benötigt JavaScript.</p></noscript>
+								<script type="application/json" id="aia-content">
+{
+  "meta": {
+    "_hinweis": "Alle Texte des Moduls. Jeder Text hat ein Feld q (Quelle): skript = unverändert aus dem Kursskript, korrigiert = Skripttext mit inhaltlicher oder sprachlicher Korrektur, neu = neu ergänzt. Mit ?review in der URL werden korrigierte und neue Texte im Modul farbig markiert. Begriffe in [[…]] öffnen eine Glossar-Erklärung; [[Anzeige|Begriff]] zeigt einen anderen Text an als den Glossar-Eintrag.",
+    "version": 1,
+    "stand": "November 2026"
+  },
+
+  "ui": {
+    "modulTitel": "EU AI Act · Hohes Risiko",
+    "phasen": ["Verbote ausschließen", "Einstufen", "Anforderungen", "Auswertung", "Bonus"],
+    "aufgabe": "Deine Aufgabe",
+    "weiter": "Weiter",
+    "hinweis": "Hinweis",
+    "hinweisVon": "Hinweis von Martina",
+    "nachschlagen": "nachschlagen",
+    "lagebild": "Lagebild",
+    "lagebildZeigen": "Lagebild anzeigen",
+    "lagebildVerbergen": "Lagebild verbergen",
+    "pyramide": "Risikopyramide",
+    "steckbrief": "Produktsteckbrief",
+    "deinWeg": "Dein Weg",
+    "zeitplan": "Zeitplan",
+    "imPlan": "im Plan",
+    "verzoegerung": "Verzögerung",
+    "monat": "Monat",
+    "monate": "Monate",
+    "nochNichts": "Noch keine Entscheidungen.",
+    "ueberlegt": "Martina überlegt …",
+    "erinnerung": "Erinnerung",
+    "sicherFrage": "Wie sicher bist du?",
+    "sicher": { "geraten": "Geraten", "ziemlich": "Ziemlich sicher", "sehr": "Sehr sicher" },
+    "trifftZu": "Trifft zu",
+    "trifftNichtZu": "Trifft nicht zu",
+    "urteil": { "gut": "erfüllt", "teil": "teilweise", "schlecht": "verfehlt" },
+    "richtig": "Richtig",
+    "nichtGanz": "Nicht ganz",
+    "kurzErklaert": "Kurz erklärt",
+    "begriff": "Begriff",
+    "entscheidung": "Entscheidung {n} von 4",
+    "bereitsProbiert": "bereits probiert",
+    "waehleOption": "Wähle eine Option – danach gibst du an, wie sicher du dir bist.",
+    "startButton": "Prüfung starten",
+    "direktButton": "Direkt zum Szenario (Art. 9–14)",
+    "direktHinweis": "Du hast die Prüfung nach Art. 5 und Art. 6 schon einmal abgeschlossen.",
+    "ergebnisButton": "Ergebnis anzeigen",
+    "losButton": "Los geht’s",
+    "zurAuswertung": "Zur Auswertung",
+    "weiterTransfer": "Weiter zum Transfer-Check",
+    "weiterFahrplan": "Weiter zum Fahrplan",
+    "szenarioNeu": "Szenario neu starten",
+    "modulNeu": "Ganzes Modul neu starten",
+    "abHierNeu": "Ab hier neu spielen",
+    "bonusStart": "Bonusrunde starten",
+    "bonusZurueck": "Zurück zum Fahrplan",
+    "checkScore": "Du hast {n} von 5 Punkten auf Anhieb richtig eingeschätzt.",
+    "logCheck": "Art. 5 · Checkliste {n}/5",
+    "logTwist": "Was wäre, wenn … · Webcam-Idee",
+    "logAnhang": "Anhang III · Nr. 4 ({n}. Versuch)",
+    "logAnhangOffen": "Anhang III · Kategorie gesucht",
+    "log63": "Art. 6 Abs. 3 · Hochrisiko bestätigt",
+    "logUebersprungen": "Art. 5 und Art. 6 · bereits geprüft",
+    "logNachgebessert": "nachgebessert",
+    "pyrStatus": {
+      "start": "Noch nicht eingestuft",
+      "pruefung": "Prüfung läuft …",
+      "ausgeschlossen": "ausgeschlossen",
+      "kandidat": "HappyWorkers?",
+      "ergebnis": "HappyWorkers"
+    },
+    "review": "Review-Modus: <b>gelb</b> = korrigierter Skripttext · <b>pink</b> = neu ergänzter Text · ohne Markierung = Skripttext. Oberflächentexte (Buttons, Labels) sind nicht markiert.",
+    "kalibrierung": {
+      "gut-sehr": "Sehr sicher – und richtig. Stark!",
+      "gut-ziemlich": "Ziemlich sicher – und richtig.",
+      "gut-geraten": "Geraten – und richtig. Lies die Begründung, damit aus Glück Wissen wird.",
+      "teil-sehr": "Sehr sicher – aber nur teilweise richtig. Ein Fall fürs Nachschlagen.",
+      "teil-ziemlich": "Ziemlich sicher – teilweise richtig.",
+      "teil-geraten": "Geraten – teilweise richtig. Ein Blick in den Artikel lohnt sich.",
+      "schlecht-sehr": "Sehr sicher – aber verfehlt. Ein klarer Fall fürs Nachschlagen.",
+      "schlecht-ziemlich": "Ziemlich sicher – aber verfehlt.",
+      "schlecht-geraten": "Geraten – und verfehlt. Gut, dass du unsicher warst: Hier lohnt sich ein Blick in den Artikel."
+    }
+  },
+
+  "personen": {
+    "lea": { "name": "Lea", "rolle": "Product Manager · Solutions GmbH", "du": "Du als Lea" },
+    "martina": { "name": "Martina", "rolle": "Compliance Officer · Solutions GmbH" },
+    "dev": { "name": "Entwicklerteam", "rolle": "Nachricht im Team-Chat" }
+  },
+
+  "steckbrief": {
+    "q": "neu",
+    "zeilen": [
+      ["Produkt", "HappyWorkers"],
+      ["Zweck", "Leistung und Engagement von Mitarbeitenden am Arbeitsplatz überwachen – Probleme früher erkennen als mit Umfragen"],
+      ["Daten", "E-Mail- und Chat-Verkehr (Kommunikationsmuster)"],
+      ["Nutzer", "HR-Teams der Unternehmen, die HappyWorkers einsetzen"],
+      ["Rolle der Solutions GmbH", "entwickelt und vertreibt HappyWorkers"]
+    ]
+  },
+
+  "pyramide": [
+    { "id": "verboten", "name": "Inakzeptables Risiko", "info": "verboten" },
+    { "id": "hoch", "name": "Hohes Risiko", "info": "strenge Pflichten" },
+    { "id": "begrenzt", "name": "Begrenztes Risiko", "info": "Transparenzpflichten" },
+    { "id": "minimal", "name": "Minimales Risiko", "info": "keine besonderen Pflichten" }
+  ],
+
+  "glossar": {
+    "Anbieter": { "t": "Wer ein KI-System entwickelt (oder entwickeln lässt) und es unter eigenem Namen auf den Markt bringt – hier die Solutions GmbH.", "q": "neu" },
+    "Betreiber": { "t": "Wer ein KI-System in eigener Verantwortung beruflich einsetzt – hier z. B. die HR-Abteilungen der Unternehmen, die HappyWorkers nutzen.", "q": "neu" },
+    "Profiling": { "t": "Die automatisierte Auswertung personenbezogener Daten, um persönliche Aspekte eines Menschen zu bewerten – etwa Arbeitsleistung, Zuverlässigkeit oder Verhalten.", "q": "neu" },
+    "Anhang III": { "t": "Die Liste der Bereiche, in denen KI-Systeme als hochriskant gelten, z. B. Bildung, Beschäftigung oder Strafverfolgung.", "q": "neu" },
+    "Automatisierungsbias": { "t": "Die Neigung, sich automatisch oder übermäßig auf die Ergebnisse eines KI-Systems zu verlassen – auch wenn sie falsch sind.", "q": "neu" }
+  },
+
+  "artikel": {
+    "5": {
+      "titel": "Art. 5 – Verbotene Praktiken im KI-Bereich",
+      "url": "https://artificialintelligenceact.eu/de/article/5/",
+      "punkte": [
+        { "t": "Verboten sind KI-Praktiken mit unannehmbarem Risiko, z. B. manipulative Techniken, das Ausnutzen von Schwächen, Social Scoring, Straftat-Prognosen allein per Profiling, das ungezielte Sammeln von Gesichtsbildern, Emotionserkennung am Arbeitsplatz und in Bildungseinrichtungen, biometrische Kategorisierung nach sensiblen Merkmalen und biometrische Echtzeit-Fernidentifizierung zur Strafverfolgung.", "q": "neu" },
+        { "t": "Die Verbote gelten seit dem 2. Februar 2025.", "q": "neu" },
+        { "t": "Neu durch den Digital Omnibus (2026): Ab dem 2. Dezember 2026 sind auch KI-Systeme verboten, die nicht-einvernehmliche intime Deepfakes oder Darstellungen sexuellen Kindesmissbrauchs erzeugen.", "q": "neu" },
+        { "t": "Lea prüft hier eine vereinfachte Auswahl – in der Praxis gehört die ganze Liste auf den Prüfstand.", "q": "neu" }
+      ]
+    },
+    "6": {
+      "titel": "Art. 6 – Wann ist ein KI-System hochriskant?",
+      "url": "https://artificialintelligenceact.eu/de/article/6/",
+      "punkte": [
+        { "t": "Weg 1 (Abs. 1 + Anhang I): Das KI-System ist ein Sicherheitsbauteil eines Produkts – oder selbst ein Produkt –, das unter EU-Produktvorschriften fällt und von Dritten geprüft werden muss, z. B. Medizinprodukte oder Maschinen.", "q": "neu" },
+        { "t": "Weg 2 (Abs. 2 + Anhang III): Das System gehört zu einem der Bereiche in [[Anhang III]], z. B. Beschäftigung und Personalmanagement.", "q": "neu" },
+        { "t": "Ausnahme (Abs. 3): Ein System aus Anhang III ist nicht hochriskant, wenn es kein erhebliches Risiko birgt – etwa weil es nur eine eng begrenzte Hilfsaufgabe erledigt. Das gilt aber nie, wenn das System [[Profiling]] betreibt.", "q": "neu" },
+        { "t": "Wer sich auf die Ausnahme beruft, muss seine Einschätzung vor dem Inverkehrbringen dokumentieren (Abs. 4).", "q": "neu" }
+      ]
+    },
+    "9": {
+      "titel": "Art. 9 – Risikomanagementsystem",
+      "url": "https://artificialintelligenceact.eu/de/article/9/",
+      "punkte": [
+        { "t": "Ein kontinuierlicher, iterativer Prozess über den gesamten Lebenszyklus des Systems – mit regelmäßiger Überprüfung und Aktualisierung.", "q": "neu" },
+        { "t": "Risiken für Gesundheit, Sicherheit und Grundrechte ermitteln und bewerten – auch bei vernünftigerweise vorhersehbarer Fehlanwendung.", "q": "neu" },
+        { "t": "Gezielte Maßnahmen ergreifen, um die Risiken zu mindern, und das System vor dem Inverkehrbringen testen.", "q": "neu" },
+        { "t": "Erkenntnisse aus dem laufenden Betrieb fließen wieder ein.", "q": "neu" }
+      ]
+    },
+    "10": {
+      "titel": "Art. 10 – Daten und Daten-Governance",
+      "url": "https://artificialintelligenceact.eu/de/article/10/",
+      "punkte": [
+        { "t": "Trainings-, Validierungs- und Testdaten müssen für den Zweck relevant, hinreichend repräsentativ und so weit wie möglich fehlerfrei und vollständig sein.", "q": "neu" },
+        { "t": "Die Daten werden auf mögliche Verzerrungen (Bias) untersucht, die zu Diskriminierung führen können – und es werden Maßnahmen ergriffen, um sie zu erkennen und zu mindern.", "q": "neu" },
+        { "t": "Herkunft, Erhebung und Aufbereitung der Daten werden nachvollziehbar festgehalten.", "q": "neu" },
+        { "t": "Datenschutz bleibt Pflicht: Die DSGVO gilt zusätzlich.", "q": "neu" }
+      ]
+    },
+    "11": {
+      "titel": "Art. 11 – Technische Dokumentation",
+      "url": "https://artificialintelligenceact.eu/de/article/11/",
+      "punkte": [
+        { "t": "Die technische Dokumentation wird erstellt, bevor das System in Verkehr gebracht wird – und danach laufend aktuell gehalten.", "q": "neu" },
+        { "t": "Sie belegt, dass das System die Anforderungen erfüllt, und enthält die Angaben aus Anhang IV, z. B. Zweck, Aufbau, Daten, Tests und Risikomanagement.", "q": "neu" },
+        { "t": "Neu durch den Digital Omnibus (2026): Kleine und mittlere Unternehmen (einschließlich Start-ups) dürfen die Angaben in vereinfachter Form vorlegen.", "q": "neu" }
+      ]
+    },
+    "12": {
+      "titel": "Art. 12 – Aufzeichnungspflichten",
+      "url": "https://artificialintelligenceact.eu/de/article/12/",
+      "punkte": [
+        { "t": "Hochrisiko-KI-Systeme müssen Ereignisse während ihrer gesamten Lebensdauer automatisch protokollieren können (Logs).", "q": "neu" },
+        { "t": "Die Logs helfen, Risiken zu erkennen, das System nach dem Markteintritt zu beobachten und seinen Betrieb zu überwachen.", "q": "neu" },
+        { "t": "Ziel ist Nachvollziehbarkeit – nicht das Horten aller Inhalte. Die DSGVO gilt weiterhin.", "q": "neu" }
+      ]
+    },
+    "13": {
+      "titel": "Art. 13 – Transparenz und Bereitstellung von Informationen für die Betreiber",
+      "url": "https://artificialintelligenceact.eu/de/article/13/",
+      "punkte": [
+        { "t": "Das System muss so transparent sein, dass die [[Betreiber]] die Ergebnisse richtig deuten und angemessen nutzen können.", "q": "neu" },
+        { "t": "Dazu gehört eine Betriebsanleitung, die präzise, vollständig, korrekt, eindeutig und für die Betreiber verständlich ist.", "q": "neu" },
+        { "t": "Sie enthält u. a. Zweck, Genauigkeit und Grenzen, vorhersehbaren Missbrauch und bekannte Risiken, Angaben zu den Daten sowie die Maßnahmen zur menschlichen Aufsicht.", "q": "neu" }
+      ]
+    },
+    "14": {
+      "titel": "Art. 14 – Menschliche Aufsicht",
+      "url": "https://artificialintelligenceact.eu/de/article/14/",
+      "punkte": [
+        { "t": "Hochrisiko-KI muss so gebaut sein, dass natürliche Personen sie während der Nutzung wirksam beaufsichtigen können.", "q": "neu" },
+        { "t": "Die Aufsichtspersonen müssen Fähigkeiten und Grenzen des Systems verstehen, Ergebnisse richtig deuten und sich des [[Automatisierungsbias]] bewusst sein.", "q": "neu" },
+        { "t": "Sie müssen Ergebnisse ignorieren oder übersteuern und das System stoppen können.", "q": "neu" },
+        { "t": "Der [[Anbieter]] baut Aufsichtsmaßnahmen ins System ein oder legt fest, welche Maßnahmen die Betreiber umsetzen.", "q": "neu" }
+      ]
+    },
+    "15": {
+      "titel": "Art. 15 – Genauigkeit, Robustheit und Cybersicherheit",
+      "url": "https://artificialintelligenceact.eu/de/article/15/",
+      "punkte": [
+        { "t": "Das System muss über seinen gesamten Lebenszyklus ein angemessenes Maß an Genauigkeit, Robustheit und Cybersicherheit erreichen.", "q": "neu" },
+        { "t": "Die Genauigkeitswerte stehen in der Betriebsanleitung.", "q": "neu" },
+        { "t": "Es muss widerstandsfähig gegen Fehler und Manipulationsversuche sein, z. B. gegen vergiftete Trainingsdaten oder gezielt präparierte Eingaben.", "q": "neu" },
+        { "t": "Lernt das System im Betrieb weiter, müssen Rückkopplungsschleifen verhindert werden, bei denen verzerrte Ergebnisse die künftigen Eingaben beeinflussen.", "q": "neu" }
+      ]
+    }
+  },
+
+  "links": {
+    "anhang3": { "label": "Anhang III", "url": "https://artificialintelligenceact.eu/de/annex/3/" },
+    "omnibus": { "label": "Digital Omnibus on AI", "url": "https://artificialintelligenceact.eu/ai-act-explorer/digital-omnibus/" }
+  },
+
+  "intro": {
+    "eyebrow": "Einstieg",
+    "titel": "Dein Auftrag",
+    "rolle": { "t": "Du schlüpfst in die Rolle von Lea. Gemeinsam mit Martina aus der Compliance prüfst du, ob eine neue Produktidee mit dem EU AI Act vereinbar ist – und was zu tun ist.", "q": "neu" },
+    "absaetze": [
+      { "t": "Lea ist Product Manager bei der Firma „Solutions GmbH“.", "q": "skript" },
+      { "t": "Lea hat eine Idee für eine neue KI-Anwendung auf dem Bildschirm vor sich. Es handelt sich um „HappyWorkers“, ein Tool, das die Leistung und das Mitarbeiterengagement am Arbeitsplatz überwachen soll.", "q": "korrigiert" },
+      { "t": "Engagement-Monitoring-Tools, die auf KI basieren, können die Perspektive des HR-Teams erweitern und es ermöglichen, Probleme im Vergleich zu herkömmlichen Umfragen früher zu erkennen.", "q": "skript" },
+      { "t": "KI-basierte Beobachtungstools können sich auf verschiedene Aspekte des Mitarbeiterverhaltens konzentrieren und Muster erkennen, die auf sinkendes Engagement und Leistung hindeuten. Das würde bei diesem konkreten Beispiel durch die Analyse des E-Mail- und Chat-Verkehrs erfolgen, indem Kommunikationsmuster genauer betrachtet werden.", "q": "skript" }
+    ]
+  },
+
+  "prognose": {
+    "eyebrow": "Bevor es losgeht",
+    "titel": "Dein Bauchgefühl",
+    "frage": { "t": "Bevor du systematisch prüfst: In welche Risikostufe des AI Acts fällt HappyWorkers wohl?", "q": "neu" },
+    "aufgabe": { "t": "Wähle eine Stufe. Hier gibt es noch kein Richtig oder Falsch.", "q": "neu" },
+    "notiert": { "t": "Notiert! Am Ende schauen wir, ob dein Bauchgefühl richtig lag.", "q": "neu" },
+    "weiter": "Weiter zur Checkliste"
+  },
+
+  "checkliste": {
+    "eyebrow": "① Verbote ausschließen",
+    "titel": "Inakzeptables Risiko ausschließen",
+    "lea": { "t": "Lea möchte sich zuerst vergewissern, dass diese Idee in diesem bestimmten Rahmen so nicht in die Kategorie „Inakzeptables Risiko“ fällt.", "q": "skript" },
+    "untertitel": { "t": "Leas vereinfachte Compliance-Checkliste (Art. 5)", "q": "korrigiert" },
+    "aufgabe": { "t": "Prüfe jeden Punkt für HappyWorkers: Trifft er zu oder nicht?", "q": "neu" },
+    "hinweis": { "t": "Vergleiche jeden Punkt mit dem Produktsteckbrief im Lagebild: Was tut HappyWorkers konkret – und was nicht?", "q": "neu" },
+    "punkte": [
+      {
+        "id": "a",
+        "frage": { "t": "(1)(a) Nutzt das System unterschwellige Techniken, um Individuen zu manipulieren?", "q": "skript" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers wertet Kommunikation aus, beeinflusst das Verhalten der Mitarbeitenden aber nicht unterschwellig oder manipulativ.", "q": "neu" },
+        "falsch": { "t": "Verboten sind Techniken, die Menschen unbemerkt manipulieren und ihnen so schaden. HappyWorkers analysiert Kommunikation – es beeinflusst niemanden unterschwellig.", "q": "neu" }
+      },
+      {
+        "id": "c",
+        "frage": { "t": "(1)(c) Bewertet das System Menschen über längere Zeit anhand ihres sozialen Verhaltens oder ihrer Persönlichkeit („Social Scoring“), sodass sie dadurch in anderen Lebensbereichen oder unverhältnismäßig benachteiligt werden?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "Zumindest nach dieser vereinfachten Prüfung: HappyWorkers bewertet Verhalten nur im Arbeitskontext, aus dem die Daten stammen. Würden die Ergebnisse aber zu unverhältnismäßigen Nachteilen führen, müssten wir genauer hinschauen.", "q": "neu" },
+        "falsch": { "t": "Gute Frage – aber Social Scoring meint Bewertungen, die Menschen in anderen Lebensbereichen oder unverhältnismäßig benachteiligen. HappyWorkers bleibt im Arbeitskontext, aus dem die Daten stammen. Wie die Ergebnisse genutzt werden, sollte man trotzdem im Blick behalten.", "q": "neu" }
+      },
+      {
+        "id": "d",
+        "frage": { "t": "(1)(d) Nutzt das System Risikobewertungen, um vorherzusagen, ob eine Person eine Straftat begehen wird, basierend auf Profiling oder der Bewertung von Persönlichkeitsmerkmalen?", "q": "skript" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers bewertet Engagement und Leistung – Straftaten sagt es nicht voraus.", "q": "neu" },
+        "falsch": { "t": "HappyWorkers bewertet Engagement und Leistung, sagt aber keine Straftaten voraus. Dieses Verbot zielt auf Kriminalitätsprognosen, die allein auf Profiling beruhen.", "q": "neu" }
+      },
+      {
+        "id": "f",
+        "frage": { "t": "(1)(f) Leitet das System Emotionen von Menschen am Arbeitsplatz oder in Bildungseinrichtungen ab (Emotionserkennung)?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "Aber knapp! Verboten ist Emotionserkennung am Arbeitsplatz auf Basis biometrischer Daten, also etwa aus Mimik oder Stimme. HappyWorkers wertet Texte und Kommunikationsmuster aus, keine biometrischen Daten. Merk dir diesen Punkt – er kommt gleich wieder.", "q": "neu" },
+        "falsch": { "t": "Verständlich – „Engagement“ klingt nach Gefühlen. Das Verbot betrifft aber Emotionserkennung auf Basis biometrischer Daten, z. B. aus Mimik oder Stimme. HappyWorkers analysiert Texte und Kommunikationsmuster. Merk dir diesen Punkt – er kommt gleich wieder.", "q": "neu" }
+      },
+      {
+        "id": "h",
+        "frage": { "t": "(1)(h) Nutzt das System biometrische Echtzeit-Fernidentifizierung in öffentlich zugänglichen Räumen zu Strafverfolgungszwecken?", "q": "korrigiert" },
+        "loesung": "nein",
+        "richtig": { "t": "HappyWorkers identifiziert niemanden anhand biometrischer Merkmale – und mit Strafverfolgung hat es nichts zu tun.", "q": "neu" },
+        "falsch": { "t": "HappyWorkers erkennt keine Personen anhand biometrischer Merkmale wie dem Gesicht, und es geht nicht um Strafverfolgung.", "q": "neu" }
+      }
+    ]
+  },
+
+  "checkErgebnis": {
+    "eyebrow": "① Verbote ausschließen",
+    "titel": "Ergebnis",
+    "ergebnisLabel": "Ergebnis",
+    "ergebnis": { "t": "Die Anwendung scheint in diesem Rahmen vorerst nicht in diese Kategorie zu fallen.", "q": "skript" },
+    "begruendungLabel": "Begründung",
+    "begruendung": { "t": "Das KI-System „HappyWorkers“ fällt nicht unter die Kategorie „Inakzeptables Risiko“, da es keine der in Artikel 5 gelisteten Verbotsmerkmale aufweist.", "q": "skript" }
+  },
+
+  "twist": {
+    "eyebrow": "① Verbote ausschließen · Was wäre, wenn …?",
+    "titel": "Eine neue Idee aus dem Entwicklerteam",
+    "einleitung": { "t": "Kurz nach dem Check kommt eine Nachricht aus dem Entwicklerteam:", "q": "neu" },
+    "nachricht": { "t": "„Wir könnten HappyWorkers aufwerten: Per Webcam erkennt es in Teammeetings an der Mimik, wie die Stimmung ist. Dann sieht HR sofort, wer unzufrieden ist!“", "q": "neu" },
+    "aufgabe": { "t": "Ändert diese Idee deine Einschätzung?", "q": "neu" },
+    "optionen": [
+      {
+        "id": "verboten", "urteil": "gut",
+        "text": { "t": "Ja – damit wäre HappyWorkers verboten.", "q": "neu" },
+        "feedback": { "t": "Genau. Emotionserkennung am Arbeitsplatz auf Basis biometrischer Daten wie der Mimik ist nach Art. 5 Abs. 1 lit. f verboten. Ausnahmen gibt es nur aus medizinischen oder Sicherheitsgründen.", "q": "neu" }
+      },
+      {
+        "id": "einwilligung", "urteil": "schlecht",
+        "text": { "t": "Nein – wenn die Mitarbeitenden vorher zustimmen, ist es erlaubt.", "q": "neu" },
+        "feedback": { "t": "Ein verbreiteter Irrtum: Das Verbot kennt keine Ausnahme für Einwilligungen – nur für medizinische oder Sicherheitsgründe. Am Arbeitsplatz wäre eine wirklich freiwillige Einwilligung ohnehin schwierig. Die Idee wäre verboten.", "q": "neu" }
+      },
+      {
+        "id": "hochrisiko", "urteil": "schlecht",
+        "text": { "t": "Nein – Emotionserkennung ist „nur“ Hochrisiko.", "q": "neu" },
+        "feedback": { "t": "Fast: Emotionserkennung steht tatsächlich in Anhang III (Nr. 1) unter den Hochrisiko-Systemen. Am Arbeitsplatz und in Bildungseinrichtungen ist sie aber ganz verboten (Art. 5 Abs. 1 lit. f).", "q": "neu" }
+      }
+    ],
+    "abschluss": { "t": "Lea streicht die Idee. HappyWorkers bleibt bei Texten und Kommunikationsmustern – und damit außerhalb der Verbotszone.", "q": "neu" }
+  },
+
+  "meeting": {
+    "eyebrow": "② Einstufen",
+    "titel": "Meeting mit Martina",
+    "einleitung": { "t": "Lea vereinbart daraufhin ein Meeting mit Martina, um zusammen zu prüfen, ob das KI-System in die Kategorie „Hohes Risiko“ fallen könnte.", "q": "skript" },
+    "martinaIst": { "t": "Martina ist Compliance Officer bei der Firma „Solutions GmbH“.", "q": "skript" },
+    "martina": { "t": "„Wir beginnen mit Artikel 6 des EU AI Acts. Dieser beschreibt, welche Kategorien von KI-Systemen potenziell als Hochrisiko gelten können. Hier gilt es Absatz 1 (a) und (b) mit Anhang I sowie Absatz 2 mit Anhang III zu beachten.“", "q": "korrigiert" }
+  },
+
+  "anhang3": {
+    "eyebrow": "② Einstufen",
+    "titel": "Welche Kategorie aus Anhang III?",
+    "einleitung": { "t": "Martina schaut sich die Produktbeschreibung an:", "q": "skript" },
+    "martina": { "t": "„Ich bin mir ziemlich sicher, dass euer KI-System zu einer der Kategorien in Anhang III passen könnte – aber zu welcher?“", "q": "skript" },
+    "aufgabe": { "t": "Klicke auf die richtige Kategorie.", "q": "skript" },
+    "liste": { "t": "Die Kategorien in Anhang III (Auszug):", "q": "skript" },
+    "hinweis": { "t": "Wen beobachtet HappyWorkers? Lies die Kategorien mit dieser Frage im Kopf.", "q": "neu" },
+    "falsch1": { "t": "Martina schüttelt leicht den Kopf.", "q": "neu" },
+    "falsch1Nudge": { "t": "Schau noch einmal in den Produktsteckbrief: Wen beobachtet HappyWorkers?", "q": "neu" },
+    "falsch2": { "t": "Martina runzelt die Stirn. „Nein, diese Kategorie passt nicht ganz. Es müsste etwas mit „Arbeitnehmern“ zu tun haben.“", "q": "skript" },
+    "falsch3": { "t": "Martina zeigt auf die Liste: „Schau mal hier – Nummer 4.“", "q": "neu" },
+    "richtig": { "t": "„Da hast du recht! Anhang III beschreibt unter Gruppe 4(b), dass KI-Systeme, die das Verhalten von Mitarbeitenden überwachen oder ihre Leistung bewerten, als KI-Systeme mit hohem Risiko gelten können.“", "q": "skript" },
+    "kategorien": [
+      { "nr": 1, "text": { "t": "Biometrische Datenverarbeitung, soweit ihre Verwendung nach dem einschlägigen Unionsrecht oder dem nationalen Recht zulässig ist.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers verarbeitet keine biometrischen Daten wie Gesicht, Stimme oder Fingerabdruck – sondern Texte aus E-Mails und Chats.", "q": "neu" } },
+      { "nr": 2, "text": { "t": "KI-Systeme, die als Sicherheitskomponenten bei der Verwaltung und dem Betrieb kritischer digitaler Infrastrukturen, im Straßenverkehr oder bei der Wasser-, Gas-, Wärme- oder Stromversorgung eingesetzt werden sollen.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers steuert keine kritische Infrastruktur – es geht um Menschen am Arbeitsplatz, nicht um Strom, Wasser oder Verkehr.", "q": "neu" } },
+      { "nr": 3, "text": { "t": "Allgemeine und berufliche Bildung: Zugang oder die Zulassung zu Einrichtungen, Bewertung von Lernergebnissen, Bewertung des angemessenen Bildungsniveaus, Überwachung von Verhalten von Schülern bei Prüfungen", "q": "skript" }, "warumNicht": { "t": "Nah dran – auch hier geht es ums Bewerten von Menschen. Aber HappyWorkers bewertet keine Lernenden in Bildungseinrichtungen, sondern Mitarbeitende im Job.", "q": "neu" } },
+      { "nr": 4, "text": { "t": "Beschäftigung, Arbeitnehmermanagement und Zugang zur Selbstständigkeit: für die Einstellung oder Auswahl natürlicher Personen, Treffen von Entscheidungen, die sich auf die Bedingungen von Arbeitsverhältnissen auswirken", "q": "skript" }, "richtig": true },
+      { "nr": 5, "text": { "t": "Zugang zu und Inanspruchnahme von wesentlichen privaten Dienstleistungen und wesentlichen öffentlichen Diensten und Leistungen.", "q": "skript" }, "warumNicht": { "t": "Hier geht es z. B. um Kreditwürdigkeit, Sozialleistungen oder Versicherungen. Über solche Leistungen entscheidet HappyWorkers nicht.", "q": "neu" } },
+      { "nr": 6, "text": { "t": "Strafverfolgung, soweit ihre Verwendung nach dem einschlägigen Unionsrecht oder dem nationalen Recht zulässig ist.", "q": "skript" }, "warumNicht": { "t": "HappyWorkers wird nicht von Polizei oder Strafverfolgungsbehörden eingesetzt.", "q": "neu" } },
+      { "nr": 7, "text": { "t": "Migrations-, Asyl- und Grenzkontrollmanagement, soweit deren Einsatz nach dem einschlägigen Unionsrecht oder nationalen Recht zulässig ist.", "q": "skript" }, "warumNicht": { "t": "Mit Migration, Asyl oder Grenzkontrollen hat HappyWorkers nichts zu tun.", "q": "neu" } },
+      { "nr": 8, "text": { "t": "Rechtspflege und demokratische Prozesse", "q": "skript" }, "warumNicht": { "t": "HappyWorkers unterstützt weder Gerichte noch Wahlen oder andere demokratische Prozesse.", "q": "neu" } }
+    ]
+  },
+
+  "art63": {
+    "eyebrow": "② Einstufen",
+    "titel": "Ist HappyWorkers wirklich hochriskant?",
+    "martina": { "t": "„Nur weil ein System in Anhang III aufgeführt ist, bedeutet das nicht automatisch, dass es als hohes Risiko eingestuft wird. Wir müssen prüfen, ob es ein erhebliches Risiko für die Gesundheit, Sicherheit oder Grundrechte darstellt.“", "q": "skript" },
+    "frage": { "t": "„Stellt euer System ein solches Risiko dar?“", "q": "skript" },
+    "optionen": [
+      {
+        "id": "nein", "urteil": "schlecht",
+        "text": { "t": "Nein, das System ist harmlos, da es nur Daten analysiert, die ohnehin verfügbar sind.", "q": "skript" },
+        "feedback": { "t": "„Auch wenn die Daten verfügbar sind, kann die kontinuierliche Überwachung erheblich in die Privatsphäre eingreifen und Grundrechte verletzen.“", "q": "skript" }
+      },
+      {
+        "id": "ja", "urteil": "gut",
+        "text": { "t": "Ja, es greift in die Grundrechte ein, da es die Privatsphäre der Mitarbeitenden betrifft.", "q": "skript" },
+        "feedback": { "t": "„Korrekt. Ein System, das kontinuierlich die Kommunikation überwacht und daraus Muster bildet, kann stark in die Privatsphäre der Mitarbeitenden eingreifen und potenziell diskriminierend wirken.“", "q": "skript" }
+      }
+    ],
+    "profiling": { "t": "„Und es gibt noch einen zweiten, ganz eindeutigen Grund: Art. 6 Abs. 3 nennt zwar Ausnahmen – etwa wenn ein System nur eine eng begrenzte Hilfsaufgabe erledigt. Aber ein System aus Anhang III, das [[Profiling]] betreibt, gilt immer als Hochrisiko. HappyWorkers bewertet einzelne Mitarbeitende anhand ihrer Kommunikation – das ist Profiling.“", "q": "neu" },
+    "fazit": { "t": "Damit steht fest: HappyWorkers ist ein Hochrisiko-KI-System. Und die Solutions GmbH ist als Entwicklerin von HappyWorkers [[Anbieter]] im Sinne des AI Acts – mit allen Pflichten, die daran hängen.", "q": "neu" },
+    "weiter": "Weiter zu den Anforderungen"
+  },
+
+  "start": {
+    "eyebrow": "③ Anforderungen",
+    "titel": "Das Gedankenexperiment",
+    "martina": { "t": "„Jetzt, wo wir wissen, dass du Anbieterin eines Systems mit hohem Risiko bist, müssen wir sicherstellen, dass es die regulatorischen Anforderungen des EU AI Act erfüllt. Lass uns in einem Gedankenexperiment einige der Anforderungen aus den Artikeln 8–15 genauer unter die Lupe nehmen, um ihre Relevanz zu verstehen. Ich wähle dazu ein paar der Anforderungen heraus und du entscheidest, wie wir die Compliance umsetzen könnten.“", "q": "skript" },
+    "regeln": { "t": "„Jede Entscheidung hat Folgen für die nächsten Schritte – es gibt mehrere mögliche Enden. Nach jeder Wahl sagst du mir, wie sicher du dir bist. Und keine Sorge: Wenn etwas schiefgeht, können wir nachbessern. Das kostet allerdings Zeit.“", "q": "neu" }
+  },
+
+  "kosten": { "9": 3, "10": 2, "13": 1, "14": 1 },
+
+  "knoten": {
+    "art9": {
+      "artikel": 9, "ebene": 1, "titel": "Risikomanagement",
+      "frage": { "t": "„Fangen wir mit der Einrichtung eines robusten Risikomanagementsystems (Art. 9) an. Es ist das Fundament unserer Compliance-Bemühungen. Was denkst du, welcher Ansatz kommt einem robusten Risikomanagementsystem am nächsten? Was passiert, wenn du dich falsch entscheidest?“", "q": "korrigiert" },
+      "erinnerung": { "t": "HappyWorkers bewertet Menschen. Fehler können Karrieren und Grundrechte betreffen – das hat die Einstufung gezeigt.", "q": "neu" },
+      "hinweis": { "t": "Achte darauf, über welchen Zeitraum das Risikomanagement wirkt: nur bis zum Launch – oder darüber hinaus?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A", "urteil": "gut", "kurz": "kontinuierlich über den Lebenszyklus", "weiter": "art10a",
+          "text": { "t": "„Wir könnten ein System für kontinuierliche Risikoerkennung, -analyse, -bewertung und -minderung über den gesamten Lebenszyklus des Systems einrichten. Dies beinhaltet strenge Tests und Dokumentation in jeder Phase. Dies würde viele Ressourcen und ein engagiertes Team erfordern.“", "q": "skript" },
+          "reaktion": { "t": "„Ausgezeichnete Wahl, Lea! Indem wir uns für diesen Ansatz entscheiden, legen wir ein starkes Fundament.“", "q": "skript" },
+          "warum": { "t": "Art. 9 verlangt genau das: einen kontinuierlichen, iterativen Prozess über den gesamten Lebenszyklus.", "q": "neu" }
+        },
+        {
+          "id": "B", "urteil": "schlecht", "kurz": "reaktiv nach Vorfällen", "weiter": "art10b",
+          "text": { "t": "„Alternativ könnten wir uns für einen reaktiveren Ansatz entscheiden und Risiken hauptsächlich dann angehen, wenn sie durch Benutzerfeedback oder nach dem Auftreten von Vorfällen identifiziert werden. Dies wäre im Vorfeld weniger ressourcenintensiv.“", "q": "skript" },
+          "reaktion": { "t": "„Hmm, ein reaktiver Ansatz für das Risikomanagement entspricht nicht den Anforderungen von Art. 9. So ein Ansatz würde dazu führen, dass du Probleme übersiehst, bis es zu spät ist.“", "q": "skript" },
+          "warum": { "t": "Art. 9 verlangt, Risiken vorausschauend zu ermitteln und zu mindern – nicht erst nach Vorfällen.", "q": "neu" }
+        },
+        {
+          "id": "C", "urteil": "teil", "kurz": "einmalige Analyse vor dem Launch", "weiter": "art10b",
+          "text": { "t": "„Wir führen vor dem Launch eine gründliche Risikoanalyse mit allen Fachbereichen durch und dokumentieren sie sauber. Danach ist das Thema erledigt und wir konzentrieren uns auf den Betrieb.“", "q": "neu" },
+          "reaktion": { "t": "„Gründlich ist gut – aber einmalig reicht nicht. Risiken verändern sich: neue Daten, neue Einsatzzwecke, neue Fehlerbilder. Art. 9 verlangt einen kontinuierlichen Prozess, der regelmäßig überprüft und aktualisiert wird – auch nach dem Launch.“", "q": "neu" },
+          "warum": { "t": "Eine einmalige Analyse ist ein Anfang, aber noch kein Risikomanagementsystem: Art. 9 verlangt regelmäßige Überprüfung über den ganzen Lebenszyklus.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art10a": {
+      "artikel": 10, "ebene": 2, "titel": "Daten-Governance",
+      "frage": { "t": "„Jetzt müssen wir uns um die Datenverwaltung (Art. 10) kümmern. Sie ist eng mit dem Risikomanagement verflochten. Da wir mit Mitarbeiterdaten arbeiten, müssen wir deren Qualität und Integrität sicherstellen. Schauen wir uns mögliche Wege an.“", "q": "korrigiert" },
+      "erinnerung": { "t": "HappyWorkers analysiert E-Mail- und Chat-Verkehr – personenbezogene Daten von Kolleginnen und Kollegen.", "q": "neu" },
+      "hinweis": { "t": "Frag dich: Sorgt die Option dafür, dass die Daten für den Zweck geeignet sind – also relevant, repräsentativ und auf Verzerrungen geprüft?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A1", "urteil": "gut", "kurz": "strenge Daten-Governance", "weiter": "art13a",
+          "text": { "t": "„Wir können strenge Datenverwaltungspraktiken implementieren und sicherstellen, dass die Daten relevant, repräsentativ, unverzerrt sind und im Einklang mit der DSGVO erhoben und verarbeitet werden. Dies beinhaltet auch gründliche Datenprüfungs- und -bereinigungsprozesse.“", "q": "korrigiert" },
+          "reaktion": { "t": "„Sehr gut. Geprüfte, saubere Daten sind die Grundlage für faire Ergebnisse.“", "q": "neu" },
+          "warum": { "t": "Relevante, repräsentative und auf Verzerrungen geprüfte Daten – das ist der Kern von Art. 10.", "q": "neu" }
+        },
+        {
+          "id": "A2", "urteil": "schlecht", "kurz": "nur Anonymisierung", "weiter": "art13e",
+          "text": { "t": "„Oder wir könnten uns in erster Linie auf die Anonymisierung nach der Datenerhebung konzentrieren, was weniger streng und einfacher umzusetzen ist, aber potenzielle Verzerrungen oder Datenqualitätsprobleme möglicherweise nicht vollständig angeht.“", "q": "skript" },
+          "reaktion": { "t": "„Anonymisierung schützt die Privatsphäre – aber sie macht schiefe Daten nicht gerade. Verzerrungen und Qualitätsprobleme bleiben im System.“", "q": "neu" },
+          "warum": { "t": "Art. 10 verlangt mehr als Datenschutz: Die Daten müssen relevant, repräsentativ und auf Verzerrungen geprüft sein.", "q": "neu" }
+        },
+        {
+          "id": "A3", "urteil": "schlecht", "kurz": "so viele Daten wie möglich", "weiter": "art13e",
+          "text": { "t": "„Wir nehmen einfach so viele E-Mails und Chats wie möglich ins Training. Je mehr Daten, desto weniger Verzerrung – das gleicht sich statistisch aus.“", "q": "neu" },
+          "reaktion": { "t": "„Leider nein: Mehr Daten bilden vorhandene Muster – und Vorurteile – oft nur stärker ab. Art. 10 verlangt Daten, die für den Zweck relevant und repräsentativ sind, und eine gezielte Prüfung auf Verzerrungen. Und aus Datenschutzsicht gilt: so viel wie nötig, nicht so viel wie möglich.“", "q": "neu" },
+          "warum": { "t": "Datenmenge ersetzt keine Daten-Governance: Relevanz, Repräsentativität und Bias-Prüfung sind Pflicht.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art10b": {
+      "artikel": 10, "ebene": 2, "titel": "Daten-Governance",
+      "frage": { "t": "„Solange wir an der Implementierung eines robusten Risikomanagements arbeiten, können wir uns mit der Datenqualität und der Datenverwaltung unseres Systems (wie z. B. den entsprechenden Design-Entscheidungen oder der Erkennung von Bias, Art. 10) auseinandersetzen.“", "q": "korrigiert" },
+      "erinnerung": { "t": "Das Risikomanagement steht noch auf wackeligen Beinen – und HappyWorkers arbeitet mit E-Mails und Chats von Mitarbeitenden.", "q": "neu" },
+      "hinweis": { "t": "Frag dich: Sorgt die Option dafür, dass die Daten für den Zweck geeignet sind – also relevant, repräsentativ und auf Verzerrungen geprüft?", "q": "neu" },
+      "optionen": [
+        {
+          "id": "B1", "urteil": "teil", "kurz": "umfassende Daten-Governance versuchen", "weiter": "art13e",
+          "text": { "t": "„Wir könnten immer versuchen, eine umfassende Datenverwaltung zu implementieren, aber ohne ein robustes Risikomanagementsystem wird es schwierig sein, alle potenziellen Risiken und Probleme zu identifizieren und anzugehen.“", "q": "skript" },
+          "reaktion": { "t": "„Die richtige Richtung! Aber ohne funktionierendes Risikomanagement wissen wir nicht genau, wonach wir in den Daten suchen müssen.“", "q": "neu" },
+          "warum": { "t": "Gute Daten-Governance braucht ein Risikomanagement, das sagt, welche Risiken in den Daten stecken können.", "q": "neu" }
+        },
+        {
+          "id": "B2", "urteil": "schlecht", "kurz": "nur grundlegende Anonymisierung", "weiter": "art13e",
+          "text": { "t": "„Alternativ könnten wir uns auf die grundlegende Anonymisierung konzentrieren, was uns aber größeren Risiken in Bezug auf Datenqualität und Verzerrung aussetzt.“", "q": "skript" },
+          "reaktion": { "t": "„Damit schützen wir die Privatsphäre ein Stück weit – aber Qualitätsprobleme und Verzerrungen bleiben unentdeckt.“", "q": "neu" },
+          "warum": { "t": "Art. 10 verlangt mehr als Datenschutz: Die Daten müssen relevant, repräsentativ und auf Verzerrungen geprüft sein.", "q": "neu" }
+        },
+        {
+          "id": "B3", "urteil": "schlecht", "kurz": "so viele Daten wie möglich", "weiter": "art13e",
+          "text": { "t": "„Wir nehmen einfach so viele E-Mails und Chats wie möglich ins Training. Je mehr Daten, desto weniger Verzerrung – das gleicht sich statistisch aus.“", "q": "neu" },
+          "reaktion": { "t": "„Leider nein: Mehr Daten bilden vorhandene Muster – und Vorurteile – oft nur stärker ab. Art. 10 verlangt Daten, die für den Zweck relevant und repräsentativ sind, und eine gezielte Prüfung auf Verzerrungen. Und aus Datenschutzsicht gilt: so viel wie nötig, nicht so viel wie möglich.“", "q": "neu" },
+          "warum": { "t": "Datenmenge ersetzt keine Daten-Governance: Relevanz, Repräsentativität und Bias-Prüfung sind Pflicht.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art13a": {
+      "artikel": 13, "ebene": 3, "titel": "Transparenz",
+      "frage": { "t": "„Neben dem Risikomanagement und der Datenverwaltung könnten wir nun auch die Transparenz (Art. 13) genauer unter die Lupe nehmen. Wir müssen den [[Betreibern|Betreiber]] von ‚HappyWorkers‘ klare Informationen zur Verfügung stellen. Ich schlage dir drei Möglichkeiten vor.“", "q": "korrigiert" },
+      "erinnerung": { "t": "Die Solutions GmbH ist [[Anbieter]] von HappyWorkers. Die Unternehmen, die es einsetzen, sind [[Betreiber]] – sie können nur so gut damit umgehen, wie wir sie informieren.", "q": "neu" },
+      "hinweis": { "t": "Art. 13 verlangt Informationen, die für die Betreiber relevant und verständlich sind – inklusive Grenzen und vorhersehbarem Missbrauch.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A11", "urteil": "schlecht", "kurz": "nur Kurzbeschreibung", "weiter": "art14b",
+          "text": { "t": "„Wir beschränken uns auf eine Kurzbeschreibung des Systems und allgemeine Hinweise zur Nutzung, ohne auf Details wie den vorhersehbaren Missbrauch oder die Trainingsdaten einzugehen.“", "q": "skript" },
+          "reaktion": { "t": "„Das ist zu dünn. Gerade Grenzen, vorhersehbarer Missbrauch und die genutzten Daten sind für die Betreiber entscheidend.“", "q": "neu" },
+          "warum": { "t": "Art. 13 nennt ausdrücklich u. a. Zweck, Grenzen, vorhersehbaren Missbrauch und Angaben zu den Daten.", "q": "neu" }
+        },
+        {
+          "id": "A12", "urteil": "gut", "kurz": "Handbuch und Schulungen", "weiter": "art14a",
+          "text": { "t": "„Wir erstellen zum Beispiel ein detailliertes Handbuch, das die Funktionsweise des Systems, seinen Einsatzzweck, vorhersehbaren Missbrauch, die genutzten Daten und seine Grenzen erklärt. Zusätzlich bieten wir Schulungen für die Betreiber an.“", "q": "korrigiert" },
+          "reaktion": { "t": "„Sehr gut! Wer HappyWorkers einsetzt, weiß damit, was es kann – und was nicht.“", "q": "neu" },
+          "warum": { "t": "Eine verständliche Betriebsanleitung mit Zweck, Grenzen, Risiken und Daten erfüllt den Kern von Art. 13.", "q": "neu" }
+        },
+        {
+          "id": "A13", "urteil": "teil", "kurz": "komplette Entwickler-Doku", "weiter": "art14b",
+          "text": { "t": "„Wir veröffentlichen die komplette technische Entwicklerdokumentation mit Modellarchitektur, Parametern und Code-Auszügen. Vollständiger geht es nicht.“", "q": "neu" },
+          "reaktion": { "t": "„Vollständig – aber für wen? Ein HR-Team kann mit Modellarchitektur und Code wenig anfangen. Art. 13 verlangt Informationen, die für die Betreiber relevant, zugänglich und verständlich sind: Zweck, Grenzen, Risiken und wie man die Ergebnisse richtig deutet.“", "q": "neu" },
+          "warum": { "t": "Transparenz heißt nicht „alles zeigen“, sondern „das Richtige verständlich erklären“.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art13e": {
+      "artikel": 13, "ebene": 3, "titel": "Transparenz",
+      "frage": { "t": "„Auch wenn wir in bestimmten Bereichen Herausforderungen hatten, müssen wir uns trotzdem um die Transparenz (Art. 13) kümmern. Die Frage ist, wie umfassend können wir unter diesen Umständen sein?“", "q": "skript" },
+      "erinnerung": { "t": "Weil Risikomanagement oder Daten-Governance lückenhaft sind, fehlen uns wichtige Analysen über HappyWorkers.", "q": "neu" },
+      "hinweis": { "t": "Art. 13 verlangt Informationen, die für die Betreiber relevant und verständlich sind – inklusive Grenzen und vorhersehbarem Missbrauch.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "X1", "urteil": "teil", "kurz": "Handbuch mit Grundinfos", "weiter": "art14e",
+          "text": { "t": "„Wir versuchen, ein Handbuch zu erstellen, in dem steht, was das System alles kann und welche technischen Fähigkeiten es hat. Aufgrund der bisherigen Probleme fehlen uns jedoch wichtige Analysen und Informationen, um das vollständig und gut zu gestalten. Wir können nur grundlegende Informationen und eine allgemeine Beschreibung des Systemzwecks anbieten.“", "q": "korrigiert" },
+          "reaktion": { "t": "„Wir geben unser Bestes – aber ohne die fehlenden Analysen bleibt das Handbuch lückenhaft.“", "q": "neu" },
+          "warum": { "t": "Ein Handbuch ist richtig – doch Art. 13 verlangt auch Angaben zu Grenzen und Risiken, die uns hier fehlen.", "q": "neu" }
+        },
+        {
+          "id": "X2", "urteil": "schlecht", "kurz": "sehr kurze Beschreibung", "weiter": "art14e",
+          "text": { "t": "„Wir stellen lediglich eine sehr kurze Beschreibung des Systems und seiner Funktionen zur Verfügung. Mehr ist aufgrund der begrenzten Ressourcen und der aufgetretenen Probleme nicht möglich.“", "q": "skript" },
+          "reaktion": { "t": "„Damit wissen die Betreiber kaum, worauf sie sich einlassen.“", "q": "neu" },
+          "warum": { "t": "Eine Kurzbeschreibung erfüllt Art. 13 nicht.", "q": "neu" }
+        },
+        {
+          "id": "X3", "urteil": "schlecht", "kurz": "„objektiv und vorurteilsfrei“ versprechen", "weiter": "art14e",
+          "text": { "t": "„Wir schreiben in die Anleitung, dass HappyWorkers ‚objektiv und vorurteilsfrei‘ bewertet. Das schafft Vertrauen bei den Kunden.“", "q": "neu" },
+          "reaktion": { "t": "„Vertrauen entsteht durch Ehrlichkeit, nicht durch Werbeversprechen. Art. 13 verlangt, dass wir Genauigkeit, Grenzen und bekannte Risiken offenlegen. Gerade weil uns Analysen fehlen, können wir ‚vorurteilsfrei‘ gar nicht belegen.“", "q": "neu" },
+          "warum": { "t": "Art. 13 verlangt ehrliche Angaben zu Genauigkeit, Grenzen und Risiken – keine Marketingversprechen.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14a": {
+      "artikel": 14, "ebene": 4, "titel": "Menschliche Aufsicht",
+      "frage": { "t": "„Jetzt geht es um die menschliche Aufsicht (Art. 14). Sie ist eine Art Notbremse für die KI. Die menschlichen Operatoren müssen das System immer im Auge behalten und gegebenenfalls eingreifen können. Diese Menschen müssen sehr gut ausgebildet sein und genau wissen, wann sie einschreiten müssen, um Gefahren abzuwenden. Wie wollen wir sicherstellen, dass sie dazu in der Lage sind?“", "q": "korrigiert" },
+      "erinnerung": { "t": "Dank Handbuch und Schulungen wissen alle Beteiligten, was HappyWorkers kann – und was nicht.", "q": "neu" },
+      "hinweis": { "t": "Wirksame Aufsicht heißt: das System verstehen, Ergebnisse richtig deuten, eingreifen und übersteuern können – und sich nicht blind auf die KI verlassen.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A121", "urteil": "gut", "kurz": "geschultes Team mit Eingriffsrecht", "weiter": "E1",
+          "text": { "t": "„Wir schulen ein Team, das die Funktionsweise des Systems vollständig versteht, es überwachen und bei Bedarf eingreifen kann. Das Team hat die Möglichkeit, Entscheidungen des Systems zu überstimmen. Es wird außerdem in der Interpretation der Ergebnisse des KI-Systems geschult.“", "q": "skript" },
+          "reaktion": { "t": "„Genau so sieht eine Notbremse aus, die auch greift.“", "q": "neu" },
+          "warum": { "t": "Verstehen, deuten, übersteuern, stoppen – das sind die Kernelemente aus Art. 14 Abs. 4.", "q": "neu" }
+        },
+        {
+          "id": "A122", "urteil": "teil", "kurz": "Team mit begrenzten Eingriffen", "weiter": "E2",
+          "text": { "t": "„Wir setzen ein Team ein, das das System überwacht, aber es hat nur begrenzte Möglichkeiten, einzugreifen oder Entscheidungen zu überstimmen; schließlich ist das KI-System mit der größten Vorsicht gebaut, dass es stets sicher bleibt.“", "q": "skript" },
+          "reaktion": { "t": "„Vorsicht beim Bauen ersetzt keine Notbremse. Auch ein sorgfältig gebautes System macht Fehler.“", "q": "neu" },
+          "warum": { "t": "Art. 14 verlangt, dass Menschen Ergebnisse übersteuern und das System stoppen können – egal, wie sorgfältig es gebaut ist.", "q": "neu" }
+        },
+        {
+          "id": "A123", "urteil": "teil", "kurz": "HR klickt jede Auswertung frei", "weiter": "E2",
+          "text": { "t": "„Jede Auswertung muss von einer HR-Person freigegeben werden, bevor sie wirkt. Sie klickt auf ‚Bestätigen‘ – so ist immer ein Mensch im Loop.“", "q": "neu" },
+          "reaktion": { "t": "„Ein Mensch im Loop ist nur so gut wie seine Möglichkeiten. Wer im Minutentakt auf ‚Bestätigen‘ klickt, übernimmt die Ergebnisse meist ungeprüft. Genau vor diesem [[Automatisierungsbias]] warnt Art. 14.“", "q": "neu" },
+          "warum": { "t": "Ein Freigabeklick ist keine wirksame Aufsicht, wenn Zeit, Verständnis und echte Eingriffsmöglichkeiten fehlen.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14b": {
+      "artikel": 14, "ebene": 4, "titel": "Menschliche Aufsicht",
+      "frage": { "t": "„Die Transparenz war nicht optimal, das wirkt sich jetzt auch auf die menschliche Aufsicht (Art. 14) aus. Wir haben Schwierigkeiten, die Funktionsweise und Grenzen des Systems vollständig zu vermitteln. Was sollen wir nun tun?“", "q": "skript" },
+      "erinnerung": { "t": "Die Informationen für die Betreiber sind lückenhaft – das Aufsichtsteam weiß nicht genau, wo die Grenzen von HappyWorkers liegen.", "q": "neu" },
+      "hinweis": { "t": "Wirksame Aufsicht heißt: das System verstehen, Ergebnisse richtig deuten, eingreifen und übersteuern können – und sich nicht blind auf die KI verlassen.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "A111", "urteil": "teil", "kurz": "Team ohne ausreichende Infos", "weiter": "E3",
+          "text": { "t": "„Wir setzen ein Team ein, aber aufgrund der mangelnden Informationen ist es nur eingeschränkt in der Lage, das System zu verstehen und effektiv zu überwachen.“", "q": "skript" },
+          "reaktion": { "t": "„Immerhin schaut jemand hin – aber ohne zu verstehen, was das System tut, ist Aufsicht nur halb so viel wert.“", "q": "neu" },
+          "warum": { "t": "Art. 14 setzt voraus, dass die Aufsichtspersonen Fähigkeiten und Grenzen des Systems verstehen.", "q": "neu" }
+        },
+        {
+          "id": "A112", "urteil": "schlecht", "kurz": "minimale Aufsicht", "weiter": "E4",
+          "text": { "t": "„Minimale menschliche Aufsicht: Wir haben nur sehr begrenzte Ressourcen für die Überwachung, und das Team kann nur auf offensichtliche Probleme reagieren.“", "q": "skript" },
+          "reaktion": { "t": "„Damit sehen wir nur die Spitze des Eisbergs.“", "q": "neu" },
+          "warum": { "t": "Nur auf offensichtliche Probleme zu reagieren, ist keine wirksame Aufsicht.", "q": "neu" }
+        },
+        {
+          "id": "A113", "urteil": "schlecht", "kurz": "eine zweite KI kontrolliert", "weiter": "E4",
+          "text": { "t": "„Wir lassen ein zweites KI-System die Ergebnisse von HappyWorkers kontrollieren. Das ist schneller und günstiger als jedes Team.“", "q": "neu" },
+          "reaktion": { "t": "„Eine zweite KI kann beim Prüfen helfen – ersetzt aber keine menschliche Aufsicht. Art. 14 verlangt ausdrücklich natürliche Personen, die das System verstehen, überwachen und eingreifen können.“", "q": "neu" },
+          "warum": { "t": "Art. 14 verlangt Aufsicht durch natürliche Personen – KI-Kontrolle allein genügt nicht.", "q": "neu" }
+        }
+      ]
+    },
+
+    "art14e": {
+      "artikel": 14, "ebene": 4, "titel": "Menschliche Aufsicht",
+      "frage": { "t": "„Unsere bisherigen Entscheidungen machen es uns fast unmöglich, eine effektive menschliche Aufsicht (Art. 14) zu implementieren. Wir haben weder die Ressourcen noch die nötigen Informationen über das KI-System. Was sollen wir tun?“", "q": "skript" },
+      "erinnerung": { "t": "Risikomanagement, Daten und Transparenz sind lückenhaft – das schränkt jetzt auch die Aufsicht ein.", "q": "neu" },
+      "hinweis": { "t": "Wirksame Aufsicht heißt: das System verstehen, Ergebnisse richtig deuten, eingreifen und übersteuern können – und sich nicht blind auf die KI verlassen.", "q": "neu" },
+      "optionen": [
+        {
+          "id": "X11", "urteil": "teil", "kurz": "minimale Aufsicht mit Abschaltknopf", "weiter": "E5",
+          "text": { "t": "„Minimale menschliche Aufsicht: Wir setzen ein kleines Team ein, das aber aufgrund der mangelnden Transparenz und der Komplexität des Systems kaum in der Lage ist, angemessen zu reagieren. Sie sind auf das Nötigste geschult und können das System bei Bedarf abschalten.“", "q": "skript" },
+          "reaktion": { "t": "„Ein Abschaltknopf ist ein wichtiger Baustein – aber ohne Verständnis weiß niemand, wann man ihn drücken sollte.“", "q": "neu" },
+          "warum": { "t": "Stoppen können gehört zu Art. 14 – wirksam wird Aufsicht aber erst mit Verständnis und Schulung.", "q": "neu" }
+        },
+        {
+          "id": "X12", "urteil": "schlecht", "kurz": "keine Aufsicht", "weiter": "E5",
+          "text": { "t": "„Keine menschliche Aufsicht: Wir haben überhaupt keine Ressourcen für eine menschliche Aufsicht. Das System läuft ohne jegliche menschliche Kontrolle, was riskant ist.“", "q": "skript" },
+          "reaktion": { "t": "„Das geht nicht: Ohne menschliche Aufsicht erfüllt HappyWorkers Art. 14 nicht – und dürfte so gar nicht auf den Markt.“", "q": "neu" },
+          "warum": { "t": "Menschliche Aufsicht ist für Hochrisiko-KI Pflicht.", "q": "neu" }
+        },
+        {
+          "id": "X13", "urteil": "teil", "kurz": "Aufsicht den Betreibern überlassen", "weiter": "E5",
+          "text": { "t": "„Wir schreiben in die Betriebsanleitung, dass die Betreiber selbst für die menschliche Aufsicht sorgen müssen. Dann liegt das in ihrer Verantwortung.“", "q": "neu" },
+          "reaktion": { "t": "„Teilweise richtig: Manche Aufsichtsmaßnahmen setzen tatsächlich die Betreiber um. Aber als [[Anbieter]] müssen wir HappyWorkers so bauen, dass es wirksam beaufsichtigt werden kann, und die Maßnahmen konkret festlegen. Ein Satz in der Anleitung reicht dafür nicht.“", "q": "neu" },
+          "warum": { "t": "Art. 14 Abs. 1 und 3: Der Anbieter muss Aufsicht technisch ermöglichen und konkrete Maßnahmen festlegen.", "q": "neu" }
+        }
+      ]
+    }
+  },
+
+  "enden": {
+    "E1": {
+      "name": "Auf Kurs", "typ": "erfolg",
+      "text": { "t": "„Lea, du hast es geschafft! Durch deine umsichtigen Entscheidungen bei jeder Anforderung bist du in unserem Gedankenexperiment der Compliance bereits viel näher gekommen! Ich sehe, dass du die Essenz der ausgewählten, relevanten Artikel verstanden hast.“", "q": "skript" },
+      "teaser": { "t": "Alles richtig – beim ersten Versuch.", "q": "neu" }
+    },
+    "E1b": {
+      "name": "Auf Kurs – mit Umwegen", "typ": "erfolg",
+      "text": { "t": "„Lea, du hast es geschafft – auch wenn wir unterwegs nachbessern mussten. Genau so funktioniert Compliance in der Praxis: Risiken erkennen, korrigieren, dokumentieren. Die {monate} Verzögerung sind ärgerlich, aber deutlich günstiger, als HappyWorkers später vom Markt nehmen zu müssen.“", "q": "neu" },
+      "teaser": { "t": "Ans Ziel – mit Umwegen.", "q": "neu" }
+    },
+    "E2": {
+      "name": "Aufsicht nachschärfen", "typ": "teil",
+      "text": { "t": "„Wir haben zwar unser Bestes gegeben … aber die nur teilweise erfüllte menschliche Aufsicht könnte in diesem Gedankenexperiment zu Problemen führen. Wir müssten in diesem Fall nachbessern und mehr Ressourcen investieren, um sicherzustellen, dass das Team das System gut versteht und effektiver eingreifen kann. Es ist eine wertvolle Lektion, dass jede Anforderung des EU AI Acts ernst genommen werden muss.“", "q": "skript" },
+      "teaser": { "t": "Was passiert, wenn die Aufsicht nicht richtig eingreifen kann?", "q": "neu" }
+    },
+    "E3": {
+      "name": "Blind überwacht", "typ": "teil",
+      "text": { "t": "„Das Team gibt sein Bestes – aber ohne ausreichende Informationen kann es Fehler und Grenzen von HappyWorkers kaum erkennen. In diesem Gedankenexperiment müssten wir die Betriebsanleitung nachbessern und das Team schulen, bevor HappyWorkers sicher eingesetzt werden kann. Die Lektion: Transparenz (Art. 13) ist die Voraussetzung für wirksame menschliche Aufsicht (Art. 14).“", "q": "neu" },
+      "teaser": { "t": "Was passiert, wenn das Aufsichtsteam das System nicht versteht?", "q": "neu" }
+    },
+    "E4": {
+      "name": "Vom Markt genommen", "typ": "schwer",
+      "text": { "t": "„Die minimalen Informationen und die unzureichende menschliche Aufsicht könnten im Rahmen dieses Gedankenexperiments ernste Konsequenzen haben. Wir müssten sogar eventuell ‚HappyWorkers‘ vorübergehend vom Markt nehmen, um die Probleme zu beheben. Das ist ein herber Rückschlag und zeigt, wie wichtig umfassende Transparenz und eine gut ausgestattete menschliche Aufsicht sind.“", "q": "skript" },
+      "teaser": { "t": "Was passiert, wenn Transparenz und Aufsicht zu kurz kommen?", "q": "neu" }
+    },
+    "E5": {
+      "name": "Stolpersteine", "typ": "schwer",
+      "text": { "t": "„Puh! Wir hatten einige Stolpersteine … Wir haben zwar die Compliance nicht geschafft, aber viel auf dem Weg durch dieses Gedankenexperiment gelernt. Vielleicht versuchen wir es nochmal?“", "q": "skript" },
+      "teaser": { "t": "Was passiert, wenn schon das Fundament wackelt?", "q": "neu" }
+    }
+  },
+  "endenReihenfolge": ["E1", "E1b", "E2", "E3", "E4", "E5"],
+
+  "ende": {
+    "eyebrow": "③ Anforderungen · Ende",
+    "titel": "So ist es ausgegangen",
+    "neuEntdeckt": "Neues Ende entdeckt",
+    "entdeckt": "{n} von 6 Enden entdeckt"
+  },
+
+  "nachbessern": {
+    "frage": { "t": "„Compliance ist ein iterativer Prozess. Lass uns nachbessern! Aber wo setzen wir an? Welche Entscheidung war die Ursache?“", "q": "neu" },
+    "aufgabe": { "t": "Wähle die Entscheidung, an der du nachbessern willst. Jede Korrektur kostet Zeit.", "q": "neu" },
+    "button": "hier nachbessern (+{monate})",
+    "erfuellt": "erfüllt – nichts nachzubessern",
+    "keineOption": "keine bessere Option",
+    "ok": { "t": "„Gute Analyse! Zurück zu {artikel}. Das kostet uns rund {monate}, aber lieber jetzt als nach dem ersten Vorfall.“", "q": "neu" },
+    "blockiert": { "t": "„An dieser Stelle hatten wir wegen früherer Entscheidungen keine gute Option mehr. Die Ursache liegt weiter vorn.“", "q": "neu" }
+  },
+
+  "weg": {
+    "eyebrow": "④ Auswertung",
+    "titel": "Dein Weg durch das Gedankenexperiment",
+    "pfadTitel": "Deine Entscheidungen",
+    "zuvor": "zuvor",
+    "kalibTitel": "Deine Selbsteinschätzung",
+    "kalibSehrFalsch": { "t": "Bei {n} Antwort(en) warst du sehr sicher, lagst aber daneben. Gerade dann lohnt sich das Nachschlagen im Gesetzestext.", "q": "neu" },
+    "kalibGeratenRichtig": { "t": "Bei {n} Antwort(en) hast du geraten und richtig gelegen. Schau dir dort die Begründung noch einmal an, damit aus Glück Wissen wird.", "q": "neu" },
+    "kalibGut": { "t": "Deine Selbsteinschätzung passt gut zu deinen Ergebnissen.", "q": "neu" },
+    "kalibZahlen": "{sicher} von {gesamt} Antworten „sehr sicher“ · {richtig} von {gesamt} erfüllt",
+    "prognoseTitel": "Dein Bauchgefühl",
+    "prognose": { "t": "Deine Einschätzung am Anfang: {tipp}. Ergebnis der Prüfung: Hohes Risiko.", "q": "neu" },
+    "prognoseRichtig": { "t": "Gut geschätzt!", "q": "neu" },
+    "prognoseFalsch": { "t": "Überrascht? Genau deshalb lohnt sich die systematische Prüfung.", "q": "neu" },
+    "prognoseKeine": { "t": "Du hast die Einschätzung am Anfang übersprungen.", "q": "neu" },
+    "nachgeschlagenTitel": "Nachgeschlagen",
+    "nachgeschlagen": { "t": "Diese Artikel hast du im Gesetzestext geöffnet: {liste}.", "q": "neu" },
+    "nichtsNachgeschlagen": { "t": "Du hast noch keinen Artikel im Gesetzestext geöffnet. Probier es aus – die Links „nachschlagen ↗“ führen direkt dorthin.", "q": "neu" },
+    "endenTitel": "Entdeckte Enden",
+    "endenText": { "t": "Jede Entscheidung führt woanders hin. Spiel ab einer Entscheidung neu und entdecke die anderen Enden.", "q": "neu" }
+  },
+
+  "transfer": {
+    "eyebrow": "④ Auswertung · Transfer-Check",
+    "titel": "Neue Woche, neue Ideen",
+    "martina": { "t": "„Vier Teams kommen mit KI-Projekten zu dir. Ordne jedes Projekt der passenden Risikostufe zu.“", "q": "neu" },
+    "aufgabe": { "t": "Wähle für jedes Projekt eine Risikostufe.", "q": "neu" },
+    "faelle": [
+      { "text": { "t": "Ein Spamfilter sortiert unerwünschte Werbung aus dem Firmenpostfach.", "q": "neu" }, "loesung": "minimal", "feedback": { "t": "Minimales Risiko: Der Spamfilter trifft keine Entscheidungen über Menschen. Der AI Act stellt hier keine besonderen Anforderungen.", "q": "neu" } },
+      { "text": { "t": "Ein Chatbot beantwortet auf der Website Fragen von Kundinnen und Kunden.", "q": "neu" }, "loesung": "begrenzt", "feedback": { "t": "Begrenztes Risiko: Die Nutzerinnen und Nutzer müssen erfahren, dass sie mit einer KI sprechen (Transparenzpflicht, Art. 50).", "q": "neu" } },
+      { "text": { "t": "Eine KI sortiert Bewerbungen vor und erstellt eine Rangliste der Kandidatinnen und Kandidaten.", "q": "neu" }, "loesung": "hoch", "feedback": { "t": "Hohes Risiko: Die Auswahl von Bewerbenden fällt unter Anhang III Nr. 4 (a) – derselbe Bereich wie bei HappyWorkers.", "q": "neu" } },
+      { "text": { "t": "Ein Tool erkennt per Webcam in Teammeetings die Stimmung der Mitarbeitenden.", "q": "neu" }, "loesung": "verboten", "feedback": { "t": "Verboten: Emotionserkennung am Arbeitsplatz auf Basis biometrischer Daten (Art. 5 Abs. 1 lit. f). Erinnerst du dich an die Idee aus dem Entwicklerteam?", "q": "neu" } }
+    ],
+    "ergebnis": "{n} von 4 richtig eingeordnet."
+  },
+
+  "fahrplan": {
+    "eyebrow": "④ Auswertung · Fahrplan",
+    "titel": "Der Weg zur Compliance",
+    "martina": { "t": "„HappyWorkers ist noch nicht fertig. Unser Gedankenexperiment hat einige Anforderungen herausgegriffen – hier ist der ganze Weg zur Compliance für Anbieter von Hochrisiko-KI.“", "q": "neu" },
+    "status": { "modul": "im Modul geübt", "bonus": "in der Bonusrunde geübt", "offen": "noch offen" },
+    "schritte": [
+      { "titel": { "t": "Verbotene Praktiken ausschließen", "q": "neu" }, "text": { "t": "Prüfen, ob eine Praktik nach Art. 5 vorliegt.", "q": "neu" }, "artikel": [5], "status": "modul" },
+      { "titel": { "t": "Einstufen", "q": "neu" }, "text": { "t": "Anhang I oder Anhang III? Ausnahme nach Art. 6 Abs. 3 prüfen – die gilt nie bei Profiling.", "q": "neu" }, "artikel": [6], "anhang": true, "status": "modul" },
+      { "titel": { "t": "Anforderungen erfüllen (Art. 8–15)", "q": "neu" }, "teile": [
+          { "nr": 9, "name": "Risikomanagement", "status": "modul" },
+          { "nr": 10, "name": "Daten-Governance", "status": "modul" },
+          { "nr": 11, "name": "Technische Dokumentation", "status": "bonus" },
+          { "nr": 12, "name": "Aufzeichnungspflichten", "status": "bonus" },
+          { "nr": 13, "name": "Transparenz", "status": "modul" },
+          { "nr": 14, "name": "Menschliche Aufsicht", "status": "modul" },
+          { "nr": 15, "name": "Genauigkeit, Robustheit und Cybersicherheit", "status": "bonus" }
+        ] },
+      { "titel": { "t": "Qualitätsmanagementsystem einrichten", "q": "neu" }, "text": { "t": "Prozesse, Zuständigkeiten und Dokumentation, die die Einhaltung dauerhaft sichern.", "q": "neu" }, "artikel": [17], "status": "offen" },
+      { "titel": { "t": "Konformitätsbewertung durchführen", "q": "neu" }, "text": { "t": "Für HappyWorkers (Anhang III Nr. 4): interne Kontrolle nach Anhang VI. Danach folgen die EU-Konformitätserklärung (Art. 47) und die CE-Kennzeichnung (Art. 48).", "q": "neu" }, "artikel": [43, 47, 48], "status": "offen" },
+      { "titel": { "t": "In der EU-Datenbank registrieren", "q": "neu" }, "text": { "t": "Vor dem Inverkehrbringen.", "q": "neu" }, "artikel": [49], "status": "offen" },
+      { "titel": { "t": "Nach dem Markteintritt: beobachten und melden", "q": "neu" }, "text": { "t": "Beobachtung nach dem Inverkehrbringen und Meldung schwerwiegender Vorfälle.", "q": "neu" }, "artikel": [72, 73], "status": "offen" }
+    ],
+    "wann": {
+      "titel": "Wann gilt das?",
+      "punkte": [
+        { "t": "Die Verbote aus Art. 5 gelten seit dem 2. Februar 2025.", "q": "neu" },
+        { "t": "Zwei neue Verbote (Art. 5 Abs. 1 lit. ba und bb, eingefügt durch den Digital Omnibus) gelten ab dem 2. Dezember 2026.", "q": "neu" },
+        { "t": "Die Pflichten für Hochrisiko-Systeme nach Anhang III – also auch für HappyWorkers – gelten ab dem 2. Dezember 2027. Ursprünglich war der 2. August 2026 vorgesehen; der Digital Omnibus (Verordnung (EU) 2026/1744, in Kraft seit 27. Juli 2026) hat die Frist verschoben.", "q": "neu" }
+      ],
+      "stand": "Stand: November 2026 – Fristen können sich ändern."
+    },
+    "bonusTeaser": { "t": "Drei Anforderungen aus Art. 8–15 haben wir ausgelassen. Probier die Bonusrunde!", "q": "neu" },
+    "bonusFertig": { "t": "Bonusrunde geschafft – damit kennst du alle Anforderungen aus Art. 9–15.", "q": "neu" }
+  },
+
+  "bonus": {
+    "eyebrow": "Bonusrunde",
+    "titel": "Drei Anforderungen fehlen noch",
+    "martina": { "t": "„Drei Anforderungen aus den Artikeln 8–15 haben wir im Gedankenexperiment ausgelassen: die technische Dokumentation (Art. 11), die Aufzeichnungspflichten (Art. 12) sowie Genauigkeit, Robustheit und Cybersicherheit (Art. 15). Lust auf eine Bonusrunde?“", "q": "neu" },
+    "fragen": [
+      {
+        "id": "b11", "artikel": 11, "titel": "Technische Dokumentation",
+        "frage": { "t": "„Wann erstellen wir die technische Dokumentation für HappyWorkers?“", "q": "neu" },
+        "optionen": [
+          { "id": "b11a", "urteil": "gut", "kurz": "vor dem Launch, laufend aktuell", "text": { "t": "„Bevor HappyWorkers auf den Markt kommt – und wir halten sie danach laufend aktuell.“", "q": "neu" }, "reaktion": { "t": "„Richtig. Die Dokumentation muss stehen, bevor das System in Verkehr gebracht wird – und sie wächst mit jeder Änderung mit.“", "q": "neu" }, "warum": { "t": "Art. 11: Erstellung vor dem Inverkehrbringen, danach aktuell halten.", "q": "neu" } },
+          { "id": "b11b", "urteil": "schlecht", "kurz": "erst auf Nachfrage", "text": { "t": "„Erst wenn eine Behörde danach fragt – vorher wäre es verschwendete Arbeit.“", "q": "neu" }, "reaktion": { "t": "„Zu spät: Die technische Dokumentation muss vor dem Inverkehrbringen vorliegen. Sie ist auch die Grundlage für die Konformitätsbewertung.“", "q": "neu" }, "warum": { "t": "Ohne Dokumentation keine Konformitätsbewertung – und ohne die kein Marktzugang.", "q": "neu" } },
+          { "id": "b11c", "urteil": "schlecht", "kurz": "der Code ist die Doku", "text": { "t": "„Unser gut kommentierter Quellcode ist die Dokumentation.“", "q": "neu" }, "reaktion": { "t": "„Code-Kommentare helfen Entwicklerinnen und Entwicklern, aber Anhang IV verlangt viel mehr: Zweck, Aufbau, Daten, Tests, Risikomanagement und Aufsichtsmaßnahmen – nachvollziehbar für Behörden und Prüfstellen.“", "q": "neu" }, "warum": { "t": "Die technische Dokumentation folgt Anhang IV und richtet sich an Behörden, nicht nur an das Entwicklungsteam.", "q": "neu" } }
+        ]
+      },
+      {
+        "id": "b12", "artikel": 12, "titel": "Aufzeichnungspflichten",
+        "frage": { "t": "„Was speichert HappyWorkers in seinen Protokollen (Logs)?“", "q": "neu" },
+        "optionen": [
+          { "id": "b12a", "urteil": "gut", "kurz": "Ereignisse für Nachvollziehbarkeit", "text": { "t": "„Das System zeichnet automatisch Ereignisse auf, damit nachvollziehbar ist, wie Ergebnisse entstanden sind und wo Risiken auftreten.“", "q": "neu" }, "reaktion": { "t": "„Genau – Nachvollziehbarkeit ist das Ziel von Art. 12.“", "q": "neu" }, "warum": { "t": "Art. 12: automatische Protokollierung über die gesamte Lebensdauer.", "q": "neu" } },
+          { "id": "b12b", "urteil": "schlecht", "kurz": "gar nichts speichern", "text": { "t": "„Wir speichern lieber gar nichts – das ist am datenschutzfreundlichsten.“", "q": "neu" }, "reaktion": { "t": "„Datenschutz ist wichtig, aber Art. 12 verlangt, dass das System Ereignisse automatisch protokollieren kann. Die Kunst ist, nachvollziehbar und trotzdem datensparsam zu protokollieren.“", "q": "neu" }, "warum": { "t": "Ohne Logs lässt sich nicht nachvollziehen, wie eine Bewertung zustande kam.", "q": "neu" } },
+          { "id": "b12c", "urteil": "schlecht", "kurz": "alle Nachrichten dauerhaft speichern", "text": { "t": "„Wir speichern alle E-Mails und Chats dauerhaft – sicher ist sicher.“", "q": "neu" }, "reaktion": { "t": "„Logs sollen Abläufe nachvollziehbar machen, nicht sämtliche Inhalte horten. Alle Nachrichten dauerhaft zu speichern, wäre datenschutzrechtlich hochproblematisch.“", "q": "neu" }, "warum": { "t": "Protokollieren heißt Ereignisse festhalten – nicht alle Inhalte sammeln.", "q": "neu" } }
+        ]
+      },
+      {
+        "id": "b15", "artikel": 15, "titel": "Genauigkeit, Robustheit und Cybersicherheit",
+        "frage": { "t": "„HappyWorkers erreicht im Test 94 % Genauigkeit. Was bedeutet das für Art. 15?“", "q": "neu" },
+        "optionen": [
+          { "id": "b15a", "urteil": "gut", "kurz": "offenlegen, testen, absichern", "text": { "t": "„Wir nennen die Genauigkeitswerte in der Betriebsanleitung, testen regelmäßig die Robustheit und schützen das System gegen Manipulation, z. B. durch gezielt präparierte Nachrichten.“", "q": "neu" }, "reaktion": { "t": "„Sehr gut – Genauigkeit, Robustheit und Cybersicherheit über den ganzen Lebenszyklus.“", "q": "neu" }, "warum": { "t": "Art. 15 verlangt alle drei Aspekte – dauerhaft, nicht nur im Test.", "q": "neu" } },
+          { "id": "b15b", "urteil": "schlecht", "kurz": "94 % reichen", "text": { "t": "„94 % ist ein super Wert – damit sind wir fertig.“", "q": "neu" }, "reaktion": { "t": "„Ein einzelner Testwert ist eine Momentaufnahme. Art. 15 verlangt angemessene Genauigkeit über den ganzen Lebenszyklus – plus Robustheit gegen Fehler und Schutz gegen Angriffe. Und: 6 % Fehler bedeuten bei vielen Mitarbeitenden viele falsche Bewertungen.“", "q": "neu" }, "warum": { "t": "Ein guter Testwert ersetzt weder Robustheit noch Cybersicherheit.", "q": "neu" } },
+          { "id": "b15c", "urteil": "teil", "kurz": "im Betrieb ständig weitertrainieren", "text": { "t": "„Wir trainieren das Modell im laufenden Betrieb ständig mit neuen Chats weiter, damit es immer besser wird.“", "q": "neu" }, "reaktion": { "t": "„Weiterlernen klingt gut, birgt aber ein Risiko: Verzerrte Ergebnisse können als neue Trainingsdaten zurückfließen und sich selbst verstärken. Art. 15 verlangt, solche Rückkopplungsschleifen zu verhindern oder abzufedern.“", "q": "neu" }, "warum": { "t": "Weiterlernen ist erlaubt – aber nur mit Schutz vor Rückkopplungsschleifen.", "q": "neu" } }
+        ]
+      }
+    ],
+    "ergebnis": { "t": "„Bonus geschafft: {n} von 3 Anforderungen getroffen. Damit kennst du jetzt alle Anforderungen aus den Artikeln 9–15.“", "q": "neu" }
+  }
+}
+								</script>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('aia-module');
+									var dataEl = document.getElementById('aia-content');
+									if (!root || !dataEl) return;
+									var C;
+									try { C = JSON.parse(dataEl.textContent); } catch (e) { return; }
+									var U = C.ui;
+
+									/* ---------- Settings ---------- */
+									var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+									var REVIEW = false;
+									try { REVIEW = new URLSearchParams(window.location.search).has('review'); } catch (e) { REVIEW = false; }
+									var PAUSE = reduceMotion ? 0 : 800;
+									var KEY = 'aia-module-v1';
+
+									/* ---------- Storage (local only, no tracking) ---------- */
+									var memStore = null;
+									function readStore() {
+										var s = null;
+										try { s = JSON.parse(window.localStorage.getItem(KEY)); } catch (e) { s = null; }
+										if (!s || typeof s !== 'object') s = memStore || {};
+										if (!Array.isArray(s.endings)) s.endings = [];
+										return s;
+									}
+									var store = readStore();
+									function saveStore() {
+										memStore = store;
+										try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* storage blocked: keep in memory */ }
+									}
+
+									/* ---------- Helpers ---------- */
+									var uid = 0;
+									function $(id) { return document.getElementById(id); }
+									function el(tag, cls, html) {
+										var n = document.createElement(tag);
+										if (cls) n.className = cls;
+										if (html != null) n.innerHTML = html;
+										return n;
+									}
+									function fmt(s, v) {
+										return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && v[k] != null ? v[k] : m; });
+									}
+									/* [[Begriff]] or [[Anzeige|Begriff]] become glossary buttons */
+									function rich(s) {
+										return String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (m, shown, key) {
+											key = key || shown;
+											if (!C.glossar[key]) return shown;
+											return '<button type="button" class="aia-term" data-term="' + key + '" aria-expanded="false">' + shown + '</button>';
+										});
+									}
+									/* Text objects {t, q}: q = skript | korrigiert | neu (shown in ?review mode) */
+									function txt(tag, cls, o, vars) {
+										var t = typeof o === 'string' ? o : o.t;
+										var q = typeof o === 'string' ? null : o.q;
+										var n = el(tag, cls, rich(fmt(t, vars)));
+										if (q) {
+											n.setAttribute('data-q', q);
+											if (REVIEW && q !== 'skript') n.title = 'Quelle: ' + q;
+										}
+										return n;
+									}
+									function months(n) { return n + ' ' + (n === 1 ? U.monat : U.monate); }
+									function shuffle(a) {
+										for (var i = a.length - 1; i > 0; i--) {
+											var j = Math.floor(Math.random() * (i + 1));
+											var t = a[i]; a[i] = a[j]; a[j] = t;
+										}
+										return a;
+									}
+									function icon(u) { return u === 'gut' ? '✓' : (u === 'teil' ? '◐' : '✗'); }
+									function mood(u) { return u === 'gut' ? 'happy' : (u === 'teil' ? 'neutral' : 'frown'); }
+									function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+									function optOf(nodeId, optId) {
+										var o = C.knoten[nodeId].optionen;
+										for (var i = 0; i < o.length; i++) if (o[i].id === optId) return o[i];
+										return null;
+									}
+									function hasGood(nodeId) {
+										return C.knoten[nodeId].optionen.some(function (o) { return o.urteil === 'gut'; });
+									}
+									function tierName(id) {
+										for (var i = 0; i < C.pyramide.length; i++) if (C.pyramide[i].id === id) return C.pyramide[i].name;
+										return id;
+									}
+									function announce(text) {
+										var a = $('aia-announce');
+										a.textContent = '';
+										setTimeout(function () { a.textContent = text; }, 60);
+									}
+
+									/* ---------- Avatars ---------- */
+									function avatar(who, md) {
+										if (who === 'dev') {
+											return '<svg class="aia-avatar" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="24" fill="#7ecaf6"/>' +
+												'<path d="M19 17l-7 7 7 7M29 17l7 7-7 7M26.5 14l-5 20" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+										}
+										var isM = who === 'martina';
+										var bg = isM ? '#ae85ca' : '#7bd0c1';
+										var hair = isM ? '#4a3b35' : '#9a5b3c';
+										var back = isM ? '<circle cx="24" cy="24.5" r="13.5" fill="' + hair + '"/>' : '<ellipse cx="24" cy="29" rx="14" ry="16.5" fill="' + hair + '"/>';
+										var fringe = isM
+											? '<path d="M13.6 25c.6-6.4 5-10.6 10.4-10.6S33.8 18.6 34.4 25c-2.4-3.6-5.4-5.4-8.4-5.6-3.2 2.2-8 3.6-12.4 5.6z" fill="' + hair + '"/>'
+											: '<path d="M13.4 26c.4-7 5-11.8 10.6-11.8S34.2 19 34.6 26c-3-3.4-7.2-5.2-10.6-5.2s-7.6 1.8-10.6 5.2z" fill="' + hair + '"/>';
+										var brows = md === 'frown' ? 'M17.2 22.4l4.2-1.5M30.8 22.4l-4.2-1.5' : 'M17.4 21.6h4M26.6 21.6h4';
+										var mouth = md === 'happy' ? 'M20 30.8q4 3.6 8 0' : (md === 'frown' ? 'M20.6 32.6q3.4-2.6 6.8 0' : 'M20.8 31.6h6.4');
+										var glasses = isM ? '<circle cx="19.6" cy="25.6" r="3.1" fill="none" stroke="#3c3b3b" stroke-width="1.1"/><circle cx="28.4" cy="25.6" r="3.1" fill="none" stroke="#3c3b3b" stroke-width="1.1"/><path d="M22.7 25.6h2.6" stroke="#3c3b3b" stroke-width="1.1"/>' : '';
+										return '<svg class="aia-avatar" viewBox="0 0 48 48" aria-hidden="true" focusable="false">' +
+											'<circle cx="24" cy="24" r="24" fill="' + bg + '"/>' + back +
+											'<circle cx="24" cy="27" r="10.4" fill="#f3d9c6"/>' + fringe +
+											'<circle cx="19.6" cy="25.8" r="1.25" fill="#3c3b3b"/><circle cx="28.4" cy="25.8" r="1.25" fill="#3c3b3b"/>' + glasses +
+											'<path d="' + brows + '" stroke="#3c3b3b" stroke-width="1.3" stroke-linecap="round" fill="none"/>' +
+											'<path d="' + mouth + '" stroke="#b5544f" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>';
+									}
+
+									/* ---------- DOM ---------- */
+									var stage = $('aia-stage'), stepper = $('aia-stepper'), side = $('aia-side'), sideToggle = $('aia-side-toggle');
+									var pyrList = $('aia-pyr'), pyrStatus = $('aia-pyr-status'), logList = $('aia-log'), delayEl = $('aia-delay');
+									var tiers = [];
+
+									function buildChrome() {
+										$('aia-brand').textContent = U.modulTitel;
+										$('aia-pyr-title').textContent = U.pyramide;
+										$('aia-log-title').textContent = U.deinWeg;
+										sideToggle.firstChild.textContent = U.lagebildZeigen;
+										U.phasen.forEach(function (name, i) {
+											var li = el('li', null, '<span class="aia-step-nr" aria-hidden="true">' + (i < 4 ? i + 1 : '★') + '</span><span class="aia-step-label">' + name + '</span>');
+											stepper.appendChild(li);
+										});
+										C.pyramide.forEach(function (t) {
+											var li = el('li', 'aia-tier aia-tier--' + t.id);
+											li.innerHTML = '<span class="aia-tier-shape" aria-hidden="true"></span><span class="aia-tier-text"><span class="aia-tier-name">' + t.name + '</span><span class="aia-tier-status"></span></span>';
+											pyrList.appendChild(li);
+											tiers.push({ id: t.id, li: li, status: li.querySelector('.aia-tier-status') });
+										});
+										var brief = $('aia-brief');
+										brief.querySelector('summary').textContent = U.steckbrief;
+										var dl = brief.querySelector('dl');
+										dl.setAttribute('data-q', C.steckbrief.q);
+										C.steckbrief.zeilen.forEach(function (z) {
+											dl.appendChild(el('dt', null, z[0]));
+											dl.appendChild(el('dd', null, z[1]));
+										});
+										if (REVIEW) {
+											root.classList.add('is-review');
+											var lg = $('aia-review');
+											lg.innerHTML = U.review;
+											lg.hidden = false;
+										}
+										sideToggle.addEventListener('click', function () {
+											var open = !side.classList.contains('is-open');
+											side.classList.toggle('is-open', open);
+											sideToggle.setAttribute('aria-expanded', String(open));
+											sideToggle.firstChild.textContent = open ? U.lagebildVerbergen : U.lagebildZeigen;
+										});
+									}
+
+									/* ---------- State ---------- */
+									var S;
+									function freshState() {
+										return {
+											phase: 0, pyr: 'start', prognose: null,
+											checkScore: null, twist: null, annexTries: 0, annexDone: false, art63: null, skipped: false,
+											path: [], blocked: {}, delay: 0, fixes: [], commits: [], ending: null,
+											lookups: [], bonus: null
+										};
+									}
+
+									/* ---------- Side panel and stepper ---------- */
+									function updateChrome() { updateStepper(); updatePyramid(); updateLog(); }
+									function updateStepper() {
+										each(stepper.children, function (li, i) {
+											li.classList.toggle('is-current', i === S.phase);
+											li.classList.toggle('is-done', i < S.phase && i < 4);
+											if (i === S.phase) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+											if (i === 4) li.hidden = S.phase !== 4;
+										});
+									}
+									function updatePyramid() {
+										var lvl = ['start', 'pruefung', 'ausgeschlossen', 'kandidat', 'ergebnis'].indexOf(S.pyr);
+										tiers.forEach(function (t) {
+											t.li.className = 'aia-tier aia-tier--' + t.id;
+											var s = '';
+											if (t.id === 'verboten') {
+												if (lvl === 1) { t.li.classList.add('is-checking'); s = U.pyrStatus.pruefung; }
+												else if (lvl >= 2) { t.li.classList.add('is-excluded'); s = '✓ ' + U.pyrStatus.ausgeschlossen; }
+											}
+											if (t.id === 'hoch') {
+												if (lvl === 3) { t.li.classList.add('is-candidate'); s = U.pyrStatus.kandidat; }
+												else if (lvl === 4) { t.li.classList.add('is-result'); s = '● ' + U.pyrStatus.ergebnis; }
+											}
+											t.status.textContent = s;
+										});
+										pyrStatus.textContent = lvl === 0 ? U.pyrStatus.start : '';
+										pyrStatus.hidden = lvl !== 0;
+									}
+									function updateLog() {
+										logList.innerHTML = '';
+										function add(u, text, extra) {
+											var li = el('li', 'aia-log-item is-' + u);
+											li.innerHTML = '<span class="aia-log-icon" aria-hidden="true">' + icon(u) + '</span><span>' + text +
+												(extra ? ' <span class="aia-log-extra">' + extra + '</span>' : '') + '</span>';
+											logList.appendChild(li);
+										}
+										if (S.skipped) add('gut', U.logUebersprungen);
+										else {
+											if (S.checkScore != null) add(S.checkScore === 5 ? 'gut' : 'teil', fmt(U.logCheck, { n: S.checkScore }));
+											if (S.twist) add(S.twist, U.logTwist);
+											if (S.annexDone) add(S.annexTries ? 'teil' : 'gut', fmt(U.logAnhang, { n: S.annexTries + 1 }));
+											if (S.art63) add('gut', U.log63);
+										}
+										S.path.forEach(function (e) {
+											var node = C.knoten[e.node], o = optOf(e.node, e.opt);
+											add(o.urteil, 'Art. ' + node.artikel + ' · ' + o.kurz, S.blocked[e.node] ? U.logNachgebessert : '');
+										});
+										if (!logList.children.length) logList.appendChild(el('li', 'aia-log-empty', U.nochNichts));
+										if (S.phase >= 2) {
+											delayEl.hidden = false;
+											delayEl.innerHTML = '<b>' + U.zeitplan + ':</b> ' + (S.delay ? '+' + months(S.delay) + ' ' + U.verzoegerung : U.imPlan);
+											delayEl.classList.toggle('is-late', S.delay > 0);
+										} else delayEl.hidden = true;
+									}
+
+									/* ---------- Scene building blocks ---------- */
+									var attnEl = null;
+									function attn(node) {
+										if (attnEl) attnEl.classList.remove('aia-attn');
+										attnEl = node || null;
+										if (attnEl) attnEl.classList.add('aia-attn');
+									}
+									function enable(btn) { btn.disabled = false; attn(btn); }
+									function smooth() { return reduceMotion ? 'auto' : 'smooth'; }
+
+									function render(build, initial) {
+										attn(null);
+										var sc = el('section', 'aia-scene');
+										build(sc);
+										stage.innerHTML = '';
+										stage.appendChild(sc);
+										updateChrome();
+										if (!initial) {
+											var player = root.querySelector('.aia-player');
+											if (player.getBoundingClientRect().top < 0) player.scrollIntoView({ block: 'start', behavior: smooth() });
+											var h = sc.querySelector('.aia-scene-title');
+											if (h) { try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); } }
+										}
+									}
+									function head(sc, eyebrow, title) {
+										var w = el('header', 'aia-scene-head');
+										w.appendChild(el('p', 'aia-eyebrow', eyebrow));
+										var h = el('h3', 'aia-scene-title', title);
+										h.setAttribute('tabindex', '-1');
+										w.appendChild(h);
+										sc.appendChild(w);
+									}
+									function story(parent, texts) {
+										var b = el('div', 'aia-story');
+										[].concat(texts).forEach(function (t) { b.appendChild(txt('p', null, t)); });
+										parent.appendChild(b);
+										return b;
+									}
+									function say(parent, who, md, texts, cls) {
+										var p = C.personen[who];
+										var w = el('div', 'aia-say aia-say--' + who + (cls ? ' ' + cls : ''));
+										var sp = el('div', 'aia-speaker');
+										sp.innerHTML = avatar(who, md) + '<span class="aia-speaker-name">' + (who === 'lea' ? p.du : p.name) + '</span><span class="aia-speaker-role">' + p.rolle + '</span>';
+										w.appendChild(sp);
+										var b = el('div', 'aia-bubble');
+										[].concat(texts).forEach(function (t) { b.appendChild(txt('p', null, t)); });
+										w.appendChild(b);
+										parent.appendChild(w);
+										return b;
+									}
+									function task(parent, t) {
+										var w = el('div', 'aia-task');
+										w.appendChild(el('p', 'aia-task-label', U.aufgabe));
+										w.appendChild(txt('p', 'aia-task-text', t));
+										parent.appendChild(w);
+									}
+									function callout(parent, t) {
+										var w = el('div', 'aia-callout');
+										w.appendChild(el('p', 'aia-callout-label', '↺ ' + U.erinnerung));
+										w.appendChild(txt('p', null, t));
+										parent.appendChild(w);
+									}
+									function lookupLink(label, url, compact) {
+										var a = el('a', 'aia-lookup', label + (compact ? '' : ' ' + U.nachschlagen) + ' ↗');
+										a.href = url; a.target = '_blank'; a.rel = 'noopener';
+										a.addEventListener('click', function () { if (S.lookups.indexOf(label) < 0) S.lookups.push(label); });
+										return a;
+									}
+									function artLink(nr, compact) {
+										var a = C.artikel[String(nr)];
+										return lookupLink('Art. ' + nr, a ? a.url : 'https://artificialintelligenceact.eu/de/article/' + nr + '/', compact);
+									}
+									function footer(parent, o) {
+										if (o.hint) {
+											var box = el('div', 'aia-hintbox');
+											box.hidden = true;
+											box.id = 'aia-hint-' + (++uid);
+											box.appendChild(el('p', 'aia-hint-label', U.hinweisVon));
+											box.appendChild(txt('p', null, o.hint));
+											parent.appendChild(box);
+										}
+										var f = el('div', 'aia-footer');
+										var tools = el('div', 'aia-footer-tools');
+										if (o.hint) {
+											var hb = el('button', 'aia-btn aia-btn--ghost', '? ' + U.hinweis);
+											hb.type = 'button';
+											hb.setAttribute('aria-expanded', 'false');
+											hb.setAttribute('aria-controls', box.id);
+											hb.addEventListener('click', function () {
+												var open = box.hidden;
+												box.hidden = !open;
+												hb.setAttribute('aria-expanded', String(open));
+											});
+											tools.appendChild(hb);
+										}
+										(o.links || []).forEach(function (a) { tools.appendChild(a); });
+										f.appendChild(tools);
+										var prim = null;
+										if (o.primary || o.secondary) {
+											var mainEl = el('div', 'aia-footer-main');
+											(o.secondary || []).forEach(function (s) {
+												var b = el('button', 'aia-btn', s.label);
+												b.type = 'button';
+												b.addEventListener('click', s.onClick);
+												mainEl.appendChild(b);
+											});
+											if (o.primary) {
+												prim = el('button', 'aia-btn aia-btn--primary', o.primary.label);
+												prim.type = 'button';
+												prim.disabled = !!o.primary.disabled;
+												prim.addEventListener('click', o.primary.onClick);
+												mainEl.appendChild(prim);
+											}
+											f.appendChild(mainEl);
+										}
+										parent.appendChild(f);
+										return prim;
+									}
+									function articleCard(parent, nr, v) {
+										var a = C.artikel[String(nr)];
+										var card = el('div', 'aia-card');
+										card.appendChild(el('p', 'aia-card-label', U.kurzErklaert));
+										card.appendChild(el('p', 'aia-card-title', a.titel));
+										if (v && v.urteil) {
+											var row = el('div', 'aia-verdict-row is-' + v.urteil);
+											row.appendChild(el('p', 'aia-verdict', icon(v.urteil) + ' ' + U.urteil[v.urteil]));
+											row.appendChild(txt('p', 'aia-verdict-why', v.warum));
+											card.appendChild(row);
+											if (v.kalib) card.appendChild(el('p', 'aia-kalib', v.kalib));
+										}
+										var ul = el('ul', 'aia-points');
+										a.punkte.forEach(function (p) { ul.appendChild(txt('li', null, p)); });
+										card.appendChild(ul);
+										var lk = el('p', 'aia-card-link');
+										lk.appendChild(artLink(nr));
+										card.appendChild(lk);
+										parent.appendChild(card);
+										return card;
+									}
+									function choice(key, t, tag) {
+										var b = el('button', 'aia-choice');
+										b.type = 'button';
+										b.appendChild(el('span', 'aia-choice-key', key));
+										b.appendChild(txt('span', 'aia-choice-text', t));
+										if (tag) b.appendChild(el('span', 'aia-choice-tag', tag));
+										return b;
+									}
+									function confBar(onPick) {
+										var w = el('div', 'aia-conf');
+										w.hidden = true;
+										w.setAttribute('role', 'group');
+										w.setAttribute('aria-label', U.sicherFrage);
+										w.appendChild(el('p', 'aia-conf-label', U.sicherFrage));
+										var chips = el('div', 'aia-conf-chips');
+										['geraten', 'ziemlich', 'sehr'].forEach(function (lv) {
+											var b = el('button', 'aia-chip', U.sicher[lv]);
+											b.type = 'button';
+											b.addEventListener('click', function () {
+												each(chips.children, function (c) { c.disabled = true; });
+												b.classList.add('is-picked');
+												attn(null);
+												onPick(lv);
+											});
+											chips.appendChild(b);
+										});
+										w.appendChild(chips);
+										return w;
+									}
+									function think(after, next) {
+										if (!PAUSE) { next(); return; }
+										var t = el('div', 'aia-thinking', '<span class="aia-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>' + U.ueberlegt + '</span>');
+										after.insertAdjacentElement('afterend', t);
+										setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); next(); }, PAUSE);
+									}
+									function section(parent, title) {
+										var s = el('section', 'aia-section');
+										s.appendChild(el('h4', 'aia-section-title', title));
+										parent.appendChild(s);
+										return s;
+									}
+
+									/* ---------- ① Verbote ausschließen ---------- */
+									function sIntro(initial) {
+										S.phase = 0; S.pyr = 'start';
+										render(function (sc) {
+											head(sc, C.intro.eyebrow, C.intro.titel);
+											var p = el('div', 'aia-persona', avatar('lea', 'happy'));
+											p.appendChild(txt('p', 'aia-lead', C.intro.rolle));
+											sc.appendChild(p);
+											story(sc, C.intro.absaetze);
+											var sec = [];
+											if (store.linearDone) {
+												sc.appendChild(el('p', 'aia-note', U.direktHinweis));
+												sec.push({ label: U.direktButton, onClick: skipToScenario });
+											}
+											attn(footer(sc, { secondary: sec, primary: { label: U.startButton, onClick: sPrognose } }));
+										}, initial);
+									}
+									function skipToScenario() {
+										S.skipped = true; S.pyr = 'ergebnis';
+										S.prognose = store.prognose || null;
+										sStart();
+									}
+
+									function sPrognose() {
+										S.phase = 0; S.pyr = 'start';
+										var P = C.prognose;
+										render(function (sc) {
+											head(sc, P.eyebrow, P.titel);
+											sc.appendChild(txt('p', 'aia-lead', P.frage));
+											task(sc, P.aufgabe);
+											var g = el('div', 'aia-choices aia-choices--tiers');
+											g.setAttribute('role', 'group');
+											g.setAttribute('aria-label', P.titel);
+											var note = txt('p', 'aia-note', P.notiert);
+											note.hidden = true;
+											note.setAttribute('aria-live', 'polite');
+											var prim;
+											C.pyramide.forEach(function (t) {
+												var b = el('button', 'aia-choice aia-choice--tier aia-tierc--' + t.id,
+													'<span class="aia-tier-dot" aria-hidden="true"></span><span class="aia-choice-text"><b>' + t.name + '</b><span class="aia-choice-sub">' + t.info + '</span></span>');
+												b.type = 'button';
+												b.setAttribute('aria-pressed', 'false');
+												b.addEventListener('click', function () {
+													S.prognose = t.id;
+													store.prognose = t.id;
+													saveStore();
+													each(g.children, function (c) { c.setAttribute('aria-pressed', String(c === b)); });
+													note.hidden = false;
+													enable(prim);
+												});
+												g.appendChild(b);
+											});
+											sc.appendChild(g);
+											sc.appendChild(note);
+											prim = footer(sc, { primary: { label: P.weiter, onClick: sCheck, disabled: true } });
+										});
+									}
+
+									function sCheck() {
+										S.phase = 0; S.pyr = 'pruefung';
+										var K = C.checkliste;
+										render(function (sc) {
+											head(sc, K.eyebrow, K.titel);
+											story(sc, K.lea);
+											sc.appendChild(txt('h4', 'aia-subtitle', K.untertitel));
+											task(sc, K.aufgabe);
+											var list = el('ol', 'aia-checks');
+											var answered = 0, correct = 0, prim;
+											K.punkte.forEach(function (p) {
+												var li = el('li', 'aia-check');
+												var q = txt('p', 'aia-check-q', p.frage);
+												q.id = 'aia-q-' + (++uid);
+												li.appendChild(q);
+												var btns = el('div', 'aia-check-btns');
+												btns.setAttribute('role', 'group');
+												btns.setAttribute('aria-labelledby', q.id);
+												var fb = el('div', 'aia-check-fb');
+												fb.hidden = true;
+												fb.setAttribute('aria-live', 'polite');
+												[['ja', U.trifftZu], ['nein', U.trifftNichtZu]].forEach(function (pair) {
+													var b = el('button', 'aia-toggle', pair[1]);
+													b.type = 'button';
+													b.setAttribute('aria-pressed', 'false');
+													b.setAttribute('data-val', pair[0]);
+													b.addEventListener('click', function () {
+														if (li.classList.contains('is-done')) return;
+														li.classList.add('is-done');
+														var ok = pair[0] === p.loesung;
+														answered++;
+														if (ok) correct++;
+														each(btns.children, function (x) {
+															x.disabled = true;
+															if (x.getAttribute('data-val') === p.loesung) x.classList.add('is-correct');
+														});
+														b.setAttribute('aria-pressed', 'true');
+														if (!ok) b.classList.add('is-wrong');
+														fb.className = 'aia-check-fb is-' + (ok ? 'gut' : 'schlecht');
+														fb.innerHTML = '';
+														var pp = txt('p', null, ok ? p.richtig : p.falsch);
+														pp.insertAdjacentHTML('afterbegin', '<b>' + (ok ? U.richtig : U.nichtGanz) + '.</b> ');
+														fb.appendChild(pp);
+														fb.hidden = false;
+														if (answered === K.punkte.length) { S.checkScore = correct; updateLog(); enable(prim); }
+													});
+													btns.appendChild(b);
+												});
+												li.appendChild(btns);
+												li.appendChild(fb);
+												list.appendChild(li);
+											});
+											sc.appendChild(list);
+											prim = footer(sc, { hint: K.hinweis, links: [artLink(5)], primary: { label: U.ergebnisButton, onClick: sCheckResult, disabled: true } });
+										});
+									}
+
+									function sCheckResult() {
+										S.phase = 0; S.pyr = 'ausgeschlossen';
+										var R = C.checkErgebnis;
+										render(function (sc) {
+											head(sc, R.eyebrow, R.titel);
+											var box = el('div', 'aia-result');
+											box.appendChild(el('p', 'aia-result-label', R.ergebnisLabel));
+											box.appendChild(txt('p', 'aia-result-text', R.ergebnis));
+											box.appendChild(el('p', 'aia-result-label', R.begruendungLabel));
+											box.appendChild(txt('p', null, R.begruendung));
+											sc.appendChild(box);
+											sc.appendChild(el('p', 'aia-note', fmt(U.checkScore, { n: S.checkScore })));
+											articleCard(sc, 5);
+											attn(footer(sc, { primary: { label: U.weiter, onClick: sTwist } }));
+										});
+									}
+
+									function sTwist() {
+										S.phase = 0; S.pyr = 'ausgeschlossen';
+										var T = C.twist;
+										render(function (sc) {
+											head(sc, T.eyebrow, T.titel);
+											story(sc, T.einleitung);
+											say(sc, 'dev', 'neutral', T.nachricht);
+											task(sc, T.aufgabe);
+											var g = el('div', 'aia-choices');
+											var fbw = el('div', 'aia-feedback');
+											fbw.setAttribute('aria-live', 'polite');
+											var prim;
+											shuffle(T.optionen.slice()).forEach(function (o, i) {
+												var b = choice(String.fromCharCode(65 + i), o.text);
+												b._o = o;
+												b.addEventListener('click', function () {
+													if (S.twist) return;
+													S.twist = o.urteil;
+													each(g.children, function (c) {
+														c.disabled = true;
+														if (c._o.urteil === 'gut') c.classList.add('is-solution');
+													});
+													b.classList.add('is-picked', 'is-' + o.urteil);
+													var card = el('div', 'aia-verdict-card is-' + o.urteil);
+													card.appendChild(el('p', 'aia-verdict', icon(o.urteil) + ' ' + (o.urteil === 'gut' ? U.richtig : U.nichtGanz)));
+													card.appendChild(txt('p', null, o.feedback));
+													card.appendChild(txt('p', 'aia-verdict-after', T.abschluss));
+													fbw.appendChild(card);
+													updateLog();
+													enable(prim);
+												});
+												g.appendChild(b);
+											});
+											sc.appendChild(g);
+											sc.appendChild(fbw);
+											prim = footer(sc, { links: [artLink(5)], primary: { label: U.weiter, onClick: sMeeting, disabled: true } });
+										});
+									}
+
+									/* ---------- ② Einstufen ---------- */
+									function sMeeting() {
+										S.phase = 1; S.pyr = 'ausgeschlossen';
+										var M = C.meeting;
+										render(function (sc) {
+											head(sc, M.eyebrow, M.titel);
+											story(sc, [M.einleitung, M.martinaIst]);
+											say(sc, 'martina', 'neutral', M.martina);
+											attn(footer(sc, { links: [artLink(6)], primary: { label: U.weiter, onClick: sAnnex } }));
+										});
+									}
+
+									function sAnnex() {
+										S.phase = 1; S.pyr = 'ausgeschlossen';
+										S.annexTries = 0; S.annexDone = false;
+										var A = C.anhang3;
+										render(function (sc) {
+											head(sc, A.eyebrow, A.titel);
+											story(sc, A.einleitung);
+											var mBubble = say(sc, 'martina', 'neutral', A.martina);
+											var mSpeaker = mBubble.parentNode.querySelector('.aia-speaker');
+											function setMood(md) { var old = mSpeaker.querySelector('svg'); old.insertAdjacentHTML('afterend', avatar('martina', md)); old.parentNode.removeChild(old); }
+											task(sc, A.aufgabe);
+											sc.appendChild(txt('p', 'aia-list-label', A.liste));
+											var grid = el('div', 'aia-cats');
+											var prim, correctBtn;
+											A.kategorien.forEach(function (k) {
+												var b = el('button', 'aia-cat');
+												b.type = 'button';
+												b.appendChild(el('span', 'aia-cat-nr', String(k.nr)));
+												b.appendChild(txt('span', 'aia-cat-text', k.text));
+												if (k.richtig) correctBtn = b;
+												b.addEventListener('click', function () {
+													if (S.annexDone || b.classList.contains('is-wrong')) return;
+													var fb = el('span', 'aia-cat-fb');
+													if (k.richtig) {
+														S.annexDone = true; S.pyr = 'kandidat';
+														b.classList.add('is-correct');
+														each(grid.children, function (c) { if (c !== b) { c.disabled = true; if (!c.classList.contains('is-wrong')) c.classList.add('is-off'); } });
+														fb.appendChild(txt('span', null, A.richtig));
+														b.appendChild(fb);
+														setMood('happy');
+														announce(A.richtig.t);
+														updateChrome();
+														enable(prim);
+														return;
+													}
+													S.annexTries++;
+													b.classList.add('is-wrong');
+													b.setAttribute('aria-disabled', 'true');
+													var lines;
+													if (S.annexTries === 1) { lines = [A.falsch1, k.warumNicht, A.falsch1Nudge]; setMood('neutral'); }
+													else if (S.annexTries === 2) { lines = [A.falsch2, k.warumNicht]; setMood('frown'); }
+													else { lines = [A.falsch3, k.warumNicht]; setMood('frown'); attn(correctBtn); }
+													lines.forEach(function (l, i) { var s = txt('span', null, l); if (i === 0) s.insertAdjacentHTML('afterbegin', '<b>✗</b> '); fb.appendChild(s); });
+													b.appendChild(fb);
+													announce(lines.map(function (l) { return l.t; }).join(' '));
+												});
+												grid.appendChild(b);
+											});
+											sc.appendChild(grid);
+											prim = footer(sc, { hint: A.hinweis, links: [lookupLink(C.links.anhang3.label, C.links.anhang3.url), artLink(6)], primary: { label: U.weiter, onClick: sArt63, disabled: true } });
+										});
+									}
+
+									function sArt63() {
+										S.phase = 1; S.pyr = 'kandidat';
+										var A = C.art63;
+										render(function (sc) {
+											head(sc, A.eyebrow, A.titel);
+											say(sc, 'martina', 'neutral', [A.martina, A.frage]);
+											var g = el('div', 'aia-choices');
+											var more = el('div', 'aia-feedback');
+											more.setAttribute('aria-live', 'polite');
+											var prim;
+											A.optionen.forEach(function (o, i) {
+												var b = choice(String(i + 1), o.text);
+												b._o = o;
+												b.addEventListener('click', function () {
+													if (S.art63) return;
+													S.art63 = o.urteil;
+													each(g.children, function (c) {
+														c.disabled = true;
+														if (c._o.urteil === 'gut') c.classList.add('is-solution');
+													});
+													b.classList.add('is-picked', 'is-' + o.urteil);
+													var r = say(more, 'martina', mood(o.urteil), o.feedback);
+													r.classList.add('is-' + o.urteil);
+													think(r.parentNode, function () {
+														say(more, 'martina', 'neutral', A.profiling, 'aia-say--cont');
+														story(more, A.fazit);
+														articleCard(more, 6);
+														S.pyr = 'ergebnis';
+														store.linearDone = true;
+														saveStore();
+														updateChrome();
+														enable(prim);
+													});
+												});
+												g.appendChild(b);
+											});
+											sc.appendChild(g);
+											sc.appendChild(more);
+											prim = footer(sc, { links: [artLink(6)], primary: { label: A.weiter, onClick: sStart, disabled: true } });
+										});
+									}
+
+									/* ---------- ③ Anforderungen: branching ---------- */
+									function resetBranch() {
+										S.path = []; S.blocked = {}; S.delay = 0; S.fixes = []; S.commits = []; S.ending = null;
+									}
+									function sStart() {
+										S.phase = 2; S.pyr = 'ergebnis';
+										resetBranch();
+										var St = C.start;
+										render(function (sc) {
+											head(sc, St.eyebrow, St.titel);
+											say(sc, 'martina', 'happy', [St.martina, St.regeln]);
+											attn(footer(sc, { primary: { label: U.losButton, onClick: function () { sDecision('art9'); } } }));
+										});
+									}
+
+									function sDecision(nodeId, preface) {
+										S.phase = 2;
+										var node = C.knoten[nodeId];
+										render(function (sc) {
+											head(sc, fmt(U.entscheidung, { n: node.ebene }) + ' · Art. ' + node.artikel, node.titel);
+											if (preface) say(sc, 'martina', 'happy', preface);
+											say(sc, 'martina', 'neutral', node.frage, preface ? 'aia-say--cont' : '');
+											callout(sc, node.erinnerung);
+											task(sc, U.waehleOption);
+											var g = el('div', 'aia-choices');
+											g.setAttribute('role', 'group');
+											g.setAttribute('aria-label', node.titel);
+											var blocked = S.blocked[nodeId] || [];
+											var selected = null;
+											var conf = confBar(function (lv) {
+												each(g.children, function (c) { c.disabled = true; });
+												S.path.push({ node: nodeId, opt: selected.id, conf: lv });
+												S.commits.push({ node: nodeId, opt: selected.id, conf: lv, urteil: selected.urteil });
+												think(conf, function () { sReaction(nodeId, selected, lv); });
+											});
+											shuffle(node.optionen.slice()).forEach(function (o, i) {
+												var tried = blocked.indexOf(o.id) >= 0;
+												var b = choice(String.fromCharCode(65 + i), o.text, tried ? icon(o.urteil) + ' ' + U.bereitsProbiert : null);
+												if (tried) { b.disabled = true; b.classList.add('is-tried'); }
+												else b.setAttribute('aria-pressed', 'false');
+												b.addEventListener('click', function () {
+													selected = o;
+													each(g.children, function (c) { if (!c.classList.contains('is-tried')) c.setAttribute('aria-pressed', String(c === b)); });
+													conf.hidden = false;
+													attn(conf);
+													conf.scrollIntoView({ block: 'nearest', behavior: smooth() });
+												});
+												g.appendChild(b);
+											});
+											sc.appendChild(g);
+											sc.appendChild(conf);
+											footer(sc, { hint: node.hinweis, links: [artLink(node.artikel)] });
+										});
+									}
+
+									function sReaction(nodeId, o, lv) {
+										var node = C.knoten[nodeId];
+										render(function (sc) {
+											head(sc, fmt(U.entscheidung, { n: node.ebene }) + ' · Art. ' + node.artikel, node.titel);
+											say(sc, 'lea', 'neutral', o.text, 'aia-say--recap');
+											var r = say(sc, 'martina', mood(o.urteil), o.reaktion);
+											r.classList.add('is-' + o.urteil);
+											articleCard(sc, node.artikel, { urteil: o.urteil, warum: o.warum, kalib: U.kalibrierung[o.urteil + '-' + lv] });
+											var next = o.weiter;
+											attn(footer(sc, { primary: { label: U.weiter, onClick: function () { if (/^E/.test(next)) sEnding(next); else sDecision(next); } } }));
+										});
+									}
+
+									function sEnding(id) {
+										if (id === 'E1' && S.delay > 0) id = 'E1b';
+										var E = C.enden[id];
+										var isNew = store.endings.indexOf(id) < 0;
+										if (isNew) { store.endings.push(id); saveStore(); }
+										S.ending = id;
+										render(function (sc) {
+											head(sc, C.ende.eyebrow, C.ende.titel);
+											var banner = el('div', 'aia-ending is-' + E.typ);
+											banner.innerHTML = '<span class="aia-ending-icon" aria-hidden="true">' + (E.typ === 'erfolg' ? '★' : (E.typ === 'teil' ? '◐' : '!')) + '</span>' +
+												'<span class="aia-ending-text"><span class="aia-ending-name">' + E.name + '</span><span class="aia-ending-meta">' +
+												(isNew ? C.ende.neuEntdeckt + ' · ' : '') + fmt(C.ende.entdeckt, { n: store.endings.length }) + '</span></span>';
+											sc.appendChild(banner);
+											say(sc, 'martina', E.typ === 'erfolg' ? 'happy' : (E.typ === 'teil' ? 'neutral' : 'frown'),
+												{ t: fmt(E.text.t, { monate: months(S.delay) }), q: E.text.q });
+											if (E.typ !== 'erfolg') fixBlock(sc);
+											var prim = footer(sc, { primary: { label: U.zurAuswertung, onClick: sWeg } });
+											if (E.typ === 'erfolg') attn(prim);
+										});
+									}
+
+									/* Recovery: the learner diagnoses which decision caused the problem */
+									function fixBlock(sc) {
+										var N = C.nachbessern;
+										var wrap = el('div', 'aia-fix-wrap');
+										say(wrap, 'martina', 'neutral', N.frage, 'aia-say--cont');
+										task(wrap, N.aufgabe);
+										var list = el('ol', 'aia-fixlist');
+										var fb = el('div', 'aia-feedback');
+										fb.setAttribute('aria-live', 'polite');
+										S.path.forEach(function (e, idx) {
+											var node = C.knoten[e.node], o = optOf(e.node, e.opt);
+											var li = el('li', 'aia-fix is-' + o.urteil);
+											li.appendChild(el('span', 'aia-fix-art', 'Art. ' + node.artikel + ' · ' + node.titel));
+											li.appendChild(el('span', 'aia-fix-choice', '<span aria-hidden="true">' + icon(o.urteil) + '</span> ' + o.kurz + ' <span class="aia-sr">(' + U.urteil[o.urteil] + ')</span>'));
+											var b = el('button', 'aia-btn aia-btn--small');
+											b.type = 'button';
+											if (o.urteil === 'gut') { b.textContent = N.erfuellt; b.disabled = true; }
+											else {
+												b.textContent = fmt(N.button, { monate: months(C.kosten[String(node.artikel)]) });
+												b.addEventListener('click', function () {
+													if (hasGood(e.node)) { fixAt(idx); return; }
+													b.disabled = true;
+													b.textContent = N.keineOption;
+													fb.innerHTML = '';
+													var r = say(fb, 'martina', 'frown', N.blockiert);
+													r.classList.add('is-schlecht');
+												});
+											}
+											li.appendChild(b);
+											list.appendChild(li);
+										});
+										wrap.appendChild(list);
+										wrap.appendChild(fb);
+										sc.appendChild(wrap);
+										attn(list);
+									}
+									function fixAt(idx) {
+										var e = S.path[idx], node = C.knoten[e.node], m = C.kosten[String(node.artikel)];
+										S.blocked[e.node] = (S.blocked[e.node] || []).concat(e.opt);
+										S.delay += m;
+										S.fixes.push({ node: e.node, months: m });
+										S.path = S.path.slice(0, idx);
+										sDecision(e.node, { t: fmt(C.nachbessern.ok.t, { artikel: 'Art. ' + node.artikel, monate: months(m) }), q: C.nachbessern.ok.q });
+									}
+
+									/* ---------- ④ Auswertung ---------- */
+									function replayFrom(idx) {
+										var target = S.path[idx].node;
+										var keep = S.path.slice(0, idx);
+										resetBranch();
+										S.path = keep;
+										S.commits = keep.map(function (e) { return { node: e.node, opt: e.opt, conf: e.conf, urteil: optOf(e.node, e.opt).urteil }; });
+										sDecision(target);
+									}
+
+									function sWeg() {
+										S.phase = 3;
+										var W = C.weg;
+										render(function (sc) {
+											head(sc, W.eyebrow, W.titel);
+
+											var ps = section(sc, W.pfadTitel);
+											var ol = el('ol', 'aia-path');
+											S.path.forEach(function (e, idx) {
+												var node = C.knoten[e.node], o = optOf(e.node, e.opt);
+												var li = el('li', 'aia-path-item is-' + o.urteil);
+												li.appendChild(el('span', 'aia-path-dot', '<span aria-hidden="true">' + icon(o.urteil) + '</span>'));
+												var body = el('div', 'aia-path-body');
+												body.appendChild(el('p', 'aia-path-art', 'Art. ' + node.artikel + ' · ' + node.titel));
+												var line = '';
+												var bl = S.blocked[e.node];
+												if (bl && bl.length) {
+													var m = 0;
+													S.fixes.forEach(function (f) { if (f.node === e.node) m += f.months; });
+													line += '<span class="aia-path-prev">' + W.zuvor + ': ' + bl.map(function (id) { var x = optOf(e.node, id); return icon(x.urteil) + ' ' + x.kurz; }).join(', ') +
+														'</span> → ' + U.logNachgebessert + ' (+' + months(m) + ') → ';
+												}
+												line += '<b>' + o.kurz + '</b> <span class="aia-sr">(' + U.urteil[o.urteil] + ')</span>';
+												body.appendChild(el('p', 'aia-path-choice', line));
+												li.appendChild(body);
+												var rb = el('button', 'aia-btn aia-btn--small', U.abHierNeu);
+												rb.type = 'button';
+												rb.addEventListener('click', function () { replayFrom(idx); });
+												li.appendChild(rb);
+												ol.appendChild(li);
+											});
+											ps.appendChild(ol);
+											if (S.ending) ps.appendChild(el('p', 'aia-path-end', '→ ' + C.enden[S.ending].name));
+
+											var ks = section(sc, W.kalibTitel);
+											var n = S.commits.length, sehr = 0, sehrF = 0, gerR = 0, richtig = 0;
+											S.commits.forEach(function (c) {
+												if (c.conf === 'sehr') { sehr++; if (c.urteil !== 'gut') sehrF++; }
+												if (c.conf === 'geraten' && c.urteil === 'gut') gerR++;
+												if (c.urteil === 'gut') richtig++;
+											});
+											ks.appendChild(el('p', 'aia-stat', fmt(W.kalibZahlen, { sicher: sehr, gesamt: n, richtig: richtig })));
+											if (sehrF) ks.appendChild(txt('p', null, W.kalibSehrFalsch, { n: sehrF }));
+											if (gerR) ks.appendChild(txt('p', null, W.kalibGeratenRichtig, { n: gerR }));
+											if (!sehrF && !gerR) ks.appendChild(txt('p', null, W.kalibGut));
+
+											var gs = section(sc, W.prognoseTitel);
+											if (S.prognose) {
+												gs.appendChild(txt('p', null, W.prognose, { tipp: tierName(S.prognose) }));
+												gs.appendChild(txt('p', null, S.prognose === 'hoch' ? W.prognoseRichtig : W.prognoseFalsch));
+											} else gs.appendChild(txt('p', null, W.prognoseKeine));
+
+											var ls = section(sc, W.nachgeschlagenTitel);
+											ls.appendChild(S.lookups.length ? txt('p', null, W.nachgeschlagen, { liste: S.lookups.join(', ') }) : txt('p', null, W.nichtsNachgeschlagen));
+
+											var es = section(sc, W.endenTitel + ' · ' + store.endings.length + '/' + C.endenReihenfolge.length);
+											es.appendChild(txt('p', null, W.endenText));
+											var grid = el('ul', 'aia-endings');
+											C.endenReihenfolge.forEach(function (id) {
+												var E = C.enden[id], found = store.endings.indexOf(id) >= 0;
+												var li = el('li', 'aia-endcard' + (found ? ' is-found is-' + E.typ : ' is-locked') + (id === S.ending ? ' is-current' : ''));
+												li.appendChild(el('p', 'aia-endcard-name', found ? E.name : '???'));
+												li.appendChild(txt('p', 'aia-endcard-teaser', E.teaser));
+												grid.appendChild(li);
+											});
+											es.appendChild(grid);
+
+											attn(footer(sc, { secondary: [{ label: U.szenarioNeu, onClick: sStart }], primary: { label: U.weiterTransfer, onClick: sTransfer } }));
+										});
+									}
+
+									function sTransfer() {
+										S.phase = 3;
+										var T = C.transfer;
+										render(function (sc) {
+											head(sc, T.eyebrow, T.titel);
+											say(sc, 'martina', 'happy', T.martina);
+											task(sc, T.aufgabe);
+											var list = el('ol', 'aia-cases');
+											var done = 0, right = 0, prim;
+											var result = el('p', 'aia-stat');
+											result.hidden = true;
+											result.setAttribute('aria-live', 'polite');
+											T.faelle.forEach(function (f) {
+												var li = el('li', 'aia-case');
+												var q = txt('p', 'aia-case-text', f.text);
+												q.id = 'aia-q-' + (++uid);
+												li.appendChild(q);
+												var g = el('div', 'aia-tierbtns');
+												g.setAttribute('role', 'group');
+												g.setAttribute('aria-labelledby', q.id);
+												var fb = el('div', 'aia-check-fb');
+												fb.hidden = true;
+												fb.setAttribute('aria-live', 'polite');
+												C.pyramide.forEach(function (t) {
+													var b = el('button', 'aia-tierbtn aia-tierc--' + t.id, '<span class="aia-tier-dot" aria-hidden="true"></span>' + t.name);
+													b.type = 'button';
+													b.setAttribute('data-tier', t.id);
+													b.setAttribute('aria-pressed', 'false');
+													b.addEventListener('click', function () {
+														if (li.classList.contains('is-done')) return;
+														li.classList.add('is-done');
+														var ok = t.id === f.loesung;
+														done++;
+														if (ok) right++;
+														each(g.children, function (x) {
+															x.disabled = true;
+															if (x.getAttribute('data-tier') === f.loesung) x.classList.add('is-correct');
+														});
+														b.setAttribute('aria-pressed', 'true');
+														if (!ok) b.classList.add('is-wrong');
+														fb.className = 'aia-check-fb is-' + (ok ? 'gut' : 'schlecht');
+														fb.innerHTML = '';
+														var p = txt('p', null, f.feedback);
+														p.insertAdjacentHTML('afterbegin', '<b>' + (ok ? U.richtig : U.nichtGanz) + '.</b> ');
+														fb.appendChild(p);
+														fb.hidden = false;
+														if (done === T.faelle.length) {
+															result.textContent = fmt(T.ergebnis, { n: right });
+															result.hidden = false;
+															enable(prim);
+														}
+													});
+													g.appendChild(b);
+												});
+												li.appendChild(g);
+												li.appendChild(fb);
+												list.appendChild(li);
+											});
+											sc.appendChild(list);
+											sc.appendChild(result);
+											prim = footer(sc, { primary: { label: U.weiterFahrplan, onClick: sFahrplan, disabled: true } });
+										});
+									}
+
+									function badge(st) {
+										var F = C.fahrplan;
+										var label = { modul: F.status.modul, bonus: F.status.bonus, bonusOffen: U.phasen[4], offen: F.status.offen }[st];
+										return el('span', 'aia-badge is-' + st, label);
+									}
+									function sFahrplan() {
+										S.phase = 3;
+										var F = C.fahrplan;
+										render(function (sc) {
+											head(sc, F.eyebrow, F.titel);
+											say(sc, 'martina', 'neutral', F.martina);
+											var ol = el('ol', 'aia-road');
+											F.schritte.forEach(function (s) {
+												var li = el('li', 'aia-road-step');
+												var top = el('div', 'aia-road-top');
+												top.appendChild(txt('p', 'aia-road-title', s.titel));
+												if (s.status) top.appendChild(badge(s.status));
+												li.appendChild(top);
+												if (s.text) li.appendChild(txt('p', 'aia-road-text', s.text));
+												var links = el('p', 'aia-road-links');
+												if (s.teile) {
+													var ul = el('ul', 'aia-road-parts');
+													s.teile.forEach(function (p) {
+														var st = p.status === 'bonus' ? (store.bonusDone ? 'bonus' : 'bonusOffen') : p.status;
+														var it = el('li', 'aia-part', '<span class="aia-part-nr">Art. ' + p.nr + '</span> ' + p.name);
+														it.appendChild(badge(st));
+														ul.appendChild(it);
+														links.appendChild(artLink(p.nr, true));
+													});
+													li.appendChild(ul);
+												}
+												(s.artikel || []).forEach(function (nr) { links.appendChild(artLink(nr, true)); });
+												if (s.anhang) links.appendChild(lookupLink(C.links.anhang3.label, C.links.anhang3.url, true));
+												li.appendChild(links);
+												ol.appendChild(li);
+											});
+											sc.appendChild(ol);
+
+											var w = el('div', 'aia-when');
+											w.appendChild(el('p', 'aia-when-title', F.wann.titel));
+											var ul2 = el('ul', 'aia-points');
+											F.wann.punkte.forEach(function (p) { ul2.appendChild(txt('li', null, p)); });
+											w.appendChild(ul2);
+											var st = el('p', 'aia-when-stand', F.wann.stand + ' ');
+											st.appendChild(lookupLink(C.links.omnibus.label, C.links.omnibus.url, true));
+											w.appendChild(st);
+											sc.appendChild(w);
+
+											var cta = el('div', 'aia-bonus-cta');
+											cta.appendChild(txt('p', null, store.bonusDone ? F.bonusFertig : F.bonusTeaser));
+											var bb = el('button', 'aia-btn aia-btn--primary', U.bonusStart);
+											bb.type = 'button';
+											bb.addEventListener('click', sBonusIntro);
+											cta.appendChild(bb);
+											sc.appendChild(cta);
+											if (!store.bonusDone) attn(bb);
+
+											footer(sc, { secondary: [{ label: U.szenarioNeu, onClick: sStart }, { label: U.modulNeu, onClick: restartAll }] });
+										});
+									}
+
+									/* ---------- Bonus round: Art. 11, 12, 15 ---------- */
+									function sBonusIntro() {
+										S.phase = 4;
+										S.bonus = { right: 0 };
+										var B = C.bonus;
+										render(function (sc) {
+											head(sc, B.eyebrow, B.titel);
+											say(sc, 'martina', 'happy', B.martina);
+											attn(footer(sc, { primary: { label: U.losButton, onClick: function () { sBonusQ(0); } } }));
+										});
+									}
+									function bonusEyebrow(i, Q) { return C.bonus.eyebrow + ' · ' + (i + 1) + '/' + C.bonus.fragen.length + ' · Art. ' + Q.artikel; }
+									function sBonusQ(i) {
+										S.phase = 4;
+										var Q = C.bonus.fragen[i];
+										render(function (sc) {
+											head(sc, bonusEyebrow(i, Q), Q.titel);
+											say(sc, 'martina', 'neutral', Q.frage);
+											task(sc, U.waehleOption);
+											var g = el('div', 'aia-choices');
+											g.setAttribute('role', 'group');
+											g.setAttribute('aria-label', Q.titel);
+											var selected = null;
+											var conf = confBar(function (lv) {
+												each(g.children, function (c) { c.disabled = true; });
+												if (selected.urteil === 'gut') S.bonus.right++;
+												think(conf, function () { sBonusReaction(i, selected, lv); });
+											});
+											shuffle(Q.optionen.slice()).forEach(function (o, k) {
+												var b = choice(String.fromCharCode(65 + k), o.text);
+												b.setAttribute('aria-pressed', 'false');
+												b.addEventListener('click', function () {
+													selected = o;
+													each(g.children, function (c) { c.setAttribute('aria-pressed', String(c === b)); });
+													conf.hidden = false;
+													attn(conf);
+													conf.scrollIntoView({ block: 'nearest', behavior: smooth() });
+												});
+												g.appendChild(b);
+											});
+											sc.appendChild(g);
+											sc.appendChild(conf);
+											footer(sc, { links: [artLink(Q.artikel)] });
+										});
+									}
+									function sBonusReaction(i, o, lv) {
+										var Q = C.bonus.fragen[i];
+										render(function (sc) {
+											head(sc, bonusEyebrow(i, Q), Q.titel);
+											say(sc, 'lea', 'neutral', o.text, 'aia-say--recap');
+											var r = say(sc, 'martina', mood(o.urteil), o.reaktion);
+											r.classList.add('is-' + o.urteil);
+											articleCard(sc, Q.artikel, { urteil: o.urteil, warum: o.warum, kalib: U.kalibrierung[o.urteil + '-' + lv] });
+											var last = i === C.bonus.fragen.length - 1;
+											attn(footer(sc, { primary: { label: U.weiter, onClick: function () { if (last) sBonusEnd(); else sBonusQ(i + 1); } } }));
+										});
+									}
+									function sBonusEnd() {
+										store.bonusDone = true;
+										saveStore();
+										var B = C.bonus;
+										render(function (sc) {
+											head(sc, B.eyebrow, U.phasen[4] + ' ✓');
+											say(sc, 'martina', 'happy', { t: fmt(B.ergebnis.t, { n: S.bonus.right }), q: B.ergebnis.q });
+											attn(footer(sc, { primary: { label: U.bonusZurueck, onClick: sFahrplan } }));
+										});
+									}
+
+									function restartAll() { S = freshState(); sIntro(); }
+
+									/* ---------- Glossary terms ---------- */
+									root.addEventListener('click', function (ev) {
+										var b = ev.target.closest ? ev.target.closest('.aia-term') : null;
+										if (!b || !root.contains(b)) return;
+										var key = b.getAttribute('data-term'), g = C.glossar[key];
+										if (!g) return;
+										var host = b.closest('.aia-bubble, .aia-card, .aia-story, .aia-callout, .aia-hintbox') || b.parentNode;
+										var def = null;
+										each(host.children, function (c) { if (c.classList.contains('aia-def')) def = c; });
+										var open = b.getAttribute('aria-expanded') !== 'true';
+										each(host.querySelectorAll('.aia-term[aria-expanded="true"]'), function (x) { x.setAttribute('aria-expanded', 'false'); });
+										if (!open) { if (def) host.removeChild(def); return; }
+										if (!def) {
+											def = el('div', 'aia-def');
+											def.setAttribute('role', 'note');
+											def.id = 'aia-def-' + (++uid);
+											host.appendChild(def);
+										}
+										def.innerHTML = '';
+										var p = txt('p', null, g);
+										p.insertAdjacentHTML('afterbegin', '<b>' + U.begriff + ': ' + key + '</b> – ');
+										def.appendChild(p);
+										b.setAttribute('aria-expanded', 'true');
+										b.setAttribute('aria-controls', def.id);
+									});
+
+									/* ---------- Start ---------- */
+									S = freshState();
+									buildChrome();
+									sIntro(true);
+								})();
+							</script>
+							<!-- ============ AI ACT MODULE END ============ -->
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!-- Hidden for now: contact form and social links (contact icons are in the top bar)
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							-->
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

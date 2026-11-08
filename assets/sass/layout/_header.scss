@@ -134,3 +134,49 @@
 			}
 		}
 	}
+
+// Header contact icons (email, phone, LinkedIn): top right, left of the fixed Menu button.
+// Positioned absolutely so they scroll away with the page. Mirrors the block at the end of assets/css/main.css.
+
+	#header {
+		position: relative;
+
+		.contact-icons {
+			position: absolute;
+			top: 2em;
+			right: 6.5em;
+			display: flex;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				padding: 0;
+				margin-left: 0.4em;
+			}
+
+			a.icon {
+				display: block;
+				width: 3em;
+				height: 3em;
+				line-height: 3em;
+				border: 0;
+				border-radius: _size(border-radius);
+				text-align: center;
+				color: _palette(fg);
+
+				&:hover {
+					color: _palette(accent1) !important;
+				}
+			}
+
+			@include breakpoint('<=small') {
+				top: 0.5em;
+				right: 4.75em;
+
+				a.icon {
+					width: 2.4em;
+				}
+			}
+		}
+	}
