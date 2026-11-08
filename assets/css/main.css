@@ -3327,3 +3327,52 @@ input, select, textarea {
 			}
 
 		}
+/* Header contact icons (email, phone, LinkedIn): top right, left of the fixed Menu button.
+   Positioned absolutely so they scroll away with the page and never cover content. */
+
+	#header {
+		position: relative;
+	}
+
+		#header .contact-icons {
+			position: absolute;
+			top: 2em;
+			right: 6.5em;
+			display: flex;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+			#header .contact-icons li {
+				padding: 0;
+				margin-left: 0.4em;
+			}
+
+			#header .contact-icons a.icon {
+				display: block;
+				width: 3em;
+				height: 3em;
+				line-height: 3em;
+				border: 0;
+				border-radius: 4px;
+				text-align: center;
+				color: #585858;
+			}
+
+				#header .contact-icons a.icon:hover {
+					color: #f2849e !important;
+				}
+
+	@media screen and (max-width: 736px) {
+
+		#header .contact-icons {
+			top: 0.5em;
+			right: 4.75em;
+		}
+
+			#header .contact-icons a.icon {
+				width: 2.4em;
+			}
+
+	}
