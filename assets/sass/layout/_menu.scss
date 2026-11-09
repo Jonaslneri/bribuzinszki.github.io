@@ -162,3 +162,22 @@
 			}
 		}
 	}
+
+///
+/// Menu: section entries with their pages as an indented sub-list.
+///
+
+	#menu > .inner > ul > li > ul {
+		list-style: none;
+		margin: -0.75em 0 0.75em 0;
+		padding: 0 0 0 1em;
+
+		> li {
+			padding: 0;
+
+			a {
+				padding: 0.4em 0;
+				font-size: 0.9em;
+			}
+		}
+	}

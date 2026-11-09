@@ -1,0 +1,119 @@
+///
+/// Case-study pages: lead sentence, at-a-glance fact box, back/next links.
+///
+
+	.cs-lead {
+		margin: -0.5em 0 2em 0;
+		font-size: 1.25em;
+		line-height: 1.6;
+	}
+
+	// Overview: course screenshot in a browser frame next to the fact box. The screenshot is never wider than
+	// 640px, so screen captures of about 1280px stay sharp on high-resolution screens. Stacks on smaller screens.
+	.cs-overview {
+		display: grid;
+		grid-template-columns: minmax(0, 640px) minmax(0, 1fr);
+		gap: 2.5em;
+		align-items: start;
+		margin: 0 0 3em 0;
+
+		.cs-facts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5em 2em;
+			margin: 0;
+			padding: 2em;
+		}
+
+		@media screen and (max-width: 1080px) {
+			grid-template-columns: minmax(0, 1fr);
+
+			.cs-facts {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+		}
+
+		@include breakpoint('<=medium') {
+			.cs-facts {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@include breakpoint('<=xsmall') {
+			.cs-facts {
+				grid-template-columns: minmax(0, 1fr);
+				padding: 1.5em;
+			}
+		}
+	}
+
+	.cs-shot {
+		max-width: 640px;
+		margin: 0;
+		border: solid 1px _palette(border);
+		border-radius: _size(border-radius);
+		overflow: hidden;
+		background-color: _palette(bg-alt);
+
+		.cs-shot-bar {
+			display: flex;
+			gap: 6px;
+			padding: 10px 12px;
+			border-bottom: solid 1px _palette(border);
+
+			span {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background-color: _palette(border);
+			}
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.cs-facts {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.75em 2.5em;
+		margin: 0 0 3em 0;
+		padding: 2em 2.5em;
+		border-radius: _size(border-radius);
+		background-color: _palette(bg-alt);
+
+		dt {
+			margin: 0 0 0.5em 0;
+			font-size: 0.8em;
+			font-weight: _font(weight-bold);
+			letter-spacing: _font(letter-spacing);
+			line-height: 1.5;
+			text-transform: uppercase;
+			color: #3c3b3b;
+		}
+
+		dd {
+			margin: 0;
+		}
+
+		@include breakpoint('<=medium') {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include breakpoint('<=xsmall') {
+			grid-template-columns: minmax(0, 1fr);
+			padding: 1.5em;
+		}
+	}
+
+	.cs-pager {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 1em 2em;
+		margin: 4em 0 0 0;
+		padding: 2em 0 0 0;
+		border-top: solid 1px _palette(border);
+	}

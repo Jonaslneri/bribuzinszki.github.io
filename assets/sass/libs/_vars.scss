@@ -33,6 +33,7 @@
 	);
 
 // Palette.
+	// Accents are deeper versions of the Phantom pastels so white text on tiles passes WCAG AA (4.5:1).
 	$palette: (
 		bg:					#ffffff,
 		bg-accent:			#333333,
@@ -41,10 +42,10 @@
 		fg-accent:			#ffffff,
 		border:				#c9c9c9,
 		border-bg:			rgba(144,144,144,0.075),
-		accent1:			#f2849e,
-		accent2:			#7ecaf6,
-		accent3:			#7bd0c1,
-		accent4:			#c75b9b,
-		accent5:			#ae85ca,
-		accent6:			#8499e7,
+		accent1:			#c2335b,
+		accent2:			#0c6ea7,
+		accent3:			#277166,
+		accent4:			#ab3c80,
+		accent5:			#8549ae,
+		accent6:			#4b5fc4,
 	);

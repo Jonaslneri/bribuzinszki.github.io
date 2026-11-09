@@ -1,0 +1,1122 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Inference · Brigitta Buzinszki</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Interactive exercise: predict, pick and sample tokens like an LLM, and see why a fluent answer can still be false." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Inference · Brigitta Buzinszki" />
+		<meta property="og:description" content="Interactive exercise: predict, pick and sample tokens like an LLM, and see why a fluent answer can still be false." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/inference-exercise.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Brigitta Buzinszki</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
+								<ul class="contact-icons">
+									<li><a href="#" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
+									<li><a href="#" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+								</ul>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" role="main">
+						<div class="inner">
+							<h1>Inference</h1>
+							<p>An interactive learning piece from the course <em>Intro to LLMs</em>, where it follows the lessons on pre-training and post-training. Training produced the model; inference is running it: turning the key and pressing the gas pedal. In about eight minutes, you predict, choose and sample tokens the way a model does, and see where that goes wrong. Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
+							<p><b>After this exercise you can:</b></p>
+							<ul>
+								<li>describe inference as next-token prediction in a loop,</li>
+								<li>explain how temperature changes what a model writes,</li>
+								<li>explain why a fluent answer can still be false.</li>
+							</ul>
+							<p>Step into the model’s shoes in the following interaction:</p>
+
+							<!-- ============ INFERENCE EXERCISE START (self-contained: copy everything down to INFERENCE EXERCISE END) ============ -->
+							<style>
+								@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900');
+
+								#inf-exercise {
+									/* Palette from the portfolio (Phantom greys + the accessible accent shades) */
+									--inf-fg: #585858;
+									--inf-fg-bold: #3c3b3b;
+									--inf-fg-light: #6e6e6e;
+									--inf-bg: #ffffff;
+									--inf-bg-alt: #f6f6f6;
+									--inf-dark: #333333;
+									--inf-border: #c9c9c9;
+									--inf-pink: #c2335b;
+									--inf-pink-on-dark: #f2849e;
+									--inf-blue: #0c6ea7;
+									--inf-teal: #277166;
+									--inf-teal-on-dark: #7bd0c1;
+									--inf-radius: 4px;
+									font-family: 'Source Sans Pro', Helvetica, sans-serif;
+									font-size: clamp(15px, 0.85em, 18px);
+									font-weight: 300;
+									line-height: 1.65;
+									letter-spacing: normal;
+									color: var(--inf-fg);
+									max-width: 52em;
+									margin: 0 0 2.5em 0;
+									text-align: left;
+								}
+								/* Neutralise the template's global element styles inside the exercise */
+								#inf-exercise *, #inf-exercise *::before, #inf-exercise *::after { box-sizing: border-box; }
+								#inf-exercise p, #inf-exercise h3, #inf-exercise ol, #inf-exercise ul, #inf-exercise li, #inf-exercise label {
+									margin: 0; padding: 0; font: inherit; color: inherit; list-style: none;
+									letter-spacing: normal; text-transform: none;
+								}
+								#inf-exercise b, #inf-exercise strong { font-weight: 700; color: var(--inf-fg-bold); }
+								#inf-exercise a { color: var(--inf-fg-bold); border-bottom: 1px dotted currentColor; text-decoration: none; }
+								#inf-exercise a:hover { color: var(--inf-pink) !important; border-bottom-color: transparent; }
+								#inf-exercise button { all: unset; box-sizing: border-box; font-family: inherit; }
+								#inf-exercise [hidden] { display: none !important; }
+								#inf-exercise :focus-visible { outline: 2px solid var(--inf-pink); outline-offset: 3px; }
+								#inf-exercise .inf-sr {
+									position: absolute; width: 1px; height: 1px; overflow: hidden;
+									clip: rect(0 0 0 0); white-space: nowrap;
+								}
+								#inf-exercise .inf-eyebrow {
+									display: block; font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--inf-fg-light);
+								}
+
+								/* ---------- Window + pipeline (two groups: once per prompt, then the per-token loop) ---------- */
+								#inf-exercise .inf-window { background: var(--inf-bg); border: 1px solid var(--inf-border); border-radius: var(--inf-radius); overflow: hidden; }
+								#inf-exercise .inf-header { padding: 0.85em 1.25em; background: var(--inf-bg-alt); border-bottom: 1px solid var(--inf-border); }
+								#inf-exercise .inf-pipe { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.6em 1.4em; }
+								#inf-exercise .inf-pipe-group { display: grid; gap: 0.35em; }
+								#inf-exercise .inf-pipe-group + .inf-pipe-group { padding-left: 1.4em; border-left: 1px solid var(--inf-border); }
+								#inf-exercise .inf-pipe-label { font-size: 0.62em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--inf-fg-light); }
+								#inf-exercise .inf-pipe ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2em; }
+								#inf-exercise .inf-pipe li {
+									position: relative; display: inline-flex; align-items: center; padding: 0.3em 0.6em; border-radius: var(--inf-radius);
+									font-size: 0.65em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em;
+									color: var(--inf-fg-light); transition: background 0.25s, color 0.25s;
+								}
+								#inf-exercise .inf-pipe li + li { margin-left: 1.3em; }
+								#inf-exercise .inf-pipe li + li::before { content: "\2192"; position: absolute; left: -1.15em; letter-spacing: 0; color: var(--inf-fg-light); }
+								#inf-exercise .inf-pipe li.is-current { background: var(--inf-dark); color: #ffffff; }
+
+								/* ---------- Task band (instruction, at the top) ---------- */
+								#inf-exercise .inf-task { display: grid; gap: 0.35em; padding: 0.9em 1.25em; background: var(--inf-dark); color: #ffffff; }
+								#inf-exercise .inf-task.inf-flash { animation: inf-flash 0.9s ease-out; }
+								#inf-exercise .inf-task-top { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+								#inf-exercise .inf-task-step { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; color: var(--inf-pink-on-dark); }
+								#inf-exercise .inf-progress { display: flex; gap: 0.3em; }
+								#inf-exercise .inf-progress li { width: 2.2em; height: 0.3em; border-radius: 0.3em; background: rgba(255, 255, 255, 0.22); transition: background 0.3s; }
+								#inf-exercise .inf-progress li.is-current { background: var(--inf-pink-on-dark); }
+								#inf-exercise .inf-progress li.is-done { background: var(--inf-teal-on-dark); }
+								#inf-exercise .inf-task-text, #inf-exercise .inf-task-text b { color: #ffffff; }
+
+								/* ---------- Stage ---------- */
+								#inf-exercise .inf-stage { display: grid; gap: 1.1em; padding: 1.4em 1.25em; }
+								#inf-exercise .inf-promptbox { display: grid; gap: 0.4em; }
+								#inf-exercise .inf-prompt {
+									padding: 0.7em 1em; border: 1px solid var(--inf-border); border-radius: var(--inf-radius);
+									background: var(--inf-bg); color: var(--inf-fg-bold); transition: box-shadow 0.25s, background 0.25s;
+								}
+								#inf-exercise .inf-promptbox.is-active .inf-prompt { box-shadow: inset 0 0 0 1px var(--inf-dark); background: var(--inf-bg-alt); }
+								#inf-exercise .inf-ctx { display: flex; flex-wrap: wrap; gap: 0.4em; margin-top: 0.4em; min-height: 2.9em; }
+								#inf-exercise .inf-chip {
+									display: inline-grid; justify-items: center; min-width: 2.4em; padding: 0.3em 0.6em 0.35em;
+									border-radius: var(--inf-radius); background: var(--inf-bg-alt); border: 1px solid var(--inf-border); line-height: 1.25;
+									animation: inf-in 0.3s ease-out both;
+								}
+								#inf-exercise .inf-chip-id { font-size: 0.62em; font-weight: 700; color: var(--inf-fg-light); font-variant-numeric: tabular-nums; }
+								#inf-exercise .inf-chip-w { font-weight: 700; color: var(--inf-fg-bold); white-space: pre; }
+								#inf-exercise .inf-chip.is-new { background: var(--inf-teal); border-color: var(--inf-teal); }
+								#inf-exercise .inf-chip.is-new .inf-chip-id, #inf-exercise .inf-chip.is-new .inf-chip-w { color: #ffffff; }
+								#inf-exercise .inf-chip.is-end { background: var(--inf-dark); border-color: var(--inf-dark); }
+								#inf-exercise .inf-chip.is-end .inf-chip-id, #inf-exercise .inf-chip.is-end .inf-chip-w { color: #ffffff; }
+								#inf-exercise .inf-chip--next { background: var(--inf-bg); border: 1px dashed var(--inf-fg-light); animation: inf-wait 1.4s ease-in-out infinite; }
+
+								/* Narration line + "Good to know" disclosure */
+								#inf-exercise .inf-narr {
+									display: flex; align-items: flex-start; gap: 1em; min-height: 3.4em; padding: 0.7em 1em;
+									background: var(--inf-bg-alt); border-left: 3px solid var(--inf-blue); border-radius: 0 var(--inf-radius) var(--inf-radius) 0;
+									transition: border-color 0.25s, background 0.25s;
+								}
+								#inf-exercise .inf-narr.is-correct { border-left-color: var(--inf-teal); background: rgba(39, 113, 102, 0.08); }
+								#inf-exercise .inf-narr.is-wrong { border-left-color: var(--inf-pink); background: rgba(194, 51, 91, 0.06); }
+								#inf-exercise .inf-caption { flex: 1; color: var(--inf-fg-bold); }
+								#inf-exercise .inf-info {
+									position: relative; flex: none; display: inline-flex; align-items: center; gap: 0.45em; padding: 0.35em 0.7em;
+									border-radius: 1em; cursor: pointer; white-space: nowrap;
+									font-size: 0.65em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em;
+									color: var(--inf-fg) !important; background: var(--inf-bg); box-shadow: inset 0 0 0 1px var(--inf-border);
+									transition: box-shadow 0.2s, color 0.2s;
+								}
+								#inf-exercise .inf-info::before {
+									content: "i"; display: grid; place-items: center; width: 1.4em; height: 1.4em; border-radius: 50%;
+									font-style: italic; letter-spacing: 0; color: #ffffff; background: var(--inf-teal);
+								}
+								#inf-exercise .inf-info:hover { color: var(--inf-fg-bold) !important; box-shadow: inset 0 0 0 1px var(--inf-teal); }
+								#inf-exercise .inf-info[aria-expanded="true"] { box-shadow: inset 0 0 0 2px var(--inf-teal); }
+								#inf-exercise .inf-info.has-new::after {
+									content: ""; position: absolute; top: -0.2em; right: -0.2em; width: 0.75em; height: 0.75em; border-radius: 50%;
+									background: var(--inf-pink); box-shadow: 0 0 0 2px var(--inf-bg-alt);
+								}
+								#inf-exercise .inf-note {
+									margin-top: -0.6em; padding: 0.75em 1em; font-size: 0.95em;
+									background: var(--inf-bg); border: 1px solid var(--inf-border); border-top: 3px solid var(--inf-teal); border-radius: var(--inf-radius);
+									animation: inf-in 0.25s ease-out both;
+								}
+
+								#inf-exercise .inf-thinking { display: inline-flex; align-items: center; gap: 0.75em; }
+								#inf-exercise .inf-dots { display: inline-flex; gap: 0.3em; }
+								#inf-exercise .inf-dots i { width: 0.45em; height: 0.45em; border-radius: 50%; background: var(--inf-fg); animation: inf-dot 1s infinite ease-in-out; }
+								#inf-exercise .inf-dots i:nth-child(2) { animation-delay: 0.15s; }
+								#inf-exercise .inf-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+								/* Candidate tokens with probability bars */
+								#inf-exercise .inf-cands { position: relative; display: grid; gap: 0.45em; }
+								#inf-exercise .inf-cands:empty { display: none; }
+								#inf-exercise .inf-cand {
+									display: grid; grid-template-columns: minmax(8em, 11em) minmax(0, 1fr) 4.4em; align-items: center; gap: 1em;
+									padding: 0.55em 0.9em; border-radius: var(--inf-radius); text-align: left;
+									color: var(--inf-fg) !important; background: var(--inf-bg); box-shadow: inset 0 0 0 1px var(--inf-border);
+									transition: box-shadow 0.2s, background 0.2s;
+									animation: inf-in 0.3s ease-out both;
+								}
+								#inf-exercise button.inf-cand { cursor: pointer; }
+								#inf-exercise button.inf-cand:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--inf-pink); }
+								#inf-exercise button.inf-cand:disabled { cursor: default; }
+								#inf-exercise .inf-cand-tok { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.5em; }
+								#inf-exercise .inf-cand-w { font-weight: 700; color: var(--inf-fg-bold); }
+								#inf-exercise .inf-cand-id { font-size: 0.75em; color: var(--inf-fg-light); font-variant-numeric: tabular-nums; }
+								#inf-exercise .inf-bar { display: block; height: 0.75em; border-radius: 0.4em; background: var(--inf-bg-alt); overflow: hidden; }
+								#inf-exercise .inf-fill { display: block; width: 0; height: 100%; border-radius: 0.4em; background: var(--inf-blue); transition: width 0.6s ease-out; }
+								#inf-exercise .inf-pct { text-align: right; font-weight: 700; color: var(--inf-fg-bold); font-variant-numeric: tabular-nums; }
+								#inf-exercise .inf-cands.is-hidden .inf-bar {
+									background: repeating-linear-gradient(-45deg, var(--inf-bg-alt) 0 6px, #e6e6e6 6px 12px);
+								}
+								#inf-exercise .inf-cand--other { box-shadow: none; background: transparent; padding-top: 0.2em; padding-bottom: 0.2em; }
+								#inf-exercise .inf-cand--other .inf-cand-w { font-weight: 300; font-style: italic; color: var(--inf-fg); }
+								#inf-exercise .inf-cand--other .inf-fill { background: var(--inf-border); }
+								#inf-exercise .inf-cand--other .inf-pct { font-weight: 300; color: var(--inf-fg); }
+								#inf-exercise .inf-cand.is-guess { box-shadow: inset 0 0 0 2px var(--inf-dark); }
+								#inf-exercise .inf-cand.is-guess .inf-cand-w::after { content: " \00B7  your guess"; font-weight: 300; font-size: 0.85em; color: var(--inf-fg-light); }
+								#inf-exercise .inf-cand.is-picked { background: rgba(39, 113, 102, 0.08); box-shadow: inset 0 0 0 2px var(--inf-teal); }
+								#inf-exercise .inf-cand.is-picked .inf-fill { background: var(--inf-teal); }
+
+								/* Generated texts (compact) */
+								#inf-exercise .inf-outputs { display: grid; gap: 0.35em; }
+								#inf-exercise .inf-outputs li {
+									display: grid; grid-template-columns: minmax(7.5em, 10em) minmax(0, 1fr); gap: 0.2em 1em; align-items: baseline;
+									padding: 0.45em 0.9em; font-size: 0.95em; background: var(--inf-bg-alt); border-radius: var(--inf-radius); animation: inf-in 0.35s ease-out both;
+								}
+								#inf-exercise .inf-out-tag { font-size: 0.65em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.18em; color: var(--inf-fg-light); }
+								#inf-exercise .inf-out-tag .is-ok { color: var(--inf-teal); }
+								#inf-exercise .inf-out-tag .is-bad { color: var(--inf-pink); }
+								#inf-exercise .inf-out-text { color: var(--inf-fg-bold); }
+
+								/* ---------- Controls: temperature + main action ---------- */
+								#inf-exercise .inf-controls {
+									display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1em;
+									padding: 1em 1.25em; background: var(--inf-bg-alt); border-top: 1px solid var(--inf-border);
+								}
+								#inf-exercise .inf-controls:not(:has(> :not([hidden]))) { display: none; }
+								#inf-exercise .inf-temp { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1em; }
+								#inf-exercise .inf-seg { position: relative; display: inline-flex; border-radius: var(--inf-radius); box-shadow: inset 0 0 0 1px var(--inf-border); background: var(--inf-bg); }
+								#inf-exercise .inf-temp-btn {
+									padding: 0.75em 1.2em; border-radius: var(--inf-radius); cursor: pointer;
+									font-size: 0.68em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
+									color: var(--inf-fg) !important; transition: background 0.2s, color 0.2s;
+								}
+								#inf-exercise .inf-temp-btn:hover:not(:disabled) { color: var(--inf-pink) !important; }
+								#inf-exercise .inf-temp-btn[aria-pressed="true"] { background: var(--inf-dark); color: #ffffff !important; }
+								#inf-exercise .inf-temp-btn:disabled { cursor: not-allowed; }
+								#inf-exercise .inf-temp-hint { font-size: 0.9em; color: var(--inf-fg); }
+								#inf-exercise .inf-run {
+									position: relative; display: inline-flex; align-items: center; justify-content: center; margin-left: auto;
+									height: 3.4em; padding: 0 2.2em; border-radius: var(--inf-radius); cursor: pointer;
+									font-size: 0.75em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em;
+									color: #ffffff !important; background: var(--inf-fg); transition: background 0.2s, transform 0.1s, opacity 0.2s;
+								}
+								#inf-exercise .inf-run:hover, #inf-exercise .inf-run:focus-visible { background: var(--inf-pink); }
+								#inf-exercise .inf-run:active { transform: translateY(1px); }
+								#inf-exercise .inf-run:disabled { opacity: 0.35; cursor: not-allowed; }
+								#inf-exercise .inf-btn {
+									position: relative; display: inline-flex; align-items: center; height: 3.2em; padding: 0 1.6em;
+									border-radius: var(--inf-radius); cursor: pointer;
+									font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em;
+									color: var(--inf-fg) !important; box-shadow: inset 0 0 0 2px var(--inf-fg); transition: color 0.2s, box-shadow 0.2s;
+								}
+								#inf-exercise .inf-btn:hover { color: var(--inf-pink) !important; box-shadow: inset 0 0 0 2px var(--inf-pink); }
+
+								/* ---------- Debrief + quick check ---------- */
+								#inf-exercise .inf-debrief {
+									display: grid; gap: 1.1em; justify-items: start; margin-top: 1.5em; padding: 1.4em 1.5em;
+									background: var(--inf-bg-alt); border-radius: var(--inf-radius); outline: none;
+								}
+								#inf-exercise .inf-debrief-title { font-size: 1.15em; font-weight: 700; color: var(--inf-fg-bold); }
+								#inf-exercise .inf-takeaways { display: grid; gap: 0.6em; counter-reset: inf-take; }
+								#inf-exercise .inf-takeaways li { position: relative; padding-left: 2em; counter-increment: inf-take; }
+								#inf-exercise .inf-takeaways li::before {
+									content: counter(inf-take); position: absolute; left: 0; top: 0.1em; width: 1.4em; height: 1.4em; border-radius: 50%;
+									display: grid; place-items: center; font-size: 0.85em; font-weight: 900; color: #ffffff; background: var(--inf-teal);
+								}
+								#inf-exercise .inf-quiz { display: grid; gap: 1.2em; width: 100%; }
+								#inf-exercise .inf-q { display: grid; gap: 0.6em; padding: 1em 1.1em; background: var(--inf-bg); border-radius: var(--inf-radius); }
+								#inf-exercise .inf-q-title { font-weight: 700; color: var(--inf-fg-bold); line-height: 1.4; }
+								#inf-exercise .inf-options { display: grid; gap: 0.45em; }
+								#inf-exercise .inf-option {
+									display: block; padding: 0.6em 1em; border-radius: var(--inf-radius); cursor: pointer;
+									color: var(--inf-fg) !important; background: var(--inf-bg); box-shadow: inset 0 0 0 1px var(--inf-border);
+									transition: box-shadow 0.2s, background 0.2s;
+								}
+								#inf-exercise .inf-option:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--inf-pink); }
+								#inf-exercise .inf-option:disabled { cursor: default; }
+								#inf-exercise .inf-option.is-correct { background: rgba(39, 113, 102, 0.08); box-shadow: inset 0 0 0 2px var(--inf-teal); }
+								#inf-exercise .inf-option.is-wrong { background: rgba(194, 51, 91, 0.06); box-shadow: inset 0 0 0 2px var(--inf-pink); }
+								#inf-exercise .inf-feedback {
+									padding: 0.8em 1em; border-left: 4px solid; border-radius: 0 var(--inf-radius) var(--inf-radius) 0;
+									animation: inf-in 0.35s ease-out both;
+								}
+								#inf-exercise .inf-feedback.is-correct { border-color: var(--inf-teal); background: rgba(39, 113, 102, 0.08); }
+								#inf-exercise .inf-feedback.is-wrong { border-color: var(--inf-pink); background: rgba(194, 51, 91, 0.06); }
+								#inf-exercise .inf-debrief-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1em 1.5em; }
+
+								/* ---------- "Do this next" ring ---------- */
+								#inf-exercise .inf-attn { position: relative; }
+								#inf-exercise .inf-attn::after {
+									content: ""; position: absolute; inset: -5px; border: 2px solid var(--inf-pink); border-radius: 7px;
+									pointer-events: none; animation: inf-ring 1.6s ease-out infinite;
+								}
+
+								@keyframes inf-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+								@keyframes inf-dot { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+								@keyframes inf-wait { 0%, 100% { border-color: var(--inf-border); } 50% { border-color: var(--inf-fg); } }
+								@keyframes inf-ring { 0% { opacity: 1; transform: scale(0.99); } 70% { opacity: 0; transform: scale(1.03); } 100% { opacity: 0; } }
+								@keyframes inf-flash { 0% { box-shadow: inset 6px 0 0 var(--inf-pink-on-dark); background: #4a4a4a; } 100% { box-shadow: inset 0 0 0 transparent; background: var(--inf-dark); } }
+
+								@media (max-width: 600px) {
+									#inf-exercise .inf-pipe-group + .inf-pipe-group { padding-left: 0; border-left: 0; }
+									#inf-exercise .inf-narr { flex-direction: column; gap: 0.6em; }
+									#inf-exercise .inf-outputs li { grid-template-columns: minmax(0, 1fr); }
+								}
+								@media (max-width: 480px) {
+									#inf-exercise .inf-cand { grid-template-columns: minmax(0, 1fr) 4em; grid-template-areas: "tok pct" "bar bar"; gap: 0.35em 0.8em; }
+									#inf-exercise .inf-cand-tok { grid-area: tok; }
+									#inf-exercise .inf-bar { grid-area: bar; }
+									#inf-exercise .inf-pct { grid-area: pct; }
+									#inf-exercise .inf-run { width: 100%; }
+								}
+								@media (prefers-reduced-motion: reduce) {
+									#inf-exercise *, #inf-exercise *::before, #inf-exercise *::after { animation: none !important; transition: none !important; }
+									#inf-exercise .inf-attn::after { opacity: 1; }
+								}
+							</style>
+
+							<div id="inf-exercise">
+								<div class="inf-window">
+									<div class="inf-header">
+										<div class="inf-pipe" id="inf-pipe" role="group" aria-label="The inference loop">
+											<div class="inf-pipe-group">
+												<span class="inf-pipe-label">Once per prompt</span>
+												<ol>
+													<li data-stage="prompt">Prompt</li>
+													<li data-stage="tokens">Tokens</li>
+												</ol>
+											</div>
+											<div class="inf-pipe-group">
+												<span class="inf-pipe-label">For every new token &#8634;</span>
+												<ol>
+													<li data-stage="calc">Calculate</li>
+													<li data-stage="probs">Probabilities</li>
+													<li data-stage="choose">Choose</li>
+													<li data-stage="repeat">Repeat</li>
+												</ol>
+											</div>
+										</div>
+									</div>
+
+									<div class="inf-task" id="inf-task">
+										<div class="inf-task-top">
+											<span class="inf-task-step" id="inf-task-step"></span>
+											<ol class="inf-progress" aria-hidden="true"><li></li><li></li><li></li></ol>
+										</div>
+										<p class="inf-task-text" id="inf-task-text" aria-live="polite"></p>
+									</div>
+
+									<div class="inf-stage">
+										<div class="inf-promptbox" id="inf-promptbox">
+											<span class="inf-eyebrow">Prompt · pre-written</span>
+											<p class="inf-prompt" id="inf-prompt"></p>
+										</div>
+										<div id="inf-ctxwrap" hidden>
+											<span class="inf-eyebrow">Context: what the model sees</span>
+											<div class="inf-ctx" id="inf-ctx" role="group" aria-label="Context tokens"></div>
+										</div>
+										<div class="inf-narr" id="inf-narr">
+											<p class="inf-caption" id="inf-caption"></p>
+											<button type="button" class="inf-info" id="inf-info" aria-expanded="false" aria-controls="inf-note" hidden>Good to know</button>
+										</div>
+										<p class="inf-note" id="inf-note" hidden></p>
+										<div class="inf-cands" id="inf-cands" role="group"></div>
+										<ol class="inf-outputs" id="inf-outputs" aria-label="Generated texts" hidden></ol>
+									</div>
+
+									<div class="inf-controls">
+										<div class="inf-temp" id="inf-temp" role="group" aria-labelledby="inf-temp-label" hidden>
+											<span class="inf-eyebrow" id="inf-temp-label">Temperature</span>
+											<span class="inf-seg">
+												<button type="button" class="inf-temp-btn" data-temp="low" aria-pressed="false">Low</button>
+												<button type="button" class="inf-temp-btn" data-temp="medium" aria-pressed="true">Medium</button>
+												<button type="button" class="inf-temp-btn" data-temp="high" aria-pressed="false">High</button>
+											</span>
+											<span class="inf-temp-hint" id="inf-temp-hint"></span>
+										</div>
+										<button type="button" class="inf-run" id="inf-main" hidden></button>
+									</div>
+								</div>
+
+								<p class="inf-sr" id="inf-announce" aria-live="polite"></p>
+
+								<section class="inf-debrief" id="inf-debrief" tabindex="-1" aria-labelledby="inf-debrief-title" hidden>
+									<h3 class="inf-debrief-title" id="inf-debrief-title">What to take away</h3>
+									<ol class="inf-takeaways">
+										<li><b>Inference is a loop.</b> The model predicts one token, adds it to the context and predicts again, until it picks the end token.</li>
+										<li><b>It scores, it doesn’t look up.</b> The model ranks every possible next token by probability. It has no answer key, and it doesn’t plan the sentence ahead.</li>
+										<li><b>Probable isn’t the same as true.</b> Temperature trades reliability for variety, and even a fluent answer can be a hallucination.</li>
+									</ol>
+									<span class="inf-eyebrow">Quick check</span>
+									<div class="inf-quiz" id="inf-quiz"></div>
+									<div class="inf-debrief-actions">
+										<button type="button" class="inf-btn" id="inf-restart">Restart exercise</button>
+										<a href="rag-exercise.html">Next: Grounding AI with RAG →</a>
+									</div>
+								</section>
+							</div>
+
+							<script>
+								(function () {
+									'use strict';
+									var root = document.getElementById('inf-exercise');
+									if (!root) return;
+
+									/* ---------- Content (edit here). Token IDs and probabilities are illustrative. ---------- */
+									var STAGES = {
+										prompt: 'The prompt goes to the model.',
+										tokens: 'The prompt is split into tokens. The model only works with their IDs.',
+										calc: 'The model runs the token IDs through its billions of trained parameters',
+										probs: 'It scores every possible next token. Here are the top candidates.',
+										choose: 'One token is picked.',
+										repeat: 'The new token joins the context, and the loop starts again.'
+									};
+									var STEPS = ['Be the model', 'Write the story', 'When likely isn’t true'];
+									var TEMPS = {
+										low: { label: 'Low', t: 0.3, hint: 'The most likely token almost always wins.' },
+										medium: { label: 'Medium', t: 1, hint: 'The model’s own probabilities.' },
+										high: { label: 'High', t: 1.6, hint: 'Less likely tokens get a real chance.' }
+									};
+									var END_ID = 50256;
+
+									var CAT = {
+										prompt: [['The', 1820], ['cat', 8415], ['sat', 7731], ['on', 389], ['the', 279]],
+										cands: [['floor', 65589, 20], ['moon', 18266, 0.01], ['mat', 5634, 45], ['red', 2579, 0.5]],
+										other: 34.49,
+										best: 'mat',
+										feedback: {
+											mat: [true, 'Good instinct. “mat” scores highest (45%). The model doesn’t know a right answer: it has learned that “mat” often follows these words.'],
+											floor: [false, '“floor” is plausible (20%), but “mat” scores higher (45%). It follows “The cat sat on the” more often in the text the model was trained on.'],
+											red: [false, '“red” gets only 0.5%. It could start “red blanket”, but the model rarely saw it in this spot. “mat” scores highest with 45%.'],
+											moon: [false, '“moon” gets 0.01%, almost nothing. The model scores every token it knows, even absurd ones. “mat” scores highest with 45%.']
+										}
+									};
+
+									/* Story tree: each candidate is [token, id, probability %, next node]. "E" and "E2" end the sentence. */
+									var STORY = {
+										prompt: [['Once', 13486], ['upon', 5304], ['a', 264], ['time', 892], [',', 11], ['in', 304], ['a', 264], ['land', 4363], ['far', 3117], [',', 11], ['far', 3117]],
+										nodes: {
+											s0: { other: 7, cands: [['away', 3201, 82, 'a1'], ['beyond', 11615, 7, 'b1'], ['from', 505, 4, 'c1']] },
+											a1: { other: 12, cands: [['there', 1070, 64, 'a2'], [',', 11, 18, 'a2c'], ['lived', 12439, 6, 'a3']] },
+											a2: { other: 4, cands: [['lived', 12439, 71, 'a3'], ['was', 574, 22, 'a3w'], ['stood', 14980, 3, 'a3s']] },
+											a2c: { other: 21, cands: [['there', 1070, 57, 'a2'], ['lived', 12439, 14, 'a3'], ['stood', 14980, 8, 'a3s']] },
+											a3: { other: 17, cands: [['a', 264, 58, 'n'], ['an', 459, 14, 'nAn'], ['the', 279, 11, 'nThe']] },
+											a3w: { other: 11, cands: [['a', 264, 66, 'n'], ['an', 459, 16, 'nAn'], ['the', 279, 7, 'nThe']] },
+											a3s: { other: 14, cands: [['a', 264, 63, 'nS'], ['an', 459, 14, 'nAn'], ['the', 279, 9, 'nS']] },
+											b1: { other: 28, cands: [['the', 279, 58, 'b2'], ['all', 682, 9, 'b3'], ['seven', 8254, 5, 'b4']] },
+											b2: { other: 26, cands: [['mountains', 24405, 41, 'bL'], ['sea', 9581, 26, 'bL'], ['clouds', 30614, 7, 'bL']] },
+											b3: { other: 18, cands: [['the', 279, 61, 'b2'], ['hope', 3987, 12, 'bL'], ['reason', 2944, 9, 'bL']] },
+											b4: { other: 13, cands: [['mountains', 24405, 54, 'bL'], ['seas', 51668, 27, 'bL'], ['hills', 34437, 6, 'bL']] },
+											bL: { other: 12, cands: [['lived', 12439, 52, 'a3'], ['there', 1070, 23, 'a2'], [',', 11, 13, 'a2c']] },
+											c1: { other: 19, cands: [['here', 1618, 47, 'cL'], ['home', 2162, 21, 'cL'], ['the', 279, 13, 'b2']] },
+											cL: { other: 11, cands: [[',', 11, 55, 'a2c'], ['there', 1070, 25, 'a2'], ['lived', 12439, 9, 'a3']] },
+											n: { other: 36, cands: [['princess', 40685, 31, 'E'], ['dragon', 26161, 24, 'E'], ['baker', 76928, 9, 'E']] },
+											nAn: { other: 31, cands: [['old', 2362, 52, 'nOld'], ['ogre', 86120, 11, 'E'], ['inventor', 72001, 6, 'E']] },
+											nOld: { other: 17, cands: [['woman', 5333, 44, 'E'], ['king', 10003, 31, 'E'], ['wizard', 35589, 8, 'E']] },
+											nThe: { other: 32, cands: [['king', 10003, 37, 'E'], ['queen', 28351, 22, 'E'], ['dragon', 26161, 9, 'E']] },
+											nS: { other: 19, cands: [['castle', 33827, 41, 'E'], ['tower', 21970, 28, 'E'], ['tree', 5021, 12, 'E']] },
+											E: { other: 9, cands: [['.', 13, 82, 'E2'], ['who', 889, 6, 'E2'], ['and', 323, 3, 'E2']] },
+											E2: { other: 2, cands: [['⟨end⟩', END_ID, 94, null], ['The', 791, 3, null], ['She', 3347, 1, null]] }
+										}
+									};
+
+									var FACT = {
+										prompt: [['The', 791], ['capital', 6864], ['of', 315], ['Australia', 4972], ['is', 374]],
+										cands: [['Canberra', 69849, 57, true], ['Sydney', 21972, 31, false], ['Melbourne', 27535, 8, false]],
+										other: 4,
+										wrong: '“{w}” came out just as fluently as a correct answer would. The model isn’t lying: “{w}” appears next to “Australia” so often in training text that it scores high. Probable, but false: that’s a <b>hallucination</b>.'
+									};
+
+									/* "Good to know" notes: shown only when the learner opens them */
+									var NOTES = {
+										tokens: '<b>Tokens aren’t words.</b> Common words are one token. Rarer ones are split into pieces: “Inference” might become “In · fer · ence”, three tokens.',
+										plan: '<b>No plan ahead.</b> The model doesn’t plan the sentence. It only ever predicts the next token, so each choice changes everything that follows.',
+										end: '<b>The end is a token too.</b> “⟨end⟩” is a token like any other. The model stops when it predicts it. That’s how it “knows” it’s done.',
+										stream: '<b>Why chatbots seem to type.</b> They show each token as soon as it’s generated. And like many chatbots, this simulation only samples from the top candidates (“top-k”), so absurd tokens never win.',
+										halluc: '<b>What helps?</b> Low temperature makes mistakes like this rarer, but not impossible. When facts matter, ground the model in a trusted source. That’s what the <a href="rag-exercise.html">RAG exercise</a> is about.'
+									};
+
+									var QUIZ = [
+										{
+											q: 'A chatbot that isn’t connected to any documents answers a question about a famous novel correctly. What did it do?',
+											options: [['lookup', 'It looked the answer up in its training data.'], ['predict', 'It predicted one likely token after another.'], ['understand', 'It read the novel and summarised it.']],
+											correct: 'predict',
+											feedback: {
+												lookup: 'Not quite. The model has no database to look things up in. It predicts likely tokens, one after another. The answer was right because the right tokens were also the most probable ones.',
+												predict: 'Correct. Without a connected source, every answer is next-token prediction. A correct answer just means the right tokens were also the most probable ones.',
+												understand: 'Not quite. The model doesn’t read anything at inference time. It predicts one token at a time from what it learned in training, which is why fluent answers can still be wrong.'
+											}
+										},
+										{
+											q: 'You ask the same question twice and get two different answers. Why?',
+											options: [['learned', 'The model learned something new in between.'], ['sample', 'The model samples from probabilities, so a different token can win.'], ['broken', 'One of the two answers must be a bug.']],
+											correct: 'sample',
+											feedback: {
+												learned: 'Not quite. Inference doesn’t change the model: its parameters stay fixed after training. The difference comes from sampling.',
+												sample: 'Correct. With a temperature above zero the model samples, so a less likely token sometimes wins, and every later token builds on it.',
+												broken: 'Not quite. Both answers are normal samples from the same probabilities. Variety is expected, especially at higher temperatures.'
+											}
+										}
+									];
+
+									/* ---------- Setup ---------- */
+									var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+									function byId(id) { return document.getElementById(id); }
+									var pipe = byId('inf-pipe'), stages = Array.prototype.slice.call(byId('inf-pipe').querySelectorAll('li')),
+										promptBox = byId('inf-promptbox'), promptEl = byId('inf-prompt'), ctxWrap = byId('inf-ctxwrap'), ctxEl = byId('inf-ctx'),
+										narr = byId('inf-narr'), caption = byId('inf-caption'), infoBtn = byId('inf-info'), noteEl = byId('inf-note'),
+										candsEl = byId('inf-cands'), outEl = byId('inf-outputs'),
+										taskBox = byId('inf-task'), taskStep = byId('inf-task-step'), taskText = byId('inf-task-text'),
+										tempEl = byId('inf-temp'), tempHint = byId('inf-temp-hint'),
+										mainBtn = byId('inf-main'), announcer = byId('inf-announce'), debrief = byId('inf-debrief'), quizEl = byId('inf-quiz'),
+										restartBtn = byId('inf-restart');
+									var progress = Array.prototype.slice.call(root.querySelectorAll('.inf-progress li'));
+									var tempBtns = Array.prototype.slice.call(tempEl.querySelectorAll('.inf-temp-btn'));
+									var state, run = 0;
+
+									/* ---------- Helpers ---------- */
+									function tok(a) { return { w: a[0], id: a[1], p: a[2], next: a[3], end: a[1] === END_ID }; }
+									function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+									function fmt(p) {
+										if (p >= 10) return Math.round(p) + '%';
+										if (p >= 0.1) return (Math.round(p * 10) / 10) + '%';
+										return (Math.round(p * 100) / 100 || 0.01) + '%';
+									}
+									function wait(ms) {
+										var id = run;
+										return new Promise(function (resolve, reject) {
+											setTimeout(function () { if (id === run) resolve(); else reject('cancelled'); }, reduceMotion ? Math.round(ms * 0.4) : ms);
+										});
+									}
+									function flow(fn) {
+										return function () {
+											if (state.busy) return;
+											var p = fn.apply(null, arguments);
+											if (p && p.catch) p.catch(function (e) { if (e !== 'cancelled') throw e; });
+										};
+									}
+									function announce(text) { announcer.textContent = ''; setTimeout(function () { announcer.textContent = text; }, 50); }
+									function attn(el) {
+										Array.prototype.forEach.call(root.querySelectorAll('.inf-attn'), function (n) { n.classList.remove('inf-attn'); });
+										if (el) el.classList.add('inf-attn');
+									}
+									function thinking(text) { return '<span class="inf-thinking">' + text + ' <span class="inf-dots" aria-hidden="true"><i></i><i></i><i></i></span></span>'; }
+									/* The narration line: what the model is doing now. tone: '' | 'correct' | 'wrong' */
+									function narrate(html, tone) {
+										caption.innerHTML = html;
+										narr.className = 'inf-narr' + (tone ? ' is-' + tone : '');
+									}
+									function setStage(name, html, tone) {
+										stages.forEach(function (li) { li.classList.toggle('is-current', li.getAttribute('data-stage') === name); });
+										promptBox.classList.toggle('is-active', name === 'prompt');
+										narrate(html || STAGES[name], tone);
+									}
+									function setTask(html) {
+										taskStep.textContent = 'Step ' + (state.step + 1) + ' of 3 · ' + STEPS[state.step];
+										taskText.innerHTML = html;
+										progress.forEach(function (li, i) {
+											li.classList.toggle('is-done', i < state.step);
+											li.classList.toggle('is-current', i === state.step);
+										});
+										taskBox.classList.remove('inf-flash'); void taskBox.offsetWidth; taskBox.classList.add('inf-flash');
+									}
+									function setMain(label, fn) {
+										mainBtn.textContent = label; mainBtn.hidden = false; mainBtn.disabled = false;
+										state.mainFn = fn;
+									}
+									/* "Good to know": offered, not imposed. A dot marks a note the learner hasn't opened yet. */
+									function offerNote(html) {
+										noteEl.innerHTML = html; noteEl.hidden = true;
+										infoBtn.hidden = false; infoBtn.setAttribute('aria-expanded', 'false'); infoBtn.classList.add('has-new');
+									}
+									function clearNote() { noteEl.hidden = true; infoBtn.hidden = true; infoBtn.classList.remove('has-new'); }
+
+									/* Prompt + context chips */
+									function chip(t, cls) {
+										var c = document.createElement('span');
+										c.className = 'inf-chip' + (t.end ? ' is-end' : '') + (cls ? ' ' + cls : '');
+										c.innerHTML = '<span class="inf-chip-id">' + t.id + '</span><span class="inf-chip-w">' + esc(t.w) + '</span>';
+										return c;
+									}
+									function loadPrompt(list) {
+										state.prompt = list;
+										promptEl.textContent = text(list.map(tok));
+										ctxWrap.hidden = true; ctxEl.innerHTML = ''; state.ctx = [];
+									}
+									function renderCtx(list) {
+										state.ctx = list.map(tok);
+										ctxEl.innerHTML = '';
+										state.ctx.forEach(function (t) { ctxEl.appendChild(chip(t)); });
+										ctxWrap.hidden = false;
+									}
+									/* Prompt → Tokens: the prompt is sent and visibly split into token chips */
+									async function sendPrompt(fast) {
+										candsEl.innerHTML = '';
+										setStage('prompt'); await wait(fast ? 350 : 800);
+										setStage('tokens');
+										state.ctx = []; ctxEl.innerHTML = ''; ctxWrap.hidden = false;
+										var list = state.prompt.map(tok);
+										for (var i = 0; i < list.length; i++) {
+											ctxEl.appendChild(chip(list[i])); state.ctx.push(list[i]);
+											await wait(fast ? 40 : 110);
+										}
+										await wait(fast ? 250 : 700);
+									}
+									function waiting(on) {
+										var ph = ctxEl.querySelector('.inf-chip--next');
+										if (on && !ph) {
+											ph = document.createElement('span');
+											ph.className = 'inf-chip inf-chip--next'; ph.setAttribute('aria-hidden', 'true');
+											ph.innerHTML = '<span class="inf-chip-id">?</span><span class="inf-chip-w">?</span>';
+											ctxEl.appendChild(ph);
+										}
+										if (!on && ph) ph.parentNode.removeChild(ph);
+									}
+									function appendTok(t) {
+										waiting(false);
+										Array.prototype.forEach.call(ctxEl.querySelectorAll('.is-new'), function (c) { c.classList.remove('is-new'); });
+										ctxEl.appendChild(chip(t, t.end ? '' : 'is-new'));
+										state.ctx.push(t);
+									}
+									function text(list) {
+										var s = '';
+										list.forEach(function (t, i) {
+											if (t.end) return;
+											s += (i === 0 || t.w === ',' || t.w === '.') ? t.w : ' ' + t.w;
+										});
+										return s;
+									}
+
+									/* Candidates + probability bars */
+									function adjust(cands, other, t) {
+										var w = cands.map(function (c) { return Math.pow(c.p, 1 / t); });
+										var wo = other > 0 ? Math.pow(other, 1 / t) : 0;
+										var sum = w.reduce(function (a, b) { return a + b; }, 0) + wo;
+										return { ps: w.map(function (x) { return x / sum * 100; }), other: wo / sum * 100 };
+									}
+									function sample(cands, t) {
+										var w = cands.map(function (c) { return Math.pow(c.p, 1 / t); });
+										var r = Math.random() * w.reduce(function (a, b) { return a + b; }, 0);
+										for (var i = 0; i < w.length; i++) { r -= w[i]; if (r <= 0) return i; }
+										return w.length - 1;
+									}
+									function row(label, id, cls, asButton) {
+										var r = document.createElement(asButton ? 'button' : 'div');
+										if (asButton) r.type = 'button';
+										r.className = 'inf-cand' + (cls ? ' ' + cls : '');
+										r.innerHTML = '<span class="inf-cand-tok"><span class="inf-cand-w">' + esc(label) + '</span>' +
+											(id ? '<span class="inf-cand-id">' + id + '</span>' : '') + '</span>' +
+											'<span class="inf-bar" aria-hidden="true"><span class="inf-fill"></span></span><span class="inf-pct">?</span>';
+										return r;
+									}
+									/* mode: 'guess' (bars hidden, pick a guess), 'choose' (bars shown, pick), 'show' (bars shown, read-only) */
+									function renderCands(cands, other, mode, t) {
+										state.cands = cands; state.other = other;
+										candsEl.innerHTML = '';
+										candsEl.className = 'inf-cands' + (mode === 'guess' ? ' is-hidden' : '');
+										candsEl.setAttribute('aria-label', mode === 'show' ? 'Candidate tokens and their probabilities' : 'Candidate tokens: pick one');
+										cands.forEach(function (c, i) {
+											var r = row(c.w, c.id, '', mode !== 'show');
+											r.setAttribute('data-i', i);
+											candsEl.appendChild(r);
+										});
+										candsEl.appendChild(row('All other tokens', null, 'inf-cand--other', false));
+										if (mode !== 'guess') reveal(t);
+									}
+									function reveal(t) {
+										var adj = adjust(state.cands, state.other, t || 1);
+										candsEl.classList.remove('is-hidden');
+										var rows = candsEl.querySelectorAll('.inf-cand');
+										Array.prototype.forEach.call(rows, function (r, i) {
+											var p = i < state.cands.length ? adj.ps[i] : adj.other;
+											r.querySelector('.inf-pct').textContent = fmt(p);
+											if (i < state.cands.length) r.setAttribute('aria-label', state.cands[i].w + ', ' + fmt(p));
+											r._p = p;
+										});
+										requestAnimationFrame(function () {
+											requestAnimationFrame(function () {
+												Array.prototype.forEach.call(rows, function (r) { r.querySelector('.inf-fill').style.width = Math.max(r._p, 0.8) + '%'; });
+											});
+										});
+									}
+									function lockCands() { Array.prototype.forEach.call(candsEl.querySelectorAll('button'), function (b) { b.disabled = true; }); }
+									function mark(i, cls) {
+										var r = candsEl.querySelector('[data-i="' + i + '"]');
+										if (r) r.classList.add(cls || 'is-picked');
+									}
+									function setTemp(key) {
+										state.temp = key;
+										tempBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-temp') === key)); });
+										tempHint.textContent = TEMPS[key].hint;
+									}
+									function lockControls(on) {
+										tempBtns.forEach(function (b) { b.disabled = on; });
+										mainBtn.disabled = on;
+									}
+									function addOutput(tag, body) {
+										var li = document.createElement('li');
+										li.innerHTML = '<span class="inf-out-tag">' + tag + '</span><span class="inf-out-text">' + esc(body) + '</span>';
+										outEl.appendChild(li); outEl.hidden = false;
+									}
+									function clearStage() {
+										clearNote(); candsEl.innerHTML = ''; outEl.innerHTML = ''; outEl.hidden = true;
+									}
+
+									/* ---------- Step 1: be the model ---------- */
+									function step1() {
+										state.step = 0; state.phase = 'cat';
+										loadPrompt(CAT.prompt);
+										setStage(null, 'This is your prompt. Nothing has happened yet: the model only starts when the prompt is sent.');
+										setTask('<b>Be the model.</b> First, send the prompt to the model.');
+										setMain('Send prompt', startGuess); attn(mainBtn);
+									}
+									var startGuess = flow(async function () {
+										state.busy = true; attn(null); mainBtn.hidden = true;
+										await sendPrompt(false);
+										waiting(true);
+										setStage('probs', 'Before the model shows its scores: what do you think comes next?');
+										renderCands(CAT.cands.map(tok), CAT.other, 'guess');
+										setTask('<b>Be the model.</b> Which token does the model rate most likely to come next? Pick your guess.');
+										attn(candsEl); state.busy = false;
+									});
+									var guess = flow(async function (i) {
+										state.busy = true; attn(null); lockCands();
+										var c = state.cands[i];
+										mark(i, 'is-guess');
+										setStage('calc', thinking(STAGES.calc)); await wait(1400);
+										reveal(1);
+										var f = CAT.feedback[c.w];
+										setStage('probs', f[1], f[0] ? 'correct' : 'wrong');
+										announce('Probabilities: mat 45%, floor 20%, red 0.5%, moon 0.01%. ' + f[1]);
+										await wait(2600);
+										var best = state.cands.map(function (x) { return x.w; }).indexOf(CAT.best);
+										setStage('choose', f[1] + ' The model picks the most likely token, “mat”.', f[0] ? 'correct' : 'wrong');
+										mark(best); await wait(1200);
+										appendTok(state.cands[best]);
+										setStage('repeat', f[1] + ' “mat” joins the context, and the loop would start again.', f[0] ? 'correct' : 'wrong');
+										announce('Token added: mat.');
+										setTask('<b>Be the model.</b> You guessed, the model scored every token, and the most likely one was picked. Next, a whole story.');
+										offerNote(NOTES.tokens);
+										setMain('Next: write a story', step2); attn(mainBtn);
+										state.busy = false;
+									});
+
+									/* ---------- Step 2: write the story, then let the model write it ---------- */
+									function step2() {
+										state.step = 1; state.phase = 'story-pick'; state.picks = 0;
+										clearStage(); loadPrompt(STORY.prompt);
+										setStage(null, 'A new prompt: the start of a fairy tale. This time, you pick every token.');
+										setTask('<b>Write the story.</b> Send the prompt, then choose each next token yourself.');
+										setMain('Send prompt', startStory); attn(mainBtn);
+									}
+									var startStory = flow(async function () {
+										state.busy = true; attn(null); mainBtn.hidden = true;
+										await sendPrompt(false);
+										state.node = 's0';
+										setTask('<b>Write the story.</b> Pick the next token: the likely one or a surprise. Your pick becomes context for the next round.');
+										await nextRound('Your turn: which token comes next?');
+									});
+									async function nextRound(cap) {
+										var nd = STORY.nodes[state.node];
+										waiting(true); candsEl.innerHTML = '';
+										setStage('calc', thinking(STAGES.calc)); await wait(900);
+										setStage('probs', cap || 'New context, new scores. Pick the next token.');
+										renderCands(nd.cands.map(tok), nd.other, 'choose');
+										attn(candsEl); state.busy = false;
+									}
+									var pick = flow(async function (i) {
+										state.busy = true; attn(null); lockCands();
+										var c = state.cands[i];
+										setStage('choose', i === 0 ? 'You picked the most likely token: “' + c.w + '”.' : 'You picked “' + c.w + '”, a less likely token. A model picks those too, just less often.');
+										mark(i); await wait(900);
+										appendTok(c); announce('Token added: ' + c.w + '.');
+										setStage('repeat'); state.picks++;
+										if (state.picks === 1) offerNote(NOTES.plan);
+										await wait(800);
+										state.node = c.next;
+										if (state.node === 'E') await finishStory();
+										else await nextRound();
+									});
+									async function finishStory() {
+										setTask('<b>Write the story.</b> Your sentence is complete. Watch how the model ends it.');
+										var steps = ['E', 'E2'];
+										for (var k = 0; k < steps.length; k++) {
+											var nd = STORY.nodes[steps[k]];
+											waiting(true); candsEl.innerHTML = '';
+											setStage('calc', thinking(STAGES.calc)); await wait(800);
+											setStage('probs'); renderCands(nd.cands.map(tok), nd.other, 'show'); await wait(1000);
+											var c = state.cands[0];
+											setStage('choose', c.end ? 'The model picks the end token.' : 'The model picks “' + c.w + '”.'); mark(0); await wait(800);
+											appendTok(c);
+										}
+										setStage('repeat', 'The model predicted the end token, so the loop stops here. Your story is done.');
+										announce('The story is complete.');
+										offerNote(NOTES.end);
+										addOutput('Your story', text(state.ctx));
+										setTask('<b>Write the story.</b> Done! Now let the model write the story itself.');
+										setMain('Let the model choose', sampling); attn(mainBtn);
+										state.busy = false;
+									}
+									function showStoryStart(t) {
+										loadPrompt(STORY.prompt); renderCtx(STORY.prompt); waiting(true);
+										var nd = STORY.nodes.s0;
+										renderCands(nd.cands.map(tok), nd.other, 'show', t);
+									}
+									function sampling() {
+										mainBtn.hidden = true; clearNote();
+										state.phase = 'story'; state.runs = []; state.highRuns = 0;
+										tempEl.hidden = false; setTemp('medium');
+										showStoryStart(TEMPS.medium.t);
+										setStage('probs', 'These are the model’s scores for the first new token. Switch the temperature and watch the bars: low sharpens them, high flattens them.');
+										setTask('<b>Let the model choose.</b> Set the temperature to <b>High</b>, then generate the story twice and compare the results.');
+										setMain('Generate story', generate);
+										attn(tempEl.querySelector('.inf-seg'));
+									}
+									function planStory(t) {
+										var tries = 0, path, key;
+										do {
+											path = []; var node = 's0';
+											while (node) {
+												var nd = STORY.nodes[node];
+												var i = (node === 'E' || node === 'E2') ? 0 : sample(nd.cands.map(tok), t);
+												path.push(i); node = nd.cands[i][3];
+											}
+											key = path.join('-'); tries++;
+										} while (state.temp === 'high' && state.runs.indexOf(key) > -1 && tries < 30);
+										return { path: path, key: key };
+									}
+									var generate = flow(async function () {
+										state.busy = true; attn(null); lockControls(true); clearNote();
+										var t = TEMPS[state.temp].t, temp = state.temp, plan = planStory(t), node = 's0';
+										await sendPrompt(true);
+										for (var k = 0; k < plan.path.length; k++) {
+											var nd = STORY.nodes[node], ending = (node === 'E' || node === 'E2');
+											waiting(true);
+											setStage('calc', thinking(STAGES.calc)); await wait(300);
+											setStage('probs'); renderCands(nd.cands.map(tok), nd.other, 'show', ending ? 1 : t); await wait(550);
+											var c = state.cands[plan.path[k]];
+											setStage('choose', c.end ? 'The model picks the end token.' : 'The model samples “' + c.w + '”.'); mark(plan.path[k]); await wait(350);
+											appendTok(c); setStage('repeat'); await wait(150);
+											node = c.next;
+										}
+										state.runs.push(plan.key);
+										if (temp === 'high') state.highRuns++;
+										addOutput('Model · ' + TEMPS[temp].label, text(state.ctx));
+										announce('Generated: ' + text(state.ctx));
+										lockControls(false);
+										if (state.highRuns >= 2) {
+											setStage('repeat', 'Same prompt, different stories: the model samples, so a less likely token can win, and everything after it changes.');
+											offerNote(NOTES.stream);
+											setTask('<b>Let the model choose.</b> Two runs, two stories. Next, a factual question.');
+											setMain('Next: a factual question', step3); attn(mainBtn);
+										} else {
+											setStage('repeat', temp === 'high' ? 'One story done. Generate once more at High and compare.' : 'Story done. Now switch to High temperature and generate again.');
+											attn(temp === 'high' ? mainBtn : tempEl.querySelector('.inf-seg'));
+										}
+										state.busy = false;
+									});
+
+									/* ---------- Step 3: when likely isn't true ---------- */
+									function step3() {
+										state.step = 2; state.phase = 'fact'; state.asks = 0; state.wrong = false;
+										clearStage(); loadPrompt(FACT.prompt); setTemp('high');
+										setStage(null, 'A factual question this time. The temperature is set to High.');
+										setTask('<b>When likely isn’t true.</b> Ask the model at <b>High</b> temperature until it gets the answer wrong.');
+										setMain('Ask the model', ask); attn(mainBtn);
+									}
+									var ask = flow(async function () {
+										state.busy = true; attn(null); lockControls(true); clearNote();
+										var temp = state.temp, t = TEMPS[temp].t;
+										state.asks++;
+										var cands = FACT.cands.map(tok);
+										var i = sample(cands, t);
+										if (temp === 'high' && !state.wrong && state.asks >= 2) i = 1; /* make sure the twist appears */
+										await sendPrompt(state.asks > 1);
+										waiting(true);
+										setStage('calc', thinking(STAGES.calc)); await wait(700);
+										setStage('probs', 'Look at the scores: “Sydney” is far from zero.'); renderCands(cands, FACT.other, 'show', t); await wait(1100);
+										var c = state.cands[i];
+										setStage('choose', 'The model samples “' + c.w + '”.'); mark(i); await wait(600);
+										appendTok(c); appendTok(tok(['.', 13])); appendTok(tok(['⟨end⟩', END_ID]));
+										var ok = FACT.cands[i][3];
+										addOutput('Answer · ' + TEMPS[temp].label + ' · <span class="' + (ok ? 'is-ok">Correct' : 'is-bad">Wrong') + '</span>', text(state.ctx));
+										announce('The model answered: ' + text(state.ctx) + (ok ? ' Correct.' : ' Wrong.'));
+										lockControls(false);
+										if (!ok && !state.wrong) {
+											state.wrong = true;
+											setStage('repeat', FACT.wrong.replace(/\{w\}/g, c.w), 'wrong');
+											offerNote(NOTES.halluc);
+											setTask('<b>When likely isn’t true.</b> A wrong answer, delivered with full confidence. Finish when you’re ready.');
+											setMain('Finish', finish); attn(mainBtn);
+										} else if (!state.wrong) {
+											setStage('repeat', 'Correct this time. At High temperature, the less likely answers get a real chance. Ask again.', 'correct');
+											setMain('Ask again', ask); attn(mainBtn);
+										} else {
+											setStage('repeat', ok ? 'Correct this time. Same question, different outcome.' : 'Wrong again. Probable isn’t the same as true.', ok ? 'correct' : 'wrong');
+										}
+										state.busy = false;
+									});
+
+									/* ---------- Debrief + quick check ---------- */
+									function finish() {
+										state.step = 3; attn(null); mainBtn.hidden = true; tempEl.hidden = true;
+										progress.forEach(function (li) { li.classList.remove('is-current'); li.classList.add('is-done'); });
+										taskStep.textContent = 'Done';
+										taskText.innerHTML = '<b>Well done.</b> Check what stuck in the quick check below.';
+										taskBox.classList.remove('inf-flash'); void taskBox.offsetWidth; taskBox.classList.add('inf-flash');
+										renderQuiz();
+										debrief.hidden = false;
+										debrief.focus({ preventScroll: true });
+										debrief.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+									}
+									function renderQuiz() {
+										quizEl.innerHTML = '';
+										QUIZ.forEach(function (item, qi) {
+											var box = document.createElement('div');
+											box.className = 'inf-q';
+											box.innerHTML = '<p class="inf-q-title" id="inf-q' + qi + '">' + (qi + 1) + '. ' + esc(item.q) + '</p>' +
+												'<div class="inf-options" role="group" aria-labelledby="inf-q' + qi + '"></div><div class="inf-feedback" hidden></div>';
+											var opts = box.querySelector('.inf-options'), fb = box.querySelector('.inf-feedback');
+											item.options.forEach(function (o) {
+												var b = document.createElement('button');
+												b.type = 'button'; b.className = 'inf-option'; b.textContent = o[1];
+												b.addEventListener('click', function () {
+													var ok = o[0] === item.correct;
+													Array.prototype.forEach.call(opts.children, function (x, k) {
+														x.disabled = true;
+														if (item.options[k][0] === item.correct) x.classList.add('is-correct');
+													});
+													if (!ok) b.classList.add('is-wrong');
+													fb.className = 'inf-feedback ' + (ok ? 'is-correct' : 'is-wrong');
+													fb.textContent = item.feedback[o[0]]; fb.hidden = false;
+													announce(item.feedback[o[0]]);
+												});
+												opts.appendChild(b);
+											});
+											quizEl.appendChild(box);
+										});
+									}
+
+									/* ---------- Events ---------- */
+									candsEl.addEventListener('click', function (e) {
+										var b = e.target.closest('button.inf-cand');
+										if (!b || b.disabled || state.busy) return;
+										var i = Number(b.getAttribute('data-i'));
+										if (state.step === 0) guess(i); else pick(i);
+									});
+									mainBtn.addEventListener('click', function () { if (!state.busy && state.mainFn) state.mainFn(); });
+									infoBtn.addEventListener('click', function () {
+										var open = noteEl.hidden;
+										noteEl.hidden = !open;
+										infoBtn.setAttribute('aria-expanded', String(open));
+										infoBtn.classList.remove('has-new');
+									});
+									tempBtns.forEach(function (b) {
+										b.addEventListener('click', function () {
+											if (state.busy) return;
+											var key = b.getAttribute('data-temp');
+											setTemp(key);
+											if (state.phase === 'story') {
+												showStoryStart(TEMPS[key].t);
+												setStage('probs', TEMPS[key].label + ' temperature: ' + TEMPS[key].hint.charAt(0).toLowerCase() + TEMPS[key].hint.slice(1));
+												if (key === 'high') attn(mainBtn);
+											} else if (state.phase === 'fact' && state.ctx.length) {
+												renderCands(FACT.cands.map(tok), FACT.other, 'show', TEMPS[key].t);
+											}
+											announce('Temperature ' + TEMPS[key].label + '. ' + TEMPS[key].hint);
+										});
+									});
+									restartBtn.addEventListener('click', function () { reset(); root.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); });
+
+									function reset() {
+										run++;
+										state = { step: 0, busy: false, phase: null, temp: 'medium', ctx: [], cands: [], other: 0, mainFn: null, prompt: [] };
+										clearStage(); narrate('');
+										tempEl.hidden = true; mainBtn.hidden = true; debrief.hidden = true; lockControls(false); setTemp('medium');
+										step1();
+									}
+									reset();
+								})();
+							</script>
+							<!-- ============ INFERENCE EXERCISE END ============ -->
+
+							<!-- Designer's notes: portfolio context, not part of the copy-paste exercise block -->
+							<hr class="major" />
+							<section id="design-notes">
+								<h2>Designer’s notes</h2>
+								<h3>Who it’s for</h3>
+								<p>Employees in a company-internal AI-literacy course (<em>Intro to LLMs</em>). It comes right after the lessons on pre-training and post-training, so learners already know what a trained model is.</p>
+								<h3>The problem</h3>
+								<p>The original lesson was a click-through: learners pressed “Generate next token” and read a six-step carousel. They saw inference happen, but never made a decision, so the misconceptions that matter most survived: that the model looks answers up, that it plans whole sentences, and that the same question always gets the same answer.</p>
+								<h3>Why this format</h3>
+								<ul>
+									<li><b>Guess first.</b> Learners predict the next token before they see the scores. Committing to a guess makes the probability bars meaningful.</li>
+									<li><b>The loop in place.</b> Instead of a carousel, a pipeline strip lights up while each token is generated, so the six steps are seen exactly when they happen.</li>
+									<li><b>You choose, and the story branches.</b> Picking an unlikely token changes every option after it, so “each token becomes context” is experienced, not read.</li>
+									<li><b>Temperature as a dial.</b> Generating the same story twice at high temperature answers the question learners actually ask: why does the chatbot answer differently every time?</li>
+									<li><b>A twist to end on.</b> A factual question with a probable wrong answer turns “LLMs have limitations” into a concrete moment, and leads into the RAG exercise.</li>
+								</ul>
+								<h3>What I’d measure in a real rollout</h3>
+								<ul>
+									<li>Answers to the second quick-check question, as the sharpest test of whether sampling was understood.</li>
+									<li>How many learners pick an unlikely token in the story: a sign they explore instead of clicking through.</li>
+									<li>In a follow-up a few weeks later, whether learners explain an inconsistent chatbot answer with sampling rather than “the AI is broken”.</li>
+								</ul>
+								<p>Token IDs and probabilities are illustrative, modelled on real tokenizers and models.</p>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!-- Hidden for now: contact form and social links (contact icons are in the top bar)
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							-->
+							<ul class="copyright">
+								<li>&copy; Brigitta Buzinszki. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -151,7 +151,7 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #f2849e !important;
+			color: #c2335b !important;
 		}
 
 	strong, b {
@@ -1856,12 +1856,12 @@ input, select, textarea {
 			}
 
 			.icon.style2:hover {
-				color: #f2849e;
-				border-color: #f2849e;
+				color: #c2335b;
+				border-color: #c2335b;
 			}
 
 			.icon.style2:active {
-				background-color: rgba(242, 132, 158, 0.1);
+				background-color: rgba(194, 51, 91, 0.1);
 			}
 
 /* List */
@@ -2170,8 +2170,8 @@ input, select, textarea {
 		input[type="tel"]:focus,
 		select:focus,
 		textarea:focus {
-			border-bottom-color: #f2849e;
-			box-shadow: inset 0 -1px 0 0 #f2849e;
+			border-bottom-color: #c2335b;
+			box-shadow: inset 0 -1px 0 0 #c2335b;
 		}
 
 	select {
@@ -2275,8 +2275,8 @@ input, select, textarea {
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #f2849e;
-			box-shadow: 0 0 0 1px #f2849e;
+			border-color: #c2335b;
+			box-shadow: 0 0 0 1px #c2335b;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2494,8 +2494,8 @@ input, select, textarea {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			color: #f2849e !important;
-			box-shadow: inset 0 0 0 2px #f2849e;
+			color: #c2335b !important;
+			box-shadow: inset 0 0 0 2px #c2335b;
 		}
 
 		input[type="submit"]:active,
@@ -2503,7 +2503,7 @@ input, select, textarea {
 		input[type="button"]:active,
 		button:active,
 		.button:active {
-			background-color: rgba(242, 132, 158, 0.1);
+			background-color: rgba(194, 51, 91, 0.1);
 		}
 
 		input[type="submit"].small,
@@ -2537,7 +2537,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #f2849e;
+				background-color: #c2335b;
 			}
 
 			input[type="submit"].primary:active,
@@ -2545,7 +2545,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #ee5f81;
+				background-color: #a22b4c;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -2618,28 +2618,7 @@ input, select, textarea {
 					height: 100%;
 					opacity: 1.0;
 					z-index: 1;
-					opacity: 0.8;
-				}
-
-				.tiles article > .image:after {
-					pointer-events: none;
-					-moz-transition: opacity 0.5s ease;
-					-webkit-transition: opacity 0.5s ease;
-					-ms-transition: opacity 0.5s ease;
-					transition: opacity 0.5s ease;
-					content: '';
-					display: block;
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E");
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: 100% 100%;
-					opacity: 0.25;
-					z-index: 2;
+					opacity: 0.9;
 				}
 
 			.tiles article > a {
@@ -2706,27 +2685,27 @@ input, select, textarea {
 					}
 
 			.tiles article.style1 > .image:before {
-				background-color: #f2849e;
+				background-color: #c2335b;
 			}
 
 			.tiles article.style2 > .image:before {
-				background-color: #7ecaf6;
+				background-color: #0c6ea7;
 			}
 
 			.tiles article.style3 > .image:before {
-				background-color: #7bd0c1;
+				background-color: #277166;
 			}
 
 			.tiles article.style4 > .image:before {
-				background-color: #c75b9b;
+				background-color: #ab3c80;
 			}
 
 			.tiles article.style5 > .image:before {
-				background-color: #ae85ca;
+				background-color: #8549ae;
 			}
 
 			.tiles article.style6 > .image:before {
-				background-color: #8499e7;
+				background-color: #4b5fc4;
 			}
 
 			body:not(.is-touch) .tiles article:hover > .image {
@@ -2738,11 +2717,7 @@ input, select, textarea {
 
 				body:not(.is-touch) .tiles article:hover > .image:before {
 					background-color: #333333;
-					opacity: 0.35;
-				}
-
-				body:not(.is-touch) .tiles article:hover > .image:after {
-					opacity: 0;
+					opacity: 0.7;
 				}
 
 			body:not(.is-touch) .tiles article:hover .content {
@@ -2928,7 +2903,7 @@ input, select, textarea {
 						}
 
 						#header nav ul li a[href="#menu"]:before {
-							background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23f2849e%3B %7D%3C/style%3E%3Cline x1='0' y1='25' x2='100' y2='25' /%3E%3Cline x1='0' y1='50' x2='100' y2='50' /%3E%3Cline x1='0' y1='75' x2='100' y2='75' /%3E%3C/svg%3E");
+							background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23c2335b%3B %7D%3C/style%3E%3Cline x1='0' y1='25' x2='100' y2='25' /%3E%3Cline x1='0' y1='50' x2='100' y2='50' /%3E%3Cline x1='0' y1='75' x2='100' y2='75' /%3E%3C/svg%3E");
 							opacity: 0;
 						}
 
@@ -3078,7 +3053,7 @@ input, select, textarea {
 			}
 
 			#menu > .close:before {
-				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23f2849e%3B %7D%3C/style%3E%3Cline x1='15' y1='15' x2='85' y2='85' /%3E%3Cline x1='85' y1='15' x2='15' y2='85' /%3E%3C/svg%3E");
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23c2335b%3B %7D%3C/style%3E%3Cline x1='15' y1='15' x2='85' y2='85' /%3E%3Cline x1='85' y1='15' x2='15' y2='85' /%3E%3C/svg%3E");
 				opacity: 0;
 			}
 
@@ -3204,7 +3179,7 @@ input, select, textarea {
 				margin-top: 5em;
 				list-style: none;
 				font-size: 0.8em;
-				color: rgba(88, 88, 88, 0.5);
+				color: #6e6e6e;
 			}
 
 				#footer > .inner .copyright a {
@@ -3361,7 +3336,7 @@ input, select, textarea {
 			}
 
 				#header .contact-icons a.icon:hover {
-					color: #f2849e !important;
+					color: #c2335b !important;
 				}
 
 	@media screen and (max-width: 736px) {
@@ -3374,5 +3349,333 @@ input, select, textarea {
 			#header .contact-icons a.icon {
 				width: 2.4em;
 			}
+
+	}
+
+/* Landing page sections (Selected Experiences, Project Briefs, My Frameworks).
+   Each section: number label with a short accent bar, title, subtitle, then its own tile grid.
+   Sections after the first are separated by a hairline and generous spacing. */
+
+	.portfolio-section {
+		margin-top: 5em;
+	}
+
+		.portfolio-section + .portfolio-section {
+			border-top: solid 1px #c9c9c9;
+			padding-top: 4.5em;
+		}
+
+		.portfolio-section .section-header {
+			margin: 0 0 2.5em 0;
+		}
+
+		.portfolio-section .section-number {
+			display: block;
+			font-size: 0.8em;
+			font-weight: 900;
+			letter-spacing: 0.35em;
+			line-height: 1;
+			color: #c2335b;
+		}
+
+			.portfolio-section .section-number:after {
+				content: '';
+				display: block;
+				width: 2.5em;
+				height: 3px;
+				margin-top: 0.75em;
+				border-radius: 4px;
+				background-color: currentColor;
+			}
+
+		#case-studies .section-number {
+			color: #0c6ea7;
+		}
+
+		#frameworks .section-number {
+			color: #277166;
+		}
+
+		/* Always-visible label on a tile ("Try it · 5 min"); the description still appears on hover. */
+		.tiles article > a .tile-label {
+			display: block;
+			margin: 0 0 1em 0;
+			padding: 0.3em 0.9em;
+			border: solid 1px rgba(255, 255, 255, 0.75);
+			border-radius: 4px;
+			font-size: 0.7em;
+			font-weight: 700;
+			line-height: 1.5;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+		}
+
+		.portfolio-section .section-title {
+			margin: 0.75em 0 0.35em 0;
+			font-size: 1.75em;
+			font-weight: 700;
+			line-height: 1.3;
+			letter-spacing: -0.02em;
+			text-transform: none;
+		}
+
+		.portfolio-section .section-subtitle {
+			margin: 0;
+			font-size: 1.1em;
+		}
+
+		.portfolio-section .section-header + .tiles {
+			margin-top: -2.5em;
+		}
+
+	@media screen and (max-width: 1280px) {
+
+		.portfolio-section .section-header + .tiles {
+			margin-top: -1.25em;
+		}
+
+	}
+
+	@media screen and (max-width: 980px) {
+
+		.portfolio-section .section-header + .tiles {
+			margin-top: -2.5em;
+		}
+
+	}
+
+	@media screen and (max-width: 736px) {
+
+		.portfolio-section {
+			margin-top: 3.5em;
+		}
+
+			.portfolio-section + .portfolio-section {
+				padding-top: 3em;
+			}
+
+			.portfolio-section .section-header {
+				margin-bottom: 1.5em;
+			}
+
+			.portfolio-section .section-title {
+				font-size: 1.5em;
+			}
+
+			.portfolio-section .section-header + .tiles {
+				margin-top: -1.25em;
+			}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		.portfolio-section .section-header + .tiles {
+			margin-top: 0;
+		}
+
+	}
+
+/* Tiles: accessibility (WCAG 2.2 AA).
+   Titles are h3 under the section h2; keyboard focus shows the description like hover does;
+   a white focus ring; no zoom or fade for visitors who ask for reduced motion. */
+
+	.tiles article > a h3 {
+		margin: 0;
+		font-size: 1.1em;
+	}
+
+	.tiles article:focus-within > .image:before {
+		background-color: #333333;
+		opacity: 0.7;
+	}
+
+	.tiles article:focus-within .content {
+		max-height: 15em;
+		opacity: 1;
+	}
+
+	.tiles article > a:focus-visible {
+		outline: solid 3px #ffffff;
+		outline-offset: -8px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+
+		.tiles article,
+		.tiles article > .image,
+		.tiles article > .image:before,
+		.tiles article > a,
+		.tiles article > a .content,
+		#menu,
+		#menu > .inner {
+			-moz-transition: none !important;
+			-webkit-transition: none !important;
+			-ms-transition: none !important;
+			transition: none !important;
+		}
+
+		body:not(.is-touch) .tiles article:hover > .image,
+		body.is-preload .tiles article {
+			-moz-transform: none;
+			-webkit-transform: none;
+			-ms-transform: none;
+			transform: none;
+		}
+
+		body.is-preload .tiles article {
+			opacity: 1;
+		}
+
+	}
+
+/* Menu: section entries with their pages as an indented sub-list. */
+
+	#menu > .inner > ul > li > ul {
+		list-style: none;
+		margin: -0.75em 0 0.75em 0;
+		padding: 0 0 0 1em;
+	}
+
+		#menu > .inner > ul > li > ul > li {
+			padding: 0;
+		}
+
+			#menu > .inner > ul > li > ul > li a {
+				padding: 0.4em 0;
+				font-size: 0.9em;
+			}
+
+/* Case-study pages: lead sentence, at-a-glance fact box, back/next links. */
+
+	.cs-lead {
+		margin: -0.5em 0 2em 0;
+		font-size: 1.25em;
+		line-height: 1.6;
+	}
+
+	/* Overview: course screenshot in a browser frame next to the fact box. The screenshot is never wider than
+	   640px, so screen captures of about 1280px stay sharp on high-resolution screens. Stacks on smaller screens. */
+	.cs-overview {
+		display: grid;
+		grid-template-columns: minmax(0, 640px) minmax(0, 1fr);
+		gap: 2.5em;
+		align-items: start;
+		margin: 0 0 3em 0;
+	}
+
+		.cs-overview .cs-facts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5em 2em;
+			margin: 0;
+			padding: 2em;
+		}
+
+	.cs-shot {
+		max-width: 640px;
+		margin: 0;
+		border: solid 1px #c9c9c9;
+		border-radius: 4px;
+		overflow: hidden;
+		background-color: #f6f6f6;
+	}
+
+		.cs-shot-bar {
+			display: flex;
+			gap: 6px;
+			padding: 10px 12px;
+			border-bottom: solid 1px #c9c9c9;
+		}
+
+			.cs-shot-bar span {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background-color: #c9c9c9;
+			}
+
+		.cs-shot img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+	@media screen and (max-width: 1080px) {
+
+		.cs-overview {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+			.cs-overview .cs-facts {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+	}
+
+	@media screen and (max-width: 980px) {
+
+		.cs-overview .cs-facts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		.cs-overview .cs-facts {
+			grid-template-columns: minmax(0, 1fr);
+			padding: 1.5em;
+		}
+
+	}
+
+	.cs-facts {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.75em 2.5em;
+		margin: 0 0 3em 0;
+		padding: 2em 2.5em;
+		border-radius: 4px;
+		background-color: #f6f6f6;
+	}
+
+		.cs-facts dt {
+			margin: 0 0 0.5em 0;
+			font-size: 0.8em;
+			font-weight: 900;
+			letter-spacing: 0.35em;
+			line-height: 1.5;
+			text-transform: uppercase;
+			color: #3c3b3b;
+		}
+
+		.cs-facts dd {
+			margin: 0;
+		}
+
+	.cs-pager {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 1em 2em;
+		margin: 4em 0 0 0;
+		padding: 2em 0 0 0;
+		border-top: solid 1px #c9c9c9;
+	}
+
+	@media screen and (max-width: 980px) {
+
+		.cs-facts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		.cs-facts {
+			grid-template-columns: minmax(0, 1fr);
+			padding: 1.5em;
+		}
 
 	}
