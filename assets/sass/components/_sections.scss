@@ -1,0 +1,110 @@
+///
+/// Landing page sections (Selected Experiences, Project Briefs, My Frameworks).
+/// Each section: number label with a short accent bar, title, subtitle, then its own tile grid.
+/// Sections after the first are separated by a hairline and generous spacing.
+///
+
+	.portfolio-section {
+		margin-top: 5em;
+
+		& + .portfolio-section {
+			border-top: solid 1px _palette(border);
+			padding-top: 4.5em;
+		}
+
+		.section-header {
+			margin: 0 0 2.5em 0;
+		}
+
+		.section-number {
+			display: block;
+			font-size: 0.8em;
+			font-weight: _font(weight-bold);
+			letter-spacing: _font(letter-spacing);
+			line-height: 1;
+			color: _palette(accent1);
+
+			&:after {
+				content: '';
+				display: block;
+				width: 2.5em;
+				height: 3px;
+				margin-top: 0.75em;
+				border-radius: _size(border-radius);
+				background-color: currentColor;
+			}
+		}
+
+		.section-title {
+			margin: 0.75em 0 0.35em 0;
+			font-size: 1.75em;
+			font-weight: _font(weight-bold-alt);
+			line-height: 1.3;
+			letter-spacing: -0.02em;
+			text-transform: none;
+		}
+
+		.section-subtitle {
+			margin: 0;
+			font-size: 1.1em;
+		}
+
+		// The tile grid uses negative margins for its gutters; cancel them out under the header.
+		.section-header + .tiles {
+			margin-top: _size(gutter) * -1;
+
+			@include breakpoint('<=xlarge') {
+				margin-top: _size(gutter) * -0.5;
+			}
+
+			@include breakpoint('<=large') {
+				margin-top: _size(gutter) * -1;
+			}
+
+			@include breakpoint('<=small') {
+				margin-top: _size(gutter) * -0.5;
+			}
+
+			@include breakpoint('<=xsmall') {
+				margin-top: 0;
+			}
+		}
+
+		@include breakpoint('<=small') {
+			margin-top: 3.5em;
+
+			& + .portfolio-section {
+				padding-top: 3em;
+			}
+
+			.section-header {
+				margin-bottom: 1.5em;
+			}
+
+			.section-title {
+				font-size: 1.5em;
+			}
+		}
+	}
+
+	#case-studies .section-number {
+		color: _palette(accent2);
+	}
+
+	#frameworks .section-number {
+		color: _palette(accent3);
+	}
+
+	// Always-visible label on a tile ("Try it · 5 min"); the description still appears on hover.
+	.tiles article > a .tile-label {
+		display: block;
+		margin: 0 0 1em 0;
+		padding: 0.3em 0.9em;
+		border: solid 1px rgba(255, 255, 255, 0.75);
+		border-radius: _size(border-radius);
+		font-size: 0.7em;
+		font-weight: _font(weight-bold-alt);
+		line-height: 1.5;
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+	}

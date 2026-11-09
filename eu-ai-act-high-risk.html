@@ -4,11 +4,24 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 	<head>
 		<title>EU AI Act Essentials: High-Risk Module · Brigitta Buzinszki</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Branching scenario: decide whether an AI system counts as high-risk under the EU AI Act." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="EU AI Act Essentials: High-Risk Module · Brigitta Buzinszki" />
+		<meta property="og:description" content="Branching scenario: decide whether an AI system counts as high-risk under the EU AI Act." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/eu-ai-act-high-risk.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -34,8 +47,7 @@
 
 							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
 								<ul class="contact-icons">
-									<li><a href="#" class="icon solid fa-envelope" aria-label="E-Mail"><span class="label">E-Mail</span></a></li>
-									<li><a href="#" class="icon solid fa-phone" aria-label="Telefon"><span class="label">Telefon</span></a></li>
+									<li><a href="#" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
 									<li><a href="#" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
 								</ul>
 
@@ -47,20 +59,36 @@
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
-							<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
-							<li><a href="generic.html">Intro to LLMs</a></li>
-							<li><a href="generic.html">Technical Onboarding for Engineers</a></li>
-							<li><a href="generic.html">Master the Prompt 101</a></li>
-							<li><a href="generic.html">Veroeros</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" role="main">
 						<div class="inner">
 							<h1>EU AI Act Essentials: High-Risk Module</h1>
-							<p>An interactive branching scenario from <em>EU AI Act Essentials</em>, a MOOC I built for the German non-profit learning platform KI-Campus (2024/2025). You play Lea, a product manager who checks a new HR product idea against the EU AI Act together with her compliance officer – and every decision has consequences. <b>The module is in German.</b></p>
+							<p>An interactive branching scenario from <em>EU AI Act Essentials</em>, a MOOC I built for the German non-profit learning platform KI-Campus (2024/2025). You play Lea, a product manager who checks a new HR product idea against the EU AI Act together with her compliance officer – and every decision has consequences. It takes about 20 minutes. <b>The module is in German.</b> Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
 							<p><b>After this module you can:</b></p>
 							<ul>
 								<li>assess a product idea for its risk level under the EU AI Act,</li>
@@ -2521,6 +2549,33 @@
 								})();
 							</script>
 							<!-- ============ AI ACT MODULE END ============ -->
+
+							<!-- Designer's notes: portfolio context, not part of the copy-paste module block -->
+							<hr class="major" />
+							<section id="design-notes">
+								<h2>Designer’s notes</h2>
+								<h3>Who it’s for</h3>
+								<p>Learners of the KI-Campus MOOC <em>EU AI Act Essentials</em>: people who build, buy or run AI products and need to apply the AI Act to real decisions, without a legal background.</p>
+								<h3>The problem</h3>
+								<p>Legal training usually means reading articles. Learners can repeat that HR software is high-risk, but they can’t follow the reasoning (prohibited practices, Annex III, the exceptions in Art. 6), and they don’t see that the requirements build on each other.</p>
+								<h3>Why this format</h3>
+								<ul>
+									<li><b>A role, not a quiz.</b> Learners play Lea, a product manager, with Martina from compliance as a guide. Every question is a decision Lea would really face, including a tempting feature idea from the developers that would cross into a prohibited practice.</li>
+									<li><b>Gut feeling first.</b> Learners guess the risk level at the start and compare it with the result at the end, which shows why a systematic check is worth it.</li>
+									<li><b>Consequences carry forward.</b> A weak risk-management decision limits the options for data, transparency and human oversight later, just as the Act’s requirements depend on each other. There are six possible endings.</li>
+									<li><b>Mistakes lead to rework.</b> Instead of a “wrong” screen, learners choose which earlier decision to fix, and each fix costs months on the project timeline. Compliance becomes an iterative process, not a test.</li>
+									<li><b>Confidence and sources.</b> After each decision, learners rate how sure they were. The debrief flags answers that were very confident but wrong, and the law text is one click away for every article.</li>
+									<li><b>Transfer.</b> Four new AI projects to classify, plus an optional bonus round for the requirements the story skips.</li>
+								</ul>
+								<h3>What I’d measure in a real rollout</h3>
+								<ul>
+									<li>Transfer-task accuracy as the main learning measure, rather than completion.</li>
+									<li>Calibration: the share of very confident but wrong answers, which should drop when learners replay.</li>
+									<li>Which decisions send most learners into rework, to see where the content needs strengthening.</li>
+									<li>How often learners open the law text, as a sign they’re building the habit of checking the source.</li>
+								</ul>
+								<p>Read how the full course came together in the <a href="case-eu-ai-act.html">EU AI Act case study</a>.</p>
+							</section>
 						</div>
 					</div>
 

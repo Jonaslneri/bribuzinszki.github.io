@@ -4,11 +4,24 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 	<head>
 		<title>Grounding AI with RAG · Brigitta Buzinszki</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Interactive exercise: see how an AI chatbot's answer changes with RAG, and learn to check its sources." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Grounding AI with RAG · Brigitta Buzinszki" />
+		<meta property="og:description" content="Interactive exercise: see how an AI chatbot's answer changes with RAG, and learn to check its sources." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/rag-exercise.html" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -34,8 +47,7 @@
 
 							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
 								<ul class="contact-icons">
-									<li><a href="#" class="icon solid fa-envelope" aria-label="E-Mail"><span class="label">E-Mail</span></a></li>
-									<li><a href="#" class="icon solid fa-phone" aria-label="Telefon"><span class="label">Telefon</span></a></li>
+									<li><a href="#" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
 									<li><a href="#" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
 								</ul>
 
@@ -47,20 +59,36 @@
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
-							<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
-							<li><a href="generic.html">Intro to LLMs</a></li>
-							<li><a href="generic.html">Technical Onboarding for Engineers</a></li>
-							<li><a href="generic.html">Master the Prompt 101</a></li>
-							<li><a href="generic.html">Veroeros</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" role="main">
 						<div class="inner">
 							<h1>Grounding AI with RAG</h1>
-							<p>An interactive learning piece on Retrieval-Augmented Generation (RAG). In about three minutes, you see how a chatbot's answer changes when it is grounded in a company document, and why you still need to check the source.</p>
+							<p>An interactive learning piece on Retrieval-Augmented Generation (RAG). In about five minutes, you see how a chatbot's answer changes when it is grounded in a company document, and why you still need to check the source. Short on time? Jump to the <a href="#design-notes">designer’s notes</a>.</p>
 							<p><b>After this exercise you can:</b></p>
 							<ul>
 								<li>tell a general LLM reply apart from a RAG-grounded reply,</li>
@@ -777,6 +805,28 @@
 								})();
 							</script>
 							<!-- ============ RAG EXERCISE END ============ -->
+
+							<!-- Designer's notes: portfolio context, not part of the copy-paste exercise block -->
+							<hr class="major" />
+							<section id="design-notes">
+								<h2>Designer’s notes</h2>
+								<h3>Who it’s for</h3>
+								<p>Employees who use an AI assistant at work and have no technical background. It’s designed as a short, standalone piece for an AI-literacy program: one concept, one habit.</p>
+								<h3>The problem</h3>
+								<p>Most people either distrust AI answers completely or trust any answer that cites a source. A diagram of RAG teaches the term, but not the habit that matters: checking the source before acting on an answer.</p>
+								<h3>Why this format</h3>
+								<ul>
+									<li><b>A chat, not slides.</b> The misconception comes from chatting: a fluent answer feels true. So learners meet it where it happens.</li>
+									<li><b>One switch, one variable.</b> The same question runs with grounding off and on, so the only difference learners see is what RAG changes.</li>
+									<li><b>A twist instead of a warning.</b> The last answer cites a real section of the document, but the claim isn’t in it. Learners check the source and find the contradiction themselves, which sticks better than being told that RAG can still hallucinate.</li>
+									<li><b>Attention on the answers.</b> Prompts are pre-written, a visible cue marks the next step, and staged “searching … reading page 4” states show what retrieval does.</li>
+								</ul>
+								<h3>What I’d measure in a real rollout</h3>
+								<ul>
+									<li>Behaviour, not quiz scores: a scenario check a few weeks later with a new cited answer to verify, and, where the AI tool logs it, how often people open the cited source.</li>
+									<li>Which wrong answer people pick in the source check. “Yes” means they trust citations blindly, “Partly” means they skim. Each points to a different follow-up.</li>
+								</ul>
+							</section>
 						</div>
 					</div>
 

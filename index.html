@@ -4,11 +4,24 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 	<head>
 		<title>Portfolio Brigitta Buzinszki</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Learning Experience Designer and Enablement Lead. Try interactive AI-literacy exercises, read case studies and see the frameworks behind my work." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Brigitta Buzinszki" />
+		<meta property="og:title" content="Portfolio Brigitta Buzinszki" />
+		<meta property="og:description" content="Learning Experience Designer and Enablement Lead. Try interactive AI-literacy exercises, read case studies and see the frameworks behind my work." />
+		<meta property="og:url" content="https://bribuzinszki.github.io/" />
+		<meta property="og:image" content="https://bribuzinszki.github.io/images/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+		<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -34,8 +47,7 @@
 
 							<!-- Contact (scrolls with the page, unlike the fixed Menu button) -->
 								<ul class="contact-icons">
-									<li><a href="#" class="icon solid fa-envelope" aria-label="E-Mail"><span class="label">E-Mail</span></a></li>
-									<li><a href="#" class="icon solid fa-phone" aria-label="Telefon"><span class="label">Telefon</span></a></li>
+									<li><a href="#" class="icon solid fa-envelope" aria-label="Email"><span class="label">Email</span></a></li>
 									<li><a href="#" class="icon brands fa-linkedin-in" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
 								</ul>
 
@@ -47,17 +59,33 @@
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
-							<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
-							<li><a href="generic.html">Intro to LLMs</a></li>
-							<li><a href="generic.html">Technical Onboarding for Engineers</a></li>
-							<li><a href="generic.html">Master the Prompt 101</a></li>
-							<li><a href="generic.html">Veroeros</a></li>
+							<li>
+								<a href="index.html#try-it">Try It Yourself</a>
+								<ul>
+									<li><a href="rag-exercise.html">Grounding AI with RAG</a></li>
+									<li><a href="eu-ai-act-high-risk.html">EU AI Act Essentials</a></li>
+									<li><a href="inference-exercise.html">Inference</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#case-studies">Case Studies</a>
+								<ul>
+									<li><a href="case-intro-to-llms.html">Intro to LLMs</a></li>
+									<li><a href="case-eu-ai-act.html">EU AI Act</a></li>
+									<li><a href="case-technical-onboarding.html">Technical Onboarding for Engineers</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="index.html#frameworks">Field-Tested Frameworks</a>
+								<ul>
+									<li><a href="framework-sme-feedback.html">SME Feedback Framework</a></li>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" role="main">
 						<div class="inner">
 							<header>
 								<h1>Your favourite Learning Experience Designer and Enablement Lead</h1>		
@@ -66,57 +94,183 @@ corporate training, digital learning paths, and technical enablement programs at
 									Proven track record of building onboarding tracks, adoption playbooks, and scaled enablement programs from the ground up. 
 									Combines strong instructional design principles with data-driven optimization and cross-functional leadership.</p>
 							</header>
-							<section class="tiles">
-								<article class="style5">
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<a href="rag-exercise.html">
-										<h2>Grounding AI with RAG</h2>
-										<div class="content">
-											<p>Interactive exercise: see how an AI chatbot's answer changes with RAG, and learn to check its sources.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style1">
-									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
-									</span>
-									<a href="eu-ai-act-high-risk.html">
-										<h2>EU AI Act Essentials</h2>
-										<div class="content">
-											<p>A MOOC built for the German non-profit education site KI-Campus.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Intro to LLMs</h2>
-										<div class="content">
-											<p>Built for company-internal enablement based on Art. 4 of the EU AI Act.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="images/pic04.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Technical Onboarding for Engineers</h2>
-										<div class="content">
-											<p>Case study of how the Academy cut down time to productivity by 66%.</p>
-										</div>
-									</a>
-								</article>
+							<!-- Try It Yourself -->
+							<section id="try-it" class="portfolio-section">
+								<header class="section-header">
+									<span class="section-number">01</span>
+									<h2 class="section-title">Try It Yourself</h2>
+									<p class="section-subtitle">Learn by doing: interactive pieces you can play in a few minutes</p>
+								</header>
+								<div class="tiles">
+									<article class="style5">
+										<span class="image">
+											<img src="images/tile-rag.jpg" alt="" />
+										</span>
+										<a href="rag-exercise.html">
+											<span class="tile-label">Try it &middot; 5 min</span>
+											<h3>Grounding AI with RAG</h3>
+											<div class="content">
+												<p>Interactive exercise: see how an AI chatbot's answer changes with RAG, and learn to check its sources.</p>
+											</div>
+										</a>
+									</article>
+									<article class="style1">
+										<span class="image">
+											<img src="images/tile-eu-ai-act.jpg" alt="" />
+										</span>
+										<a href="eu-ai-act-high-risk.html">
+											<span class="tile-label">Try it &middot; 20 min</span>
+											<h3>EU AI Act Essentials</h3>
+											<div class="content">
+												<p>Branching scenario: decide whether an AI system counts as high-risk under the EU AI Act.</p>
+											</div>
+										</a>
+									</article>
+									<article class="style4">
+										<span class="image">
+											<img src="images/tile-inference.jpg" alt="" />
+										</span>
+										<a href="inference-exercise.html">
+											<span class="tile-label">Try it &middot; 8 min</span>
+											<h3>Inference</h3>
+											<div class="content">
+												<p>Interactive exercise: predict, pick and sample tokens like an LLM, and see why a fluent answer can still be false.</p>
+											</div>
+										</a>
+									</article>
+									<!-- Spare box (Try It Yourself): fill in, then remove this comment wrapper
+									<article class="style1">
+										<span class="image">
+											<img src="images/pic13.jpg" alt="" />
+										</span>
+										<a href="generic.html">
+											<span class="tile-label">Try it &middot; X min</span>
+											<h3>Title</h3>
+											<div class="content">
+												<p>Short description shown on hover.</p>
+											</div>
+										</a>
+									</article>
+									-->
+								</div>
+							</section>
+							<!-- Case Studies -->
+							<section id="case-studies" class="portfolio-section">
+								<header class="section-header">
+									<span class="section-number">02</span>
+									<h2 class="section-title">Case Studies</h2>
+									<p class="section-subtitle">Behind the work: the challenges, the decisions, the results</p>
+								</header>
+								<div class="tiles">
+									<article class="style2">
+										<span class="image">
+											<img src="images/tile-case-intro-to-llms.jpg" alt="" />
+										</span>
+										<a href="case-intro-to-llms.html">
+											<span class="tile-label">Read &middot; case study</span>
+											<h3>Intro to LLMs</h3>
+											<div class="content">
+												<p>Built for company-internal enablement based on Art. 4 of the EU AI Act.</p>
+											</div>
+										</a>
+									</article>
+									<article class="style6">
+										<span class="image">
+											<img src="images/tile-case-eu-ai-act.jpg" alt="" />
+										</span>
+										<a href="case-eu-ai-act.html">
+											<span class="tile-label">Read &middot; case study</span>
+											<h3>EU AI Act</h3>
+											<div class="content">
+												<p>How the EU AI Act MOOC for the German non-profit KI-Campus came to be.</p>
+											</div>
+										</a>
+									</article>
+									<article class="style2">
+										<span class="image">
+											<img src="images/pic04.jpg" alt="" />
+										</span>
+										<a href="case-technical-onboarding.html">
+											<span class="tile-label">Read &middot; case study</span>
+											<h3>Technical Onboarding for Engineers</h3>
+											<div class="content">
+												<p>Case study of how the Academy cut down time to productivity by 66%.</p>
+											</div>
+										</a>
+									</article>
+									<!-- Spare box (Case Studies): fill in, then remove this comment wrapper
+									<article class="style6">
+										<span class="image">
+											<img src="images/pic14.jpg" alt="" />
+										</span>
+										<a href="generic.html">
+											<span class="tile-label">Read &middot; case study</span>
+											<h3>Title</h3>
+											<div class="content">
+												<p>Short description shown on hover.</p>
+											</div>
+										</a>
+									</article>
+									-->
+								</div>
+							</section>
+							<!-- Field-Tested Frameworks -->
+							<section id="frameworks" class="portfolio-section">
+								<header class="section-header">
+									<span class="section-number">03</span>
+									<h2 class="section-title">Field-Tested Frameworks</h2>
+									<p class="section-subtitle">Lessons turned into repeatable tools</p>
+								</header>
+								<div class="tiles">
+									<article class="style3">
+										<span class="image">
+											<img src="images/pic07.jpg" alt="" />
+										</span>
+										<a href="framework-sme-feedback.html">
+											<span class="tile-label">Use it &middot; framework</span>
+											<h3>SME Feedback Framework</h3>
+											<div class="content">
+												<p>How I make sure subject-matter experts give feedback I can act on.</p>
+											</div>
+										</a>
+									</article>
+									<!-- Spare box (Field-Tested Frameworks): fill in, then remove this comment wrapper
+									<article class="style3">
+										<span class="image">
+											<img src="images/pic15.jpg" alt="" />
+										</span>
+										<a href="generic.html">
+											<span class="tile-label">Use it &middot; framework</span>
+											<h3>Title</h3>
+											<div class="content">
+												<p>Short description shown on hover.</p>
+											</div>
+										</a>
+									</article>
+									-->
+									<!-- Spare box (Field-Tested Frameworks): fill in, then remove this comment wrapper
+									<article class="style3">
+										<span class="image">
+											<img src="images/pic08.jpg" alt="" />
+										</span>
+										<a href="generic.html">
+											<span class="tile-label">Use it &middot; framework</span>
+											<h3>Title</h3>
+											<div class="content">
+												<p>Short description shown on hover.</p>
+											</div>
+										</a>
+									</article>
+									-->
+								</div>
+							</section>
+							<!-- Hidden for now: tiles not on the landing page (Master the Prompt 101 and placeholders)
 								<article class="style3">
 									<span class="image">
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Master the Prompt 101</h2>
+										<h3>Master the Prompt 101</h3>
 										<div class="content">
 											<p>Micro-courses built for a German Federal Agency.</p>
 										</div>
@@ -127,19 +281,18 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic06.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Veroeros</h2>
+										<h3>Veroeros</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
 									</a>
 								</article>
-								<!-- Hidden for now: placeholder tiles for later
 								<article class="style2">
 									<span class="image">
 										<img src="images/pic07.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Ipsum</h2>
+										<h3>Ipsum</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
@@ -150,7 +303,7 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic08.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Dolor</h2>
+										<h3>Dolor</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
@@ -161,7 +314,7 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic09.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Nullam</h2>
+										<h3>Nullam</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
@@ -172,7 +325,7 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic10.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Ultricies</h2>
+										<h3>Ultricies</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
@@ -183,7 +336,7 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic11.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Dictum</h2>
+										<h3>Dictum</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
@@ -194,14 +347,13 @@ corporate training, digital learning paths, and technical enablement programs at
 										<img src="images/pic12.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Pretium</h2>
+										<h3>Pretium</h3>
 										<div class="content">
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
 									</a>
 								</article>
 								-->
-							</section>
 						</div>
 					</div>
 
